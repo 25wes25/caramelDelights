@@ -13,7 +13,167 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralWidget"/>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QTableWidget" name="tableColleges">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>10</y>
+      <width>411</width>
+      <height>421</height>
+     </rect>
+    </property>
+    <property name="editTriggers">
+     <set>QAbstractItemView::NoEditTriggers</set>
+    </property>
+    <property name="sortingEnabled">
+     <bool>false</bool>
+    </property>
+    <column>
+     <property name="text">
+      <string>College</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Distance</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QComboBox" name="comboCollege">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>10</y>
+      <width>241</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="maxVisibleItems">
+     <number>13</number>
+    </property>
+    <item>
+     <property name="text">
+      <string>Arizona State University</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Massachusetts Institute of Technology (MIT)</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Northwestern</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Ohio State University</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Saddleback College</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>University of  Michigan</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>University of California, Irvine (UCI)</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>University of California, Los Angeles (UCLA)</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>University of Oregon</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>University of the Pacific</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>University of Wisconsin</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="labelCollege">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>191</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Select the college you wish to start at:</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spinNumber">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>40</y>
+      <width>42</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+    <property name="maximum">
+     <number>11</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelNumber">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>40</y>
+      <width>231</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Select the number of colleges you wish to visit:</string>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="tableSouvenirs">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>240</y>
+      <width>261</width>
+      <height>192</height>
+     </rect>
+    </property>
+    <property name="editTriggers">
+     <set>QAbstractItemView::NoEditTriggers</set>
+    </property>
+    <column>
+     <property name="text">
+      <string>Souvenirs</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Price</string>
+     </property>
+    </column>
+   </widget>
+  </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>

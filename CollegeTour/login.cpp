@@ -7,6 +7,7 @@ login::login(QWidget *parent) :
 {
     ui->setupUi(this);
     addAccount("caramel", "delights", true);
+    addAccount("", "", true);
 }
 
 login::~login()
