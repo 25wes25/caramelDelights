@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.9.1
+** Created by: Qt User Interface Compiler version 5.7.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -70,6 +70,7 @@ public:
         spinNumber->setGeometry(QRect(240, 40, 42, 22));
         spinNumber->setMinimum(1);
         spinNumber->setMaximum(11);
+        spinNumber->setValue(11);
         labelNumber = new QLabel(centralWidget);
         labelNumber->setObjectName(QStringLiteral("labelNumber"));
         labelNumber->setGeometry(QRect(10, 40, 231, 16));
@@ -102,31 +103,31 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
         QTableWidgetItem *___qtablewidgetitem = tableColleges->horizontalHeaderItem(0);
-        ___qtablewidgetitem->setText(QApplication::translate("MainWindow", "College", Q_NULLPTR));
+        ___qtablewidgetitem->setText(QApplication::translate("MainWindow", "College", 0));
         QTableWidgetItem *___qtablewidgetitem1 = tableColleges->horizontalHeaderItem(1);
-        ___qtablewidgetitem1->setText(QApplication::translate("MainWindow", "Distance", Q_NULLPTR));
+        ___qtablewidgetitem1->setText(QApplication::translate("MainWindow", "Distance", 0));
         comboCollege->clear();
         comboCollege->insertItems(0, QStringList()
-         << QApplication::translate("MainWindow", "Arizona State University", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "Massachusetts Institute of Technology (MIT)", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "Northwestern", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "Ohio State University", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "Saddleback College", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "University of  Michigan", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "University of California, Irvine (UCI)", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "University of California, Los Angeles (UCLA)", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "University of Oregon", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "University of the Pacific", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "University of Wisconsin", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "Arizona State University", 0)
+         << QApplication::translate("MainWindow", "Massachusetts Institute of Technology (MIT)", 0)
+         << QApplication::translate("MainWindow", "Northwestern", 0)
+         << QApplication::translate("MainWindow", "Ohio State University", 0)
+         << QApplication::translate("MainWindow", "Saddleback College", 0)
+         << QApplication::translate("MainWindow", "University of  Michigan", 0)
+         << QApplication::translate("MainWindow", "University of California, Irvine (UCI)", 0)
+         << QApplication::translate("MainWindow", "University of California, Los Angeles (UCLA)", 0)
+         << QApplication::translate("MainWindow", "University of Oregon", 0)
+         << QApplication::translate("MainWindow", "University of the Pacific", 0)
+         << QApplication::translate("MainWindow", "University of Wisconsin", 0)
         );
-        labelCollege->setText(QApplication::translate("MainWindow", "Select the college you wish to start at:", Q_NULLPTR));
-        labelNumber->setText(QApplication::translate("MainWindow", "Select the number of colleges you wish to visit:", Q_NULLPTR));
+        labelCollege->setText(QApplication::translate("MainWindow", "Select the college you wish to start at:", 0));
+        labelNumber->setText(QApplication::translate("MainWindow", "Select the number of colleges you wish to visit:", 0));
         QTableWidgetItem *___qtablewidgetitem2 = tableSouvenirs->horizontalHeaderItem(0);
-        ___qtablewidgetitem2->setText(QApplication::translate("MainWindow", "Souvenirs", Q_NULLPTR));
+        ___qtablewidgetitem2->setText(QApplication::translate("MainWindow", "Souvenirs", 0));
         QTableWidgetItem *___qtablewidgetitem3 = tableSouvenirs->horizontalHeaderItem(1);
-        ___qtablewidgetitem3->setText(QApplication::translate("MainWindow", "Price", Q_NULLPTR));
+        ___qtablewidgetitem3->setText(QApplication::translate("MainWindow", "Price", 0));
     } // retranslateUi
 
 };
