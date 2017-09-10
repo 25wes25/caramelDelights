@@ -44,8 +44,7 @@ public:
     float getSouvTotal();
 
     //mutators
-
-
+    void Recursive(QVector &collegeList, int elem);
 
 private:
     //vector holding the colleges and their respective
