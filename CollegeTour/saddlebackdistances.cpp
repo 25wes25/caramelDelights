@@ -13,8 +13,6 @@ SaddlebackDistances::SaddlebackDistances(QWidget *parent) :
     ui(new Ui::SaddlebackDistances)
 {
     ui->setupUi(this);
-    database = Database::getInstance();
-    database->SetDBPath("/users/brycecallender/College.db");
 
     QSqlQuery *distanceQuery = new QSqlQuery(database->db);//db query to show saddleback distances
     QSqlQueryModel * model = new QSqlQueryModel();

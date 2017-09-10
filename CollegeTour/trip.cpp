@@ -14,16 +14,40 @@ trip::trip()
  */
 trip::trip(QVector<QString> inColleges)
 {
-    colleges filler;
-    for(int index = 0; index < inColleges.size(); index++)
-    {
-        filler.collegeName = inColleges[index];
-        filler.visited = false;
-        //function to set the distance vector within colleges struct
-        collegeList.push_back(filler);
-    }
+
 
 }
+
+void trip::SetCollegeList(QVector<QString> inColleges)
+{
+    Database db;
+
+    collegeList.clear();
+
+    collegeList = db.GetCollegeInfo(inColleges);
+}
+
+void trip::printCollegeList()
+{
+    qDebug() << collegeList.size() << endl;
+    for (int index = 0; index < collegeList.size(); index++)
+    {
+        qDebug() << collegeList[index].collegeName;
+
+        qDebug() << '\n';
+
+        for (int index1 = 0 ; index1 < collegeList[index].distance.size(); index1++)
+        {
+            qDebug() << collegeList[index].distance[index1].collegeName;
+            qDebug() << collegeList[index].distance[index1].distance;
+        }
+
+        qDebug() << endl << endl;
+
+    }
+}
+
+
 /*
  * GET-FUNCTION
  * INPUT: collegeName
@@ -87,7 +111,8 @@ float trip::getDistance(QString startColl, QString collName)
     return distanceFrom;
 }
 
-void trip::Recursive(QVector &collegeList, int elem)
+
+void trip::Recursive(QVector<colleges> &collegeList, int elem)
 {
     int increment = 0;              // Incrementation used to find the location of the closest college in the list
     QString closestCollegeName;     // The name of the closest college used to find the college and sort it in the main college vector
@@ -118,11 +143,12 @@ void trip::Recursive(QVector &collegeList, int elem)
             if (collegeList[increment].collegeName == closestCollegeName)
             {
                 // New colleges struct stores the next element of the collegeList vector
-                new colleges closestCollege = collegeList[elem+1];
+                colleges *closestCollege = new colleges;
+                *closestCollege = collegeList[elem+1];
                 // The next element of the collegeList vector becomes the closest college
                 collegeList[elem+1] = collegeList[increment];
                 // The old location of the closest college becomes the stored college struct of the originally next element
-                collegeList[increment] = closestCollege;
+                collegeList[increment] = *closestCollege;
                 // Deletes the temporary struct to avoid memor leaks
                 delete closestCollege;
                 // Sets the next element in the collegeList vector as visited now that it is in place
@@ -139,6 +165,6 @@ void trip::Recursive(QVector &collegeList, int elem)
     if (elem != collegeList.size()-2)
     {
         // Recursive call with the passed element count being incremented as the base case
-        RecursiveSort(collegeList, elem++);
+        Recursive(collegeList, elem++);
     }
 }

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'saddlebackdistances.ui'
 **
-** Created by: Qt User Interface Compiler version 5.7.0
+** Created by: Qt User Interface Compiler version 5.9.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -46,7 +46,7 @@ public:
 
     void retranslateUi(QDialog *SaddlebackDistances)
     {
-        SaddlebackDistances->setWindowTitle(QApplication::translate("SaddlebackDistances", "Dialog", 0));
+        SaddlebackDistances->setWindowTitle(QApplication::translate("SaddlebackDistances", "Dialog", Q_NULLPTR));
     } // retranslateUi
 
 };

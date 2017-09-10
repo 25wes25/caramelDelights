@@ -1,33 +1,65 @@
 #include "database.h"
+#include <QSqlError>
 
-bool Database::created = false;
-Database* Database::globalBCInstance = NULL;
+//bool Database::created = false;
+//Database* Database::globalBCInstance = NULL;
 
-Database* Database::getInstance()
-{
-    if (!created)
-    {
-        globalBCInstance = new Database();
-        created = true;
-        return globalBCInstance;
-    }
-    else
-    {
-        return globalBCInstance;
-    }
-}
-
-void Database::SetDBPath(const QString &path)
+Database::Database()
 {
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(path);
+    db.setDatabaseName("/users/Wyndal/Downloads/caramelDelights-master/CollegeTour/College.db");
 
     if(!db.open())
+        qDebug() << "Not connected to DB.";
+    else if(db.open())
+        qDebug() << "Connected to DB.";
+}
+
+
+QVector<colleges> Database::GetCollegeInfo(QVector<QString> inColleges)
+{
+    QSqlQuery query(db);
+
+    QVector<colleges> collegeList;
+
+    colleges newCollege;
+    distances collegeInfo;
+
+
+    for (int nameIndex = 0; nameIndex < inColleges.size(); nameIndex++)
     {
-        qDebug() << "Error: connection with database failed";
+        newCollege.collegeName = inColleges[nameIndex];
+        newCollege.visited = false;
+
+
+        query.prepare("SELECT EndingCollege, DistanceBetween FROM Distances WHERE StartingCollege = (:collegeName)");
+        query.bindValue(":collegeName", inColleges[nameIndex]);
+
+        if (query.exec())
+        {
+            qDebug() << "\nExecuted Query\n";
+
+            while (query.next())
+            {
+
+                collegeInfo.collegeName = query.value(0).toString();
+                collegeInfo.distance = query.value(1).toFloat();
+
+                newCollege.distance.push_back(collegeInfo);
+            }
+
+        }
+        else
+        {
+            qDebug() << "\Failed to execute query\n";
+        }
+
+        collegeList.push_back(newCollege);
+
+        newCollege.distance.clear();
+
     }
-    else
-    {
-        qDebug() << "Database: connection made!";
-    }
+
+    return collegeList;
+
 }

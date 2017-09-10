@@ -9,39 +9,40 @@
 #include <QFileInfo>
 #include <QDebug>
 
+using namespace std;
+
+struct distances
+{
+ QString collegeName;
+ float distance;
+};
+
+struct colleges
+{
+    QString collegeName;
+    bool visited;
+    QVector<distances> distance;
+};
+
+
+
 class Database: public QSqlDatabase
 {
 private:
 
-    static bool created;
-    static Database * globalBCInstance;
 
-    Database()
-    {
-//        this->setDatabaseName("./path");
-//        QFileInfo exisiting("path here");
-//        if(exisiting.exists())
-//        {
-//            qDebug() << "it exists";
-//        }
-//        else
-//        {
-//            qDebug() << "not exsitiing";
-//        }
 
-//        this->open();
-    }
+
 
 
 public:
     QSqlDatabase db;
-    static Database* getInstance();
-    void SetDBPath(const QString &path);
 
-    ~Database()
-    {
-        created = false;
-    }
+
+    QVector<colleges> GetCollegeInfo(QVector<QString> inColleges);
+
+
+    Database();
 };
 
 #endif // DATABASE_H
