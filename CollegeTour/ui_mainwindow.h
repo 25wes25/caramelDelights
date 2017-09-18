@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.9.1
+** Created by: Qt User Interface Compiler version 5.8.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -18,6 +18,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTableWidget>
@@ -36,6 +37,7 @@ public:
     QSpinBox *spinNumber;
     QLabel *labelNumber;
     QTableWidget *tableSouvenirs;
+    QPushButton *pushButton;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -70,6 +72,7 @@ public:
         spinNumber->setGeometry(QRect(240, 40, 42, 22));
         spinNumber->setMinimum(1);
         spinNumber->setMaximum(11);
+        spinNumber->setValue(11);
         labelNumber = new QLabel(centralWidget);
         labelNumber->setObjectName(QStringLiteral("labelNumber"));
         labelNumber->setGeometry(QRect(10, 40, 231, 16));
@@ -83,10 +86,13 @@ public:
         tableSouvenirs->setObjectName(QStringLiteral("tableSouvenirs"));
         tableSouvenirs->setGeometry(QRect(180, 240, 261, 192));
         tableSouvenirs->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        pushButton = new QPushButton(centralWidget);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setGeometry(QRect(90, 80, 80, 24));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 875, 21));
+        menuBar->setGeometry(QRect(0, 0, 875, 22));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -127,6 +133,7 @@ public:
         ___qtablewidgetitem2->setText(QApplication::translate("MainWindow", "Souvenirs", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem3 = tableSouvenirs->horizontalHeaderItem(1);
         ___qtablewidgetitem3->setText(QApplication::translate("MainWindow", "Price", Q_NULLPTR));
+        pushButton->setText(QApplication::translate("MainWindow", "Show stuff", Q_NULLPTR));
     } // retranslateUi
 
 };

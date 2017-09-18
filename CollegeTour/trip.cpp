@@ -55,9 +55,9 @@ void trip::printCollegeList()
  * INPUT: collegeName
  * OUTPUT: bool (has/hasnt been visited)
  */
-bool trip::isVisited(QString collName)
+bool trip::isVisited(QString collName,QVector<colleges> &collegeList, int start)
 {
-    for(int index = 0; index < collegeList.size(); index++)
+    for(int index = start; index < collegeList.size(); index++)
     {
         if(collName == collegeList[index].collegeName)
         {
@@ -120,38 +120,41 @@ void trip::Recursive(QVector<colleges> &collegeList, int elem)
     QString closestCollegeName;     // The name of the closest college used to find the college and sort it in the main college vector
     bool found = false;             // Bool used to find the closest college name in the main college vector
     float closestDistance = 100000; // Float used to store the closest college distance
-    bool hasVisited;
 
     // Loops through the entire college list
 
     qDebug() << collegeList[elem].collegeName;
-    qDebug() << elem;
-
+//    qDebug() << elem;
+    if (isVisited(collegeList[elem].collegeName,collegeList, elem) == false)
+    {
+        collegeList[elem].visited = true;
+    }
     while (collegeList[elem].distance.size() != increment)
     {
-//        for(int i = 0; i < elem; i++)
+//        for(int index = 0; index < collegeList.size(); index++)
 //        {
-//            if(closestCollegeName == collegeList[i].collegeName)
+//            if(collegeList[elem].collegeName == collegeList[index].collegeName)
 //            {
 //                hasVisited = true;
 //            }
 //        }
-
+        qDebug() << isVisited(collegeList[increment].collegeName,collegeList, elem);
         // Checks if the distance of the current element at the current increment is less than the previously closest distance and if the college is visited or not
-        if (collegeList[elem].distance[increment].distance < closestDistance && isVisited(collegeList[increment].collegeName) == false)
+        if (collegeList[elem].distance[increment].distance < closestDistance && isVisited(collegeList[increment].collegeName,collegeList,elem) == false)
         {
+            qDebug() << increment;
             // Stores the closest college distance in a temp float for use in finding the closest distance
             closestDistance = collegeList[elem].distance[increment].distance;
             // Stores the closest college name in a temporary QString for later use
             closestCollegeName = collegeList[elem].distance[increment].collegeName;
             qDebug() << closestCollegeName;
         }
+
         // Incrementation to check the entire distance vector
         increment++;
     }
     qDebug() << "Closest College is "  << closestCollegeName;
-    collegeList[elem].visited = true;
-    qDebug() << "Has visited"  << isVisited(collegeList[elem].collegeName);
+//    qDebug() << "Has visited"  << isVisited(collegeList[elem].collegeName,collegeList);
 
     //Checks if the next element of the collegeList vector is already the closest college
     if (collegeList[elem+1].collegeName != closestCollegeName)
@@ -160,19 +163,19 @@ void trip::Recursive(QVector<colleges> &collegeList, int elem)
         // Loops while the location of the closest college is not found
         while (!found)
         {
-            qDebug() << increment;
+//            qDebug() << increment;
             // Checks if the element at the increment is the closest college
             if (collegeList[increment].collegeName == closestCollegeName)
             {
                 // New colleges struct stores the next element of the collegeList vector
                 colleges *closestCollege = new colleges;
                 *closestCollege = collegeList[elem+1];
+
                 // The next element of the collegeList vector becomes the closest college
                 collegeList[elem+1] = collegeList[increment];
                 // The old location of the closest college becomes the stored college struct of the originally next element
                 collegeList[increment] = *closestCollege;
                 // Deletes the temporary struct to avoid memory leaks
-                delete closestCollege;
                 // Sets the next element in the collegeList vector as visited now that it is in place
                 collegeList[elem+1].visited = true;
                 // The college at the correct increment is found and therefore the loop can be exited
@@ -182,10 +185,13 @@ void trip::Recursive(QVector<colleges> &collegeList, int elem)
             increment++;
         }
     }
+
     for(int i = 0; i < collegeList.size(); i++)
     {
         qDebug() << "List is " << collegeList[i].collegeName;
+        qDebug() << "Visited Status is " << collegeList[i].visited;
     }
+//    qDebug() << "Has visited"  << isVisited(collegeList[elem].collegeName,collegeList);
     // Base case check if the elem count is not equal to the size of the collegeList vector - 2
     // This is so that the last recursion occurs on the second to last element of the vector
     if (elem != collegeList.size()-2)
