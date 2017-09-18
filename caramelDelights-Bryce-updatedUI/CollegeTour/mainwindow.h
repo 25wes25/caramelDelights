@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QStandardItem>
 
 namespace Ui {
 class MainWindow;
@@ -26,6 +27,7 @@ private slots:
     void on_selectCollege_clicked();
 private:
     Ui::MainWindow *ui;
+    QStandardItemModel *model;
 };
 
 #endif // MAINWINDOW_H
