@@ -17,7 +17,7 @@ public:
     //get functions
     float getDistance(QString startColl, QString collName);
 
-    bool isVisited(QString collName, QVector<colleges> &collegeList, int start);
+    bool isVisited(QString collName, QVector<colleges> &collegeList, int elem);
 
     float getSouvTotal();
 
