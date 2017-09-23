@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QVector>
 #include "mainwindow.h"
+#include "adminwindow.h"
 
 //holds the username, password, and admin access
 //of each account on file.
@@ -29,7 +30,7 @@ public:
     //accessor functions
     bool isAccount(QString nameIn, QString passIn);
 
-    QString isAdmin(QString nameIn, QString passIn);
+    bool isAdmin(QString nameIn, QString passIn);
 
     //QString index(QString nameIn, QString passIn);
 
@@ -46,6 +47,7 @@ private:
     QVector<user> accounts; //vector holding user login info
                             //using struct:user
     MainWindow interface;
+    AdminWindow adminWindow;
 
 };
 

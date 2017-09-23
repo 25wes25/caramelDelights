@@ -35,17 +35,25 @@ bool login::isAccount(QString nameIn, QString passIn)
     return isValid;
 }
 
-//QString login::isAdmin(QString nameIn, QString passIn)
-//{
+bool login::isAdmin(QString nameIn,QString passIn)
+{
 
-//    bool isAdmin = false; //returns true if the user is infact an admin
-//    int accountIndex;     //index of the account searched for
+    bool isAdmin = false; //returns true if the user is infact an admin
+    int accountIndex;     //index of the account searched for
+    QVector<user>::iterator it;
 
-//    if(isAccount(nameIn, passIn))
-//    {
-//       accountIndex = accounts.indexOf();
-//    }
-//}
+//    it = std::find(accounts.begin(),accounts.end(),nameIn);
+
+    if(isAccount(nameIn,passIn))
+    {
+       accountIndex = 0;
+       if(accounts.at(accountIndex).okAdmin == true)
+       {
+           isAdmin = true;
+       }
+    }
+    return isAdmin;
+}
 
 void login::addAccount(QString nameIn, QString passIn, bool adminIn)
 {
@@ -68,7 +76,16 @@ void login::on_LoginButton_clicked()
 
     if(isAccount(inName, inPass))
     {
-        this->close();
-        interface.show();
+        if(isAdmin(inName,inPass))
+        {
+            this->close();
+            adminWindow.show();
+        }
+        else
+        {
+            this->close();
+            interface.show();
+        }
+
     }
 }
