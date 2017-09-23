@@ -21,6 +21,8 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_customTripButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

@@ -121,7 +121,7 @@
      <string>Select the college you wish to start at:</string>
     </property>
    </widget>
-   <widget class="QSpinBox" name="spinNumber">
+   <widget class="QSpinBox" name="spinCollege">
     <property name="geometry">
      <rect>
       <x>240</x>
@@ -189,6 +189,19 @@
      <string>Show stuff</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="customTripButton">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>40</y>
+      <width>91</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Custom Trip</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -196,7 +209,7 @@
      <x>0</x>
      <y>0</y>
      <width>875</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

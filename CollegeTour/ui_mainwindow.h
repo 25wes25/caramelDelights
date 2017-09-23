@@ -34,10 +34,11 @@ public:
     QTableWidget *tableColleges;
     QComboBox *comboCollege;
     QLabel *labelCollege;
-    QSpinBox *spinNumber;
+    QSpinBox *spinCollege;
     QLabel *labelNumber;
     QTableWidget *tableSouvenirs;
     QPushButton *pushButton;
+    QPushButton *customTripButton;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -67,12 +68,12 @@ public:
         labelCollege = new QLabel(centralWidget);
         labelCollege->setObjectName(QStringLiteral("labelCollege"));
         labelCollege->setGeometry(QRect(10, 10, 191, 16));
-        spinNumber = new QSpinBox(centralWidget);
-        spinNumber->setObjectName(QStringLiteral("spinNumber"));
-        spinNumber->setGeometry(QRect(240, 40, 42, 22));
-        spinNumber->setMinimum(1);
-        spinNumber->setMaximum(11);
-        spinNumber->setValue(11);
+        spinCollege = new QSpinBox(centralWidget);
+        spinCollege->setObjectName(QStringLiteral("spinCollege"));
+        spinCollege->setGeometry(QRect(240, 40, 42, 22));
+        spinCollege->setMinimum(1);
+        spinCollege->setMaximum(11);
+        spinCollege->setValue(11);
         labelNumber = new QLabel(centralWidget);
         labelNumber->setObjectName(QStringLiteral("labelNumber"));
         labelNumber->setGeometry(QRect(10, 40, 231, 16));
@@ -89,10 +90,13 @@ public:
         pushButton = new QPushButton(centralWidget);
         pushButton->setObjectName(QStringLiteral("pushButton"));
         pushButton->setGeometry(QRect(90, 80, 80, 24));
+        customTripButton = new QPushButton(centralWidget);
+        customTripButton->setObjectName(QStringLiteral("customTripButton"));
+        customTripButton->setGeometry(QRect(290, 40, 91, 23));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 875, 22));
+        menuBar->setGeometry(QRect(0, 0, 875, 21));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -134,6 +138,7 @@ public:
         QTableWidgetItem *___qtablewidgetitem3 = tableSouvenirs->horizontalHeaderItem(1);
         ___qtablewidgetitem3->setText(QApplication::translate("MainWindow", "Price", Q_NULLPTR));
         pushButton->setText(QApplication::translate("MainWindow", "Show stuff", Q_NULLPTR));
+        customTripButton->setText(QApplication::translate("MainWindow", "Custom Trip", Q_NULLPTR));
     } // retranslateUi
 
 };

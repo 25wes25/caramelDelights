@@ -13,6 +13,8 @@ public:
     trip();
     //constructor that takes in the number
     trip(QVector<QString> inColleges);
+    //custom Trip constructor
+    trip(QString startingCollege, int tripNumber);
 
     //get functions
     float getDistance(QString startColl, QString collName);
