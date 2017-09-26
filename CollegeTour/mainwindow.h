@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QStandardItemModel>
 
 namespace Ui {
 class MainWindow;
@@ -19,8 +20,14 @@ private slots:
     void on_comboCollege_activated(int index);
     void on_spinNumber_valueChanged(int arg1);
 
+    void on_purchaseSouvenir_clicked();
+
+    void on_customTrip_clicked();
+
+    void on_selectCollege_clicked();
 private:
     Ui::MainWindow *ui;
+    QStandardItemModel *model;
 };
 
 #endif // MAINWINDOW_H

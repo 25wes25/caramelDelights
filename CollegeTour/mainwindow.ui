@@ -6,40 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>875</width>
-    <height>502</height>
+    <width>887</width>
+    <height>519</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QTableWidget" name="tableColleges">
-    <property name="geometry">
-     <rect>
-      <x>450</x>
-      <y>10</y>
-      <width>411</width>
-      <height>421</height>
-     </rect>
-    </property>
-    <property name="editTriggers">
-     <set>QAbstractItemView::NoEditTriggers</set>
-    </property>
-    <property name="sortingEnabled">
-     <bool>false</bool>
-    </property>
-    <column>
-     <property name="text">
-      <string>College</string>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>Distance</string>
-     </property>
-    </column>
-   </widget>
    <widget class="QComboBox" name="comboCollege">
     <property name="geometry">
      <rect>
@@ -153,37 +127,94 @@
      <string>Select the number of colleges you wish to visit:</string>
     </property>
    </widget>
-   <widget class="QTableWidget" name="tableSouvenirs">
+   <widget class="QPushButton" name="customTrip">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>240</y>
-      <width>261</width>
-      <height>192</height>
+      <x>290</x>
+      <y>40</y>
+      <width>80</width>
+      <height>21</height>
      </rect>
     </property>
-    <property name="editTriggers">
-     <set>QAbstractItemView::NoEditTriggers</set>
+    <property name="text">
+     <string>Custom Trip</string>
     </property>
-    <column>
-     <property name="text">
-      <string>Souvenirs</string>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>Price</string>
-     </property>
-    </column>
    </widget>
+   <widget class="QTableView" name="mainTable">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>10</y>
+      <width>431</width>
+      <height>441</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>190</y>
+      <width>391</width>
+      <height>254</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QTableView" name="selectTable">
+       <attribute name="horizontalHeaderCascadingSectionResizes">
+        <bool>true</bool>
+       </attribute>
+       <attribute name="horizontalHeaderStretchLastSection">
+        <bool>true</bool>
+       </attribute>
+       <attribute name="verticalHeaderCascadingSectionResizes">
+        <bool>false</bool>
+       </attribute>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QPushButton" name="pushButton">
+         <property name="text">
+          <string>Select College</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <widget class="QSpinBox" name="souvenirQuantity"/>
+         </item>
+         <item>
+          <widget class="QPushButton" name="purchaseSouvenir">
+           <property name="text">
+            <string>Purchase</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+   <zorder>layoutWidget</zorder>
+   <zorder>comboCollege</zorder>
+   <zorder>labelCollege</zorder>
+   <zorder>spinNumber</zorder>
+   <zorder>labelNumber</zorder>
+   <zorder>mainTable</zorder>
+   <zorder>customTrip</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>875</width>
-     <height>21</height>
+     <width>887</width>
+     <height>22</height>
     </rect>
    </property>
   </widget>
@@ -201,3 +232,4 @@
  <resources/>
  <connections/>
 </ui>
+
