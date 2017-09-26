@@ -27,13 +27,19 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     login.cpp \
     database.cpp \
-    saddlebackdistances.cpp
+    saddlebackdistances.cpp \
+    trip.cpp \
+    adminwindow.cpp
 
 HEADERS  += mainwindow.h \
     login.h \
     database.h \
-    saddlebackdistances.h
+    saddlebackdistances.h \
+    trip.h \
+    structs.h \
+    adminwindow.h
 
 FORMS    += mainwindow.ui \
     login.ui \
-    saddlebackdistances.ui
+    saddlebackdistances.ui \
+    adminwindow.ui
