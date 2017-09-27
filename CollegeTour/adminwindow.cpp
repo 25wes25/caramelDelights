@@ -1,5 +1,6 @@
 #include "adminwindow.h"
 #include "ui_adminwindow.h"
+#include <QDir>
 
 AdminWindow::AdminWindow(QWidget *parent) :
     QDialog(parent),
@@ -12,7 +13,7 @@ AdminWindow::AdminWindow(QWidget *parent) :
     ui->modifyBox->hide();
 
     database = Database::getInstance();
-    database->SetDBPath("/users/brycecallender/College.db");
+    database->SetDBPath(QDir::currentPath() + "\\Database\\College.db");
 
     QSqlQueryModel * model = new QSqlQueryModel();
 

@@ -28,6 +28,8 @@ private slots:
     void on_selectCollege_clicked();
 
     void on_addCollege_clicked();
+    void on_startTrip_clicked();
+
 private:
     Ui::MainWindow *ui;
     QStandardItemModel *model;

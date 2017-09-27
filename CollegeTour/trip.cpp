@@ -1,4 +1,5 @@
 #include "trip.h"
+#include <QDir>
 
 trip::trip()
 {
@@ -33,7 +34,7 @@ trip::trip(QString startingCollege, int tripNumber)
 QVector<colleges> trip::SetCollegeList(QVector<QString> inColleges)
 {
     Database* db = Database::getInstance();
-    db->SetDBPath("C:\\Users\\amulvaney0\\Desktop\\caramelDelights-Ronen2\\CollegeTour\\Database\\College.db");
+    db->SetDBPath(QDir::currentPath() + "\\Database\\College.db");
 
     collegeList.clear();
 

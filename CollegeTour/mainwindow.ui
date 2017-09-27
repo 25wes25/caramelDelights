@@ -216,6 +216,19 @@
      <string>Add College</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="startTrip">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>70</y>
+      <width>81</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Start Trip</string>
+    </property>
+   </widget>
    <zorder>layoutWidget</zorder>
    <zorder>comboCollege</zorder>
    <zorder>labelCollege</zorder>
@@ -224,6 +237,7 @@
    <zorder>mainTable</zorder>
    <zorder>customTrip</zorder>
    <zorder>addCollege</zorder>
+   <zorder>startTrip</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

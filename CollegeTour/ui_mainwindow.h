@@ -48,6 +48,7 @@ public:
     QSpinBox *souvenirQuantity;
     QPushButton *purchaseSouvenir;
     QPushButton *addCollege;
+    QPushButton *startTrip;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -128,6 +129,9 @@ public:
         addCollege->setObjectName(QStringLiteral("addCollege"));
         addCollege->setEnabled(true);
         addCollege->setGeometry(QRect(290, 40, 81, 23));
+        startTrip = new QPushButton(centralWidget);
+        startTrip->setObjectName(QStringLiteral("startTrip"));
+        startTrip->setGeometry(QRect(290, 70, 81, 21));
         MainWindow->setCentralWidget(centralWidget);
         layoutWidget->raise();
         comboCollege->raise();
@@ -137,6 +141,7 @@ public:
         mainTable->raise();
         customTrip->raise();
         addCollege->raise();
+        startTrip->raise();
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 887, 21));
@@ -176,6 +181,7 @@ public:
         pushButton->setText(QApplication::translate("MainWindow", "Select College", Q_NULLPTR));
         purchaseSouvenir->setText(QApplication::translate("MainWindow", "Purchase", Q_NULLPTR));
         addCollege->setText(QApplication::translate("MainWindow", "Add College", Q_NULLPTR));
+        startTrip->setText(QApplication::translate("MainWindow", "Start Trip", Q_NULLPTR));
     } // retranslateUi
 
 };

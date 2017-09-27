@@ -10,8 +10,10 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->addCollege->hide();
+    ui->startTrip->hide();
     //stops a user from click edit
     ui->mainTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->selectTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
 }
 
@@ -38,6 +40,9 @@ void MainWindow::on_purchaseSouvenir_clicked() //purchase souvenir button
 
 void MainWindow::on_customTrip_clicked() //custom trip button
 {
+    ui->spinCollege->hide();
+    ui->startTrip->show();
+
     qDebug() << "customTrip clicked";
     collegeRow = 0;
     index = 0;
@@ -93,4 +98,25 @@ void MainWindow::on_addCollege_clicked()
 
     collegeRow++;
     index++;
+}
+
+void MainWindow::on_startTrip_clicked()
+{
+    QVector<colleges> list;
+    QVector<QString>  tripNames;
+
+    for(int index = 0; index < customTrip.collegeList.size(); index++)
+    {
+        qDebug() << customTrip.collegeList[index].collegeName;
+        tripNames.push_back(customTrip.collegeList[index].collegeName);
+    }
+
+    for(int index = 0; index < tripNames.size(); index++)
+    {
+        qDebug() << "Trip Name: " << tripNames[index];
+    }
+
+    list = customTrip.SetCollegeList(tripNames);
+
+    customTrip.Recursive(list, 0);
 }
