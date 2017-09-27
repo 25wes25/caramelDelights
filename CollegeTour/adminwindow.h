@@ -19,6 +19,14 @@ public:
 private slots:
     void on_addSouvenirButton_clicked();
 
+    void on_sumbitSouvenirButton_clicked();
+
+    void on_deleteSouvenirButtonBox_clicked();
+
+    void on_updateSouvenirButton_clicked();
+
+    void on_updateDB_clicked();
+
 private:
     Ui::AdminWindow *ui;
     Database* database;

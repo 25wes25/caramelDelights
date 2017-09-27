@@ -24,38 +24,84 @@
        <string>Souvenir</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout">
+       <item row="3" column="2">
+        <widget class="QGroupBox" name="deleteBox">
+         <property name="title">
+          <string>Delete</string>
+         </property>
+         <layout class="QFormLayout" name="formLayout_2">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_4">
+            <property name="text">
+             <string>Name Of College</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLineEdit" name="deleteCollegeName"/>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_5">
+            <property name="text">
+             <string>Name Of Souvenir</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLineEdit" name="deleteSouvenirName"/>
+          </item>
+          <item row="4" column="0">
+           <widget class="QPushButton" name="deleteSouvenirButtonBox">
+            <property name="text">
+             <string>Submit</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
        <item row="3" column="0">
         <widget class="QGroupBox" name="addBox">
          <property name="title">
           <string>Add</string>
          </property>
          <layout class="QFormLayout" name="formLayout">
-          <item row="0" column="0">
+          <item row="2" column="0">
            <widget class="QLabel" name="label">
             <property name="text">
              <string>Name of Souvenir</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="0" colspan="2">
+          <item row="3" column="0" colspan="2">
            <widget class="QLineEdit" name="souvenirName"/>
           </item>
-          <item row="2" column="0">
+          <item row="4" column="0">
            <widget class="QLabel" name="label_2">
             <property name="text">
              <string>Price </string>
             </property>
            </widget>
           </item>
-          <item row="3" column="0">
-           <widget class="QLineEdit" name="souvenirPrice"/>
-          </item>
-          <item row="4" column="0">
+          <item row="6" column="0">
            <widget class="QPushButton" name="sumbitSouvenirButton">
             <property name="text">
              <string>Sumbit</string>
             </property>
            </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>Name of College</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+           <widget class="QLineEdit" name="nameOfCollege"/>
+          </item>
+          <item row="5" column="0" colspan="2">
+           <widget class="QLineEdit" name="souvenirPrice"/>
           </item>
          </layout>
         </widget>
@@ -84,10 +130,63 @@
          </property>
         </widget>
        </item>
-       <item row="3" column="2">
-        <widget class="QGroupBox" name="deleteBox">
+       <item row="5" column="0" colspan="3">
+        <widget class="QGroupBox" name="modifyBox">
          <property name="title">
-          <string>Delete</string>
+          <string>Modify Souvenir Price</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_8">
+            <property name="text">
+             <string>New Price</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_7">
+            <property name="text">
+             <string>Nmae of Souvenir</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLineEdit" name="updateCollegeName"/>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_6">
+            <property name="text">
+             <string>Name Of College</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLineEdit" name="updateSouvenirName"/>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLineEdit" name="updateSouvenirPrice"/>
+          </item>
+          <item row="6" column="0">
+           <widget class="QPushButton" name="updateSouvenirButton">
+            <property name="text">
+             <string>Submit</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+         <zorder>updateSouvenirButton</zorder>
+         <zorder>updateCollegeName</zorder>
+         <zorder>updateSouvenirName</zorder>
+         <zorder>updateSouvenirPrice</zorder>
+         <zorder>label_6</zorder>
+         <zorder>label_7</zorder>
+         <zorder>label_8</zorder>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QPushButton" name="updateDB">
+         <property name="text">
+          <string>Update Database</string>
          </property>
         </widget>
        </item>
