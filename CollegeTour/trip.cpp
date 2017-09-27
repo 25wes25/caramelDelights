@@ -2,7 +2,7 @@
 
 trip::trip()
 {
-
+    collegeList.clear();
 }
 
 /*
@@ -18,9 +18,22 @@ trip::trip(QVector<QString> inColleges)
 
 }
 
+trip::trip(QString startingCollege, int tripNumber)
+{
+    //sets the vector to the size of the trip
+    collegeList.clear();
+    //populates the starting struct with the needed values
+    colleges startingCampus;
+    startingCampus.collegeName = startingCollege;
+    collegeList.push_back(startingCampus);
+    //need code to populate the distances vector in the colleges struct
+    //startingCampus.distance = SetCollegeList()
+}
+
 QVector<colleges> trip::SetCollegeList(QVector<QString> inColleges)
 {
     Database* db = Database::getInstance();
+    db->SetDBPath("C:\\Users\\amulvaney0\\Desktop\\caramelDelights-Ronen2\\CollegeTour\\Database\\College.db");
 
     collegeList.clear();
 

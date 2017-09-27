@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QStandardItemModel>
+#include "database.h"
 
 namespace Ui {
 class MainWindow;
@@ -25,9 +26,14 @@ private slots:
     void on_customTrip_clicked();
 
     void on_selectCollege_clicked();
+
+    void on_addCollege_clicked();
 private:
     Ui::MainWindow *ui;
     QStandardItemModel *model;
+    Database *database;
+    trip customTrip;
+    int collegeRow, index;
 };
 
 #endif // MAINWINDOW_H

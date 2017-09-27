@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "trip.h"
+#include <QFileDialog>
 #include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -7,6 +9,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->addCollege->hide();
+    //stops a user from click edit
+    ui->mainTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
 }
 
 MainWindow::~MainWindow()
@@ -32,18 +38,59 @@ void MainWindow::on_purchaseSouvenir_clicked() //purchase souvenir button
 
 void MainWindow::on_customTrip_clicked() //custom trip button
 {
-    model->clear();
-    model = new QStandardItemModel(100,1,this); //100 Rows and 4 Columns
+    qDebug() << "customTrip clicked";
+    collegeRow = 0;
+    index = 0;
 
+    //struct to be pushed onto the collegeList vector
+    colleges newInsert;
+    //model->clear();
+    model = new QStandardItemModel(100,2,this); //100 Rows and 4 Columns
     model->setHorizontalHeaderItem(0, new QStandardItem(QString("College")));
+    model->setHorizontalHeaderItem(1, new QStandardItem(QString("Distances")));
+    ui->mainTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->mainTable->setModel(model);
 
-    ui->selectTable->setModel(model);
+    //text input from combo and spin box
+    newInsert.collegeName = ui->comboCollege->currentText();
+    int indexChosen = ui->comboCollege->currentIndex();
+    int campusTotal = ui->spinCollege->value();
 
-    QStandardItem *collegeName = new QStandardItem("Arizona State University");
-    model->setItem(0, 0, collegeName);
+    customTrip.collegeList.push_back(newInsert);
+
+    //instantiate the CUSTOM trip constructor using the combo and spin box data
+    QStandardItem *collegeName = new QStandardItem(customTrip.collegeList[index].collegeName);
+    model->setItem(collegeRow, 0, collegeName);
+
+    collegeRow++;
+    index++;
+
+    ui->comboCollege->removeItem(indexChosen);
+    //ui->customTrip->setText("Add College");
+    ui->customTrip->hide();
+    ui->addCollege->show();
+    //ui->customTrip->setObjectName("addCollege");
 }
 
 void MainWindow::on_selectCollege_clicked() //should add the selected college to data structure of trip destinations
 {
     //ui->selectTable->currentIndex()
+}
+
+void MainWindow::on_addCollege_clicked()
+{
+    qDebug() << "addCollege clicked";
+    colleges newInsert;
+    newInsert.collegeName = ui->comboCollege->currentText();
+    int indexChosen = ui->comboCollege->currentIndex();
+
+    customTrip.collegeList.push_back(newInsert);
+
+    QStandardItem *collegeName = new QStandardItem(customTrip.collegeList[index].collegeName);
+    model->setItem(collegeRow, 0, collegeName);
+
+    ui->comboCollege->removeItem(indexChosen);
+
+    collegeRow++;
+    index++;
 }

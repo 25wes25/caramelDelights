@@ -95,7 +95,7 @@
      <string>Select the college you wish to start at:</string>
     </property>
    </widget>
-   <widget class="QSpinBox" name="spinNumber">
+   <widget class="QSpinBox" name="spinCollege">
     <property name="geometry">
      <rect>
       <x>240</x>
@@ -200,13 +200,30 @@
      </item>
     </layout>
    </widget>
+   <widget class="QPushButton" name="addCollege">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>40</y>
+      <width>81</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add College</string>
+    </property>
+   </widget>
    <zorder>layoutWidget</zorder>
    <zorder>comboCollege</zorder>
    <zorder>labelCollege</zorder>
-   <zorder>spinNumber</zorder>
+   <zorder>spinCollege</zorder>
    <zorder>labelNumber</zorder>
    <zorder>mainTable</zorder>
    <zorder>customTrip</zorder>
+   <zorder>addCollege</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -214,7 +231,7 @@
      <x>0</x>
      <y>0</y>
      <width>887</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
@@ -232,4 +249,3 @@
  <resources/>
  <connections/>
 </ui>
-

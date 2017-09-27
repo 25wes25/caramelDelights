@@ -1,0 +1,13 @@
+INPUT(
+./release\main.o
+./release\mainwindow.o
+./release\login.o
+./release\database.o
+./release\saddlebackdistances.o
+./release\trip.o
+./release\adminwindow.o
+./release\moc_mainwindow.o
+./release\moc_login.o
+./release\moc_saddlebackdistances.o
+./release\moc_adminwindow.o
+);

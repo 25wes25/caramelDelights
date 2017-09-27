@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 
     QVector<colleges> list;
 
-//    QVector<QString> tripNames= {"Massachusetts Institute of Technology (MIT)", "Arizona Statue University", "Northwestern"};
+    //QVector<QString> tripNames= {"Massachusetts Institute of Technology (MIT)", "Arizona Statue University", "Northwestern"};
 
     QVector<QString> tripNames= {"Massachusetts Institute of Technology (MIT)", "Arizona Statue University", "Northwestern","Saddleback College","Ohio State University","University of  Michigan","University of California, Irvine (UCI)","University of California, Los Angeles (UCLA)","University of Oregon","University of the Pacific","University of Wisconsin"};
 

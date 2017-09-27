@@ -32,6 +32,11 @@ void Database::SetDBPath(const QString &path)
     }
 }
 
+void Database::Autoload()
+{
+    //QDir::currentPath() + "/Database/database.db";
+}
+
 QVector<colleges> Database::GetCollegeInfo(QVector<QString> inColleges)
 {
     QSqlQuery query(db);

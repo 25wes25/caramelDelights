@@ -35,7 +35,7 @@ public:
     QWidget *centralWidget;
     QComboBox *comboCollege;
     QLabel *labelCollege;
-    QSpinBox *spinNumber;
+    QSpinBox *spinCollege;
     QLabel *labelNumber;
     QPushButton *customTrip;
     QTableView *mainTable;
@@ -47,6 +47,7 @@ public:
     QVBoxLayout *verticalLayout;
     QSpinBox *souvenirQuantity;
     QPushButton *purchaseSouvenir;
+    QPushButton *addCollege;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -65,12 +66,12 @@ public:
         labelCollege = new QLabel(centralWidget);
         labelCollege->setObjectName(QStringLiteral("labelCollege"));
         labelCollege->setGeometry(QRect(10, 10, 191, 16));
-        spinNumber = new QSpinBox(centralWidget);
-        spinNumber->setObjectName(QStringLiteral("spinNumber"));
-        spinNumber->setGeometry(QRect(240, 40, 42, 22));
-        spinNumber->setMinimum(1);
-        spinNumber->setMaximum(11);
-        spinNumber->setValue(11);
+        spinCollege = new QSpinBox(centralWidget);
+        spinCollege->setObjectName(QStringLiteral("spinCollege"));
+        spinCollege->setGeometry(QRect(240, 40, 42, 22));
+        spinCollege->setMinimum(1);
+        spinCollege->setMaximum(11);
+        spinCollege->setValue(11);
         labelNumber = new QLabel(centralWidget);
         labelNumber->setObjectName(QStringLiteral("labelNumber"));
         labelNumber->setGeometry(QRect(10, 40, 231, 16));
@@ -123,17 +124,22 @@ public:
 
         verticalLayout_2->addLayout(horizontalLayout);
 
+        addCollege = new QPushButton(centralWidget);
+        addCollege->setObjectName(QStringLiteral("addCollege"));
+        addCollege->setEnabled(true);
+        addCollege->setGeometry(QRect(290, 40, 81, 23));
         MainWindow->setCentralWidget(centralWidget);
         layoutWidget->raise();
         comboCollege->raise();
         labelCollege->raise();
-        spinNumber->raise();
+        spinCollege->raise();
         labelNumber->raise();
         mainTable->raise();
         customTrip->raise();
+        addCollege->raise();
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 887, 22));
+        menuBar->setGeometry(QRect(0, 0, 887, 21));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -169,6 +175,7 @@ public:
         customTrip->setText(QApplication::translate("MainWindow", "Custom Trip", Q_NULLPTR));
         pushButton->setText(QApplication::translate("MainWindow", "Select College", Q_NULLPTR));
         purchaseSouvenir->setText(QApplication::translate("MainWindow", "Purchase", Q_NULLPTR));
+        addCollege->setText(QApplication::translate("MainWindow", "Add College", Q_NULLPTR));
     } // retranslateUi
 
 };

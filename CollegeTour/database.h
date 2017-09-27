@@ -40,7 +40,8 @@ public:
     QSqlDatabase db;
     static Database* getInstance();
     QVector<colleges> GetCollegeInfo(QVector<QString> inColleges);
-    void SetDBPath(const QString &path);
+    void SetDBPath(const QString &path);\
+    void Autoload();
 
     ~Database()
     {
