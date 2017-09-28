@@ -2,6 +2,10 @@
 #include "ui_adminwindow.h"
 #include <QDir>
 
+/*!
+ * \brief AdminWindow::AdminWindow
+ * \param parent
+ */
 AdminWindow::AdminWindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::AdminWindow)
@@ -32,16 +36,27 @@ AdminWindow::AdminWindow(QWidget *parent) :
 
 }
 
+/*!
+ * \brief AdminWindow::~AdminWindow
+ */
 AdminWindow::~AdminWindow()
 {
     delete ui;
 }
 
+/*!
+ * \brief AdminWindow::on_addSouvenirButton_clicked
+ */
 void AdminWindow::on_addSouvenirButton_clicked()
 {
     ui->addBox->show();   
 }
 
+/*!
+ * \brief AdminWindow::on_sumbitSouvenirButton_clicked
+ * Sets the name college and price into the query and executes
+ * the query to insert new values
+ */
 void AdminWindow::on_sumbitSouvenirButton_clicked()
 {
     QString college = ui->nameOfCollege->text();
@@ -64,6 +79,11 @@ void AdminWindow::on_sumbitSouvenirButton_clicked()
     ui->addBox->hide();
 }
 
+/*!
+ * \brief AdminWindow::on_deleteSouvenirButtonBox_clicked
+ * Takes a college name and a souvenir name and then
+ * executes a query to delete from the database.
+ */
 void AdminWindow::on_deleteSouvenirButtonBox_clicked()
 {
     QString college = ui->deleteCollegeName->text();
@@ -83,6 +103,11 @@ void AdminWindow::on_deleteSouvenirButtonBox_clicked()
 
 }
 
+/*!
+ * \brief AdminWindow::on_updateSouvenirButton_clicked
+ * Takes college and a souvenir name and price and
+ * updates the souvenir in the database
+ */
 void AdminWindow::on_updateSouvenirButton_clicked()
 {
     QString college = ui->updateCollegeName->text();
@@ -104,6 +129,10 @@ void AdminWindow::on_updateSouvenirButton_clicked()
     ui->modifyBox->hide();
 }
 
+/*!
+ * \brief AdminWindow::on_updateDB_clicked
+ * Once this button is clicked it updates the databse
+ */
 void AdminWindow::on_updateDB_clicked()
 {
     QSqlQueryModel *model = new QSqlQueryModel();
