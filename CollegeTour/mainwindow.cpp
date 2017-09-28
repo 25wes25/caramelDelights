@@ -4,6 +4,10 @@
 #include <QFileDialog>
 #include <QDebug>
 
+/**
+ * @brief MainWindow::MainWindow
+ * @param parent
+ */
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -16,28 +20,47 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->selectTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
 }
-
+/**
+ * @brief MainWindow::~MainWindow
+ */
 MainWindow::~MainWindow()
 {
     delete ui;
 }
 
+/**
+ * @brief MainWindow::on_comboCollege_activated
+ * @param index
+ * Function takes in action from the comboCollege combo box
+ * via the index.
+ */
 void MainWindow::on_comboCollege_activated(int index)
 {
     QString college = ui->comboCollege->currentText();
     qDebug() << "Starting college is " << college;
 }
-
+/**
+ * @brief MainWindow::on_spinNumber_valueChanged
+ * @param arg1
+ * Function takes in action from the spinNumber spin box
+ * via int of the selection, used to determine the number
+ * of colleges to visit in the trip.
+ */
 void MainWindow::on_spinNumber_valueChanged(int arg1)
 {
     qDebug() << "The value is " << arg1;
 }
-
+/**
+ * @brief MainWindow::on_purchaseSouvenir_clicked
+ */
 void MainWindow::on_purchaseSouvenir_clicked() //purchase souvenir button
 {
 
 }
-
+/**
+ * @brief MainWindow::on_customTrip_clicked
+ * Opens new window where user can begin creating a custom trip.
+ */
 void MainWindow::on_customTrip_clicked() //custom trip button
 {
     ui->spinCollege->hide();
@@ -76,12 +99,17 @@ void MainWindow::on_customTrip_clicked() //custom trip button
     ui->addCollege->show();
     //ui->customTrip->setObjectName("addCollege");
 }
-
+/**
+ * @brief MainWindow::on_selectCollege_clicked
+ */
 void MainWindow::on_selectCollege_clicked() //should add the selected college to data structure of trip destinations
 {
     //ui->selectTable->currentIndex()
 }
-
+/**
+ * @brief MainWindow::on_addCollege_clicked
+ * Adds a college to the custom trip table output window.
+ */
 void MainWindow::on_addCollege_clicked()
 {
     qDebug() << "addCollege clicked";
@@ -99,7 +127,10 @@ void MainWindow::on_addCollege_clicked()
     collegeRow++;
     index++;
 }
-
+/**
+ * @brief MainWindow::on_startTrip_clicked
+ * Takes user input from selected options and updates the table view output.
+ */
 void MainWindow::on_startTrip_clicked()
 {
     QVector<colleges> list;
