@@ -1,6 +1,10 @@
 #include "login.h"
 #include "ui_login.h"
 
+/*!
+ * \brief login::login
+ * \param parent
+ */
 login::login(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::login)
@@ -11,11 +15,21 @@ login::login(QWidget *parent) :
     addAccount("Bryce","Bryce",false);
 }
 
+/*!
+ * \brief login::~login
+ */
 login::~login()
 {
     delete ui;
 }
 
+/*!
+ * \brief login::isAccount
+ * \param nameIn
+ * \param passIn
+ * \return bool
+ * \fn Determines if the credentials entered are traveler credentials
+ */
 bool login::isAccount(QString nameIn, QString passIn)
 {
     /*
@@ -36,6 +50,13 @@ bool login::isAccount(QString nameIn, QString passIn)
     return isValid;
 }
 
+/*!
+ * \brief login::isAdmin
+ * \param nameIn
+ * \param passIn
+ * \return bool
+ * \fn Determines if the credentials entered are admin credentials
+ */
 bool login::isAdmin(QString nameIn,QString passIn)
 {
 
@@ -60,6 +81,13 @@ bool login::isAdmin(QString nameIn,QString passIn)
     return isAdmin;
 }
 
+/*!
+ * \brief login::addAccount
+ * \param nameIn
+ * \param passIn
+ * \param adminIn
+ * \fn Adds an account to the 'accounts' vector, allowing the user to create new accounts.
+ */
 void login::addAccount(QString nameIn, QString passIn, bool adminIn)
 {
     user insert;
@@ -73,7 +101,10 @@ void login::addAccount(QString nameIn, QString passIn, bool adminIn)
 
 }
 
-
+/*!
+ * \brief login::on_LoginButton_clicked
+ * \fn Logs the user in to the correct UI, depending on whether the user is a traveler or admin.
+ */
 void login::on_LoginButton_clicked()
 {
     QString inName = ui->UserNameInput->text();

@@ -19,6 +19,11 @@ namespace Ui {
 class login;
 }
 
+/*!
+ * \brief The login class handles login information, the program
+ * checks the credentials and determines if the account is an admin
+ * or traveler. The class also allows the user to add an account.
+ */
 class login : public QDialog
 {
     Q_OBJECT
@@ -28,26 +33,27 @@ public:
     ~login();
 
     //accessor functions
-    bool isAccount(QString nameIn, QString passIn);
+    bool isAccount(QString nameIn, QString passIn); //!< isAccount checks if the user is a traveler.  */
 
-    bool isAdmin(QString nameIn, QString passIn);
+    bool isAdmin(QString nameIn, QString passIn); //!< isAdmin checks to see if the user is an admin.  */
 
     //QString index(QString nameIn, QString passIn);
 
     //mutators
-    void addAccount(QString nameIn, QString passIn, bool adminIn);
+    void addAccount(QString nameIn, QString passIn, bool adminIn); //!< addAccount allows the user to add a new account.  */
 
 
 
 private slots:
-    void on_LoginButton_clicked();
+    void on_LoginButton_clicked(); //!< "Login" push button  */
 
 private:
     Ui::login *ui;
-    QVector<user> accounts; //vector holding user login info
+    QVector<user> accounts; /*!< QVector of struct 'user'  */
+                            //vector holding user login info
                             //using struct:user
-    MainWindow interface;
-    AdminWindow adminWindow;
+    MainWindow interface;   /*!< Traveler interface */
+    AdminWindow adminWindow; /*!< Admin interface */
 
 };
 
