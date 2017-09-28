@@ -1,12 +1,18 @@
 #include "trip.h"
 #include <QDir>
 
+/**
+ * @brief trip::trip
+ * CONSTRUCTOR
+ * basic constructor that clears its vector of colleges
+ * to start with a clean college vector
+ */
 trip::trip()
 {
     collegeList.clear();
 }
 
-/*
+/**
  * CONSTRUCTOR
  * INPUT: QVector of college names that will be visited(custom trip)
  *
@@ -31,6 +37,13 @@ trip::trip(QString startingCollege, int tripNumber)
     //startingCampus.distance = SetCollegeList()
 }
 
+/**
+ * @brief trip::SetCollegeList
+ * @param inColleges
+ * @return
+ * queries the database to set a vector of colleges, with their
+ * right names and distances
+ */
 QVector<colleges> trip::SetCollegeList(QVector<QString> inColleges)
 {
     Database* db = Database::getInstance();
@@ -42,7 +55,12 @@ QVector<colleges> trip::SetCollegeList(QVector<QString> inColleges)
 
     return collegeList;
 }
-
+/**
+ * @brief trip::printCollegeList
+ *
+ * void function that iterates through the vector of colleges
+ * and prints out the college names and their respective distances
+ */
 void trip::printCollegeList()
 {
     for (int index = 0; index < collegeList.size(); index++)
@@ -58,7 +76,7 @@ void trip::printCollegeList()
 }
 
 
-/*
+/**
  * GET-FUNCTION
  * INPUT: collegeName
  * OUTPUT: bool (has/hasnt been visited)
@@ -95,7 +113,8 @@ bool trip::isVisited(QString collName,QVector<colleges> &collegeList, int elem)
 
 //}
 
-/* GET-FUNCTION
+/**
+ * GET-FUNCTION
  * INPUT: starting and ending college
  * OUTPUT: float of the distance between the two coll   eges
  *
