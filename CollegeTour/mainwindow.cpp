@@ -3,6 +3,7 @@
 #include "trip.h"
 #include <QFileDialog>
 #include <QDebug>
+#include <QSqlQueryModel>
 
 /**
  * @brief MainWindow::MainWindow
@@ -15,6 +16,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     ui->addCollege->hide();
     ui->startTrip->hide();
+    ui->nextCollege->hide();
+    ui->collegeLocation->hide();
     //stops a user from click edit
     ui->mainTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->selectTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -65,6 +68,8 @@ void MainWindow::on_customTrip_clicked() //custom trip button
 {
     ui->spinCollege->hide();
     ui->startTrip->show();
+    ui->labelNumber->hide();
+    ui->labelCollege->setText("Add college to trip: ");
 
     qDebug() << "customTrip clicked";
     collegeRow = 0;
@@ -73,9 +78,8 @@ void MainWindow::on_customTrip_clicked() //custom trip button
     //struct to be pushed onto the collegeList vector
     colleges newInsert;
     //model->clear();
-    model = new QStandardItemModel(100,2,this); //100 Rows and 4 Columns
+    model = new QStandardItemModel(100,1,this); //11 Rows and 1 Columns
     model->setHorizontalHeaderItem(0, new QStandardItem(QString("College")));
-    model->setHorizontalHeaderItem(1, new QStandardItem(QString("Distances")));
     ui->mainTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->mainTable->setModel(model);
 
@@ -97,6 +101,7 @@ void MainWindow::on_customTrip_clicked() //custom trip button
     //ui->customTrip->setText("Add College");
     ui->customTrip->hide();
     ui->addCollege->show();
+
     //ui->customTrip->setObjectName("addCollege");
 }
 /**
@@ -112,20 +117,28 @@ void MainWindow::on_selectCollege_clicked() //should add the selected college to
  */
 void MainWindow::on_addCollege_clicked()
 {
-    qDebug() << "addCollege clicked";
-    colleges newInsert;
-    newInsert.collegeName = ui->comboCollege->currentText();
-    int indexChosen = ui->comboCollege->currentIndex();
+    if(ui->comboCollege->currentText() == "")
+    {
+        ui->addCollege->hide();
+    }
+    else
+    {
+        qDebug() << "addCollege clicked";
+        colleges newInsert;
+        newInsert.collegeName = ui->comboCollege->currentText();
+        int indexChosen = ui->comboCollege->currentIndex();
 
-    customTrip.collegeList.push_back(newInsert);
+        customTrip.collegeList.push_back(newInsert);
 
-    QStandardItem *collegeName = new QStandardItem(customTrip.collegeList[index].collegeName);
-    model->setItem(collegeRow, 0, collegeName);
+        QStandardItem *collegeName     = new QStandardItem(customTrip.collegeList[index].collegeName);
+        model->setItem(collegeRow, 0, collegeName);
 
-    ui->comboCollege->removeItem(indexChosen);
 
-    collegeRow++;
-    index++;
+        ui->comboCollege->removeItem(indexChosen);
+
+        collegeRow++;
+        index++;
+    }
 }
 /**
  * @brief MainWindow::on_startTrip_clicked
@@ -133,6 +146,20 @@ void MainWindow::on_addCollege_clicked()
  */
 void MainWindow::on_startTrip_clicked()
 {
+    model->clear();
+    ui->startTrip->hide();
+    ui->nextCollege->show();
+    ui->labelCollege->hide();
+    ui->comboCollege->hide();
+
+    souvenirIndex = 0;
+
+    ui->collegeLocation->setText(customTrip.collegeList[souvenirIndex].collegeName);
+    ui->collegeLocation->show();
+
+    database = Database::getInstance();
+    database->SetDBPath(QDir::currentPath() + "\\Database\\College.db");
+
     QVector<colleges> list;
     QVector<QString>  tripNames;
 
@@ -150,4 +177,44 @@ void MainWindow::on_startTrip_clicked()
     list = customTrip.SetCollegeList(tripNames);
 
     customTrip.Recursive(list, 0);
+
+    QSqlQueryModel * souvenirModel = new QSqlQueryModel();
+
+    //sets up the query
+    QSqlQuery *query = new QSqlQuery(database->db);
+    query->prepare("SELECT * FROM Souvenirs WHERE College == (:collegeName)");
+    query->bindValue(":collegeName",customTrip.collegeList[souvenirIndex].collegeName);
+    qDebug() << query->exec();
+    souvenirModel->setQuery(*query);
+
+    ui->selectTable->setModel(souvenirModel);
+    ui->selectTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->selectTable->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    souvenirIndex++;
+}
+
+void MainWindow::on_nextCollege_clicked()
+{
+    if(souvenirIndex == customTrip.collegeList.size())
+    {
+
+    }
+    else
+    {
+        ui->collegeLocation->setText(customTrip.collegeList[souvenirIndex].collegeName);
+
+        QSqlQueryModel * souvenirModel = new QSqlQueryModel();
+
+        //sets up the query
+        QSqlQuery *query = new QSqlQuery(database->db);
+        query->prepare("SELECT * FROM Souvenirs WHERE College == (:collegeName)");
+        query->bindValue(":collegeName",customTrip.collegeList[souvenirIndex].collegeName);
+        qDebug() << query->exec();
+        souvenirModel->setQuery(*query);
+
+        ui->selectTable->setModel(souvenirModel);
+
+        souvenirIndex++;
+    }
 }

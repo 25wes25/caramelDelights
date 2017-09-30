@@ -53,6 +53,8 @@ private slots:
      */
     void on_startTrip_clicked();
 
+    void on_nextCollege_clicked();
+
 private:
     /**
      * @brief ui
@@ -78,7 +80,7 @@ private:
      * @brief collegeRow
      * \var
      */
-    int collegeRow, index;
+    int collegeRow, souvenirIndex, index;
 };
 
 #endif // MAINWINDOW_H
