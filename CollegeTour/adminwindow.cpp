@@ -17,7 +17,7 @@ AdminWindow::AdminWindow(QWidget *parent) :
     ui->modifyBox->hide();
 
     database = Database::getInstance();
-    database->SetDBPath("/users/brycecallender/desktop/caramelDelights-Ronen2/CollegeTour/Database/College.db");
+    database->SetDBPath(QDir::currentPath() + "\\Database\\College.db");
 
     QSqlQueryModel * model = new QSqlQueryModel();
 
@@ -76,9 +76,6 @@ void AdminWindow::on_sumbitSouvenirButton_clicked()
 
     query->exec();
 
-    ui->nameOfCollege->clear();
-    ui->souvenirName->clear();
-    ui->souvenirPrice->clear();
     ui->addBox->hide();
 }
 
@@ -102,8 +99,6 @@ void AdminWindow::on_deleteSouvenirButtonBox_clicked()
 
     query->exec();
 
-    ui->deleteCollegeName->clear();
-    ui->deleteSouvenirName->clear();
     ui->deleteBox->hide();
 
 }
@@ -131,9 +126,6 @@ void AdminWindow::on_updateSouvenirButton_clicked()
 
     query->exec();
 
-    ui->updateCollegeName->clear();
-    ui->updateSouvenirName->clear();
-    ui->updateSouvenirPrice->clear();
     ui->modifyBox->hide();
 }
 
@@ -147,11 +139,11 @@ void AdminWindow::on_updateDB_clicked()
 
     //sets up the querys
     QSqlQuery *query = new QSqlQuery(database->db);
-    query->prepare("SELECT * FROM Souvenirs ORDER BY College asc");
-    query->exec();
+    query->prepare("SELECT * FROM Souvenirs");
 
     model->setQuery(*query);
 
+    query->exec();
 
     //sets the resultant query into a tableview and stretches it to make it look nice.
     ui->souvenirTableView->setModel(model);
@@ -159,14 +151,4 @@ void AdminWindow::on_updateDB_clicked()
     ui->souvenirTableView->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
 
-}
-
-void AdminWindow::on_deleteSouvenirButton_clicked()
-{
-    ui->deleteBox->show();
-}
-
-void AdminWindow::on_modifySouvenir_clicked()
-{
-    ui->modifyBox->show();
 }

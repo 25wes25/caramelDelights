@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QStandardItemModel>
 #include "database.h"
+#include <QItemSelectionModel>
 
 namespace Ui {
 class MainWindow;
@@ -55,6 +56,10 @@ private slots:
 
     void on_nextCollege_clicked();
 
+    void on_selectTable_clicked(const QModelIndex &index);
+
+    void on_nextPurchase_clicked();
+
 private:
     /**
      * @brief ui
@@ -81,6 +86,10 @@ private:
      * \var
      */
     int collegeRow, souvenirIndex, index;
+    int souvSelection;
+    QItemSelectionModel *select;
+    int cartRow = 0;
+
 };
 
 #endif // MAINWINDOW_H

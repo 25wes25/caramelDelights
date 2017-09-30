@@ -28,8 +28,6 @@ public:
     float getDistance(QString startColl, QString collName);
 
     bool isVisited(QString collName, QVector<colleges> &collegeList, int elem);
-    
-    bool isInList(QString collName, QVector<colleges> &collegeList);
 
     float getSouvTotal();
 
@@ -43,6 +41,8 @@ public:
 
     QVector<colleges> SetCollegeList(QVector<QString> inColleges);
 
+    bool isInList(QString collName, QVector<colleges> &collegeList);
+
     /**
      * @brief Recursive
      * @param collegeList
@@ -55,6 +55,8 @@ public:
 
     bool markVisited(QString collName);
 
+    QVector<visitedCollege> cart;
+
     //mutators
 
 
@@ -66,7 +68,7 @@ private:
 
     //vector holding the running total of items from their
     //colleges
-    //SPRINT 2: QVector<souv> cart;
+
 
 };
 

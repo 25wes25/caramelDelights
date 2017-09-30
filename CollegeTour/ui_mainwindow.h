@@ -14,7 +14,6 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QComboBox>
-#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
@@ -38,20 +37,20 @@ public:
     QSpinBox *spinCollege;
     QLabel *labelNumber;
     QPushButton *customTrip;
-    QTableView *mainTable;
     QPushButton *addCollege;
     QPushButton *startTrip;
     QLabel *collegeLocation;
-    QWidget *widget;
-    QVBoxLayout *verticalLayout_3;
-    QPushButton *nextCollege;
-    QVBoxLayout *verticalLayout_2;
-    QTableView *selectTable;
-    QHBoxLayout *horizontalLayout;
-    QPushButton *selectSouvenir;
-    QVBoxLayout *verticalLayout;
-    QSpinBox *souvenirQuantity;
+    QWidget *layoutWidget;
+    QVBoxLayout *verticalLayout_4;
+    QTableView *mainTable;
+    QPushButton *pushButton;
+    QPushButton *nextPurchase;
     QPushButton *purchaseSouvenir;
+    QWidget *widget;
+    QVBoxLayout *verticalLayout;
+    QPushButton *nextCollege;
+    QTableView *selectTable;
+    QSpinBox *souvenirQuantity;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -60,7 +59,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(887, 519);
+        MainWindow->resize(900, 527);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         comboCollege = new QComboBox(centralWidget);
@@ -82,9 +81,6 @@ public:
         customTrip = new QPushButton(centralWidget);
         customTrip->setObjectName(QStringLiteral("customTrip"));
         customTrip->setGeometry(QRect(290, 40, 80, 21));
-        mainTable = new QTableView(centralWidget);
-        mainTable->setObjectName(QStringLiteral("mainTable"));
-        mainTable->setGeometry(QRect(450, 10, 431, 441));
         addCollege = new QPushButton(centralWidget);
         addCollege->setObjectName(QStringLiteral("addCollege"));
         addCollege->setEnabled(true);
@@ -101,74 +97,72 @@ public:
         font.setWeight(50);
         collegeLocation->setFont(font);
         collegeLocation->setLayoutDirection(Qt::LeftToRight);
+        layoutWidget = new QWidget(centralWidget);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(450, 10, 431, 451));
+        verticalLayout_4 = new QVBoxLayout(layoutWidget);
+        verticalLayout_4->setSpacing(6);
+        verticalLayout_4->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
+        verticalLayout_4->setContentsMargins(0, 0, 0, 0);
+        mainTable = new QTableView(layoutWidget);
+        mainTable->setObjectName(QStringLiteral("mainTable"));
+
+        verticalLayout_4->addWidget(mainTable);
+
+        pushButton = new QPushButton(layoutWidget);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+
+        verticalLayout_4->addWidget(pushButton);
+
+        nextPurchase = new QPushButton(centralWidget);
+        nextPurchase->setObjectName(QStringLiteral("nextPurchase"));
+        nextPurchase->setGeometry(QRect(10, 440, 431, 21));
+        purchaseSouvenir = new QPushButton(centralWidget);
+        purchaseSouvenir->setObjectName(QStringLiteral("purchaseSouvenir"));
+        purchaseSouvenir->setGeometry(QRect(10, 440, 431, 21));
         widget = new QWidget(centralWidget);
         widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(10, 110, 431, 341));
-        verticalLayout_3 = new QVBoxLayout(widget);
-        verticalLayout_3->setSpacing(6);
-        verticalLayout_3->setContentsMargins(11, 11, 11, 11);
-        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
-        verticalLayout_3->setContentsMargins(0, 0, 0, 0);
+        widget->setGeometry(QRect(10, 100, 431, 341));
+        verticalLayout = new QVBoxLayout(widget);
+        verticalLayout->setSpacing(6);
+        verticalLayout->setContentsMargins(11, 11, 11, 11);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setContentsMargins(0, 0, 0, 0);
         nextCollege = new QPushButton(widget);
         nextCollege->setObjectName(QStringLiteral("nextCollege"));
 
-        verticalLayout_3->addWidget(nextCollege);
+        verticalLayout->addWidget(nextCollege);
 
-        verticalLayout_2 = new QVBoxLayout();
-        verticalLayout_2->setSpacing(6);
-        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         selectTable = new QTableView(widget);
         selectTable->setObjectName(QStringLiteral("selectTable"));
         selectTable->horizontalHeader()->setCascadingSectionResizes(true);
         selectTable->horizontalHeader()->setStretchLastSection(true);
         selectTable->verticalHeader()->setCascadingSectionResizes(false);
 
-        verticalLayout_2->addWidget(selectTable);
+        verticalLayout->addWidget(selectTable);
 
-        horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setSpacing(6);
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        selectSouvenir = new QPushButton(widget);
-        selectSouvenir->setObjectName(QStringLiteral("selectSouvenir"));
-
-        horizontalLayout->addWidget(selectSouvenir);
-
-        verticalLayout = new QVBoxLayout();
-        verticalLayout->setSpacing(6);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         souvenirQuantity = new QSpinBox(widget);
         souvenirQuantity->setObjectName(QStringLiteral("souvenirQuantity"));
+        souvenirQuantity->setMinimum(1);
 
         verticalLayout->addWidget(souvenirQuantity);
 
-        purchaseSouvenir = new QPushButton(widget);
-        purchaseSouvenir->setObjectName(QStringLiteral("purchaseSouvenir"));
-
-        verticalLayout->addWidget(purchaseSouvenir);
-
-
-        horizontalLayout->addLayout(verticalLayout);
-
-
-        verticalLayout_2->addLayout(horizontalLayout);
-
-
-        verticalLayout_3->addLayout(verticalLayout_2);
-
         MainWindow->setCentralWidget(centralWidget);
+        layoutWidget->raise();
+        layoutWidget->raise();
         comboCollege->raise();
         labelCollege->raise();
         spinCollege->raise();
         labelNumber->raise();
-        mainTable->raise();
         customTrip->raise();
         addCollege->raise();
         startTrip->raise();
-        nextCollege->raise();
         collegeLocation->raise();
+        nextPurchase->raise();
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 887, 20));
+        menuBar->setGeometry(QRect(0, 0, 900, 20));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -205,9 +199,10 @@ public:
         addCollege->setText(QApplication::translate("MainWindow", "Add College", Q_NULLPTR));
         startTrip->setText(QApplication::translate("MainWindow", "Start Trip", Q_NULLPTR));
         collegeLocation->setText(QApplication::translate("MainWindow", "You are here", Q_NULLPTR));
-        nextCollege->setText(QApplication::translate("MainWindow", "Next College", Q_NULLPTR));
-        selectSouvenir->setText(QApplication::translate("MainWindow", "Select Souvenir", Q_NULLPTR));
+        pushButton->setText(QApplication::translate("MainWindow", "Remove From Cart", Q_NULLPTR));
+        nextPurchase->setText(QApplication::translate("MainWindow", "Purchase", Q_NULLPTR));
         purchaseSouvenir->setText(QApplication::translate("MainWindow", "Purchase", Q_NULLPTR));
+        nextCollege->setText(QApplication::translate("MainWindow", "Next College", Q_NULLPTR));
     } // retranslateUi
 
 };

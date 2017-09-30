@@ -52,10 +52,6 @@ private slots:
      */
     void on_updateDB_clicked();
 
-    void on_deleteSouvenirButton_clicked();
-
-    void on_modifySouvenir_clicked();
-
 private:
     /*!
      * \brief ui

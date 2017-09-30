@@ -18,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->startTrip->hide();
     ui->nextCollege->hide();
     ui->collegeLocation->hide();
+    ui->nextPurchase->hide();
     //stops a user from click edit
     ui->mainTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->selectTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -52,13 +53,6 @@ void MainWindow::on_comboCollege_activated(int index)
 void MainWindow::on_spinNumber_valueChanged(int arg1)
 {
     qDebug() << "The value is " << arg1;
-}
-/**
- * @brief MainWindow::on_purchaseSouvenir_clicked
- */
-void MainWindow::on_purchaseSouvenir_clicked() //purchase souvenir button
-{
-
 }
 /**
  * @brief MainWindow::on_customTrip_clicked
@@ -182,7 +176,7 @@ void MainWindow::on_startTrip_clicked()
 
     //sets up the query
     QSqlQuery *query = new QSqlQuery(database->db);
-    query->prepare("SELECT * FROM Souvenirs WHERE College == (:collegeName)");
+    query->prepare("SELECT TraditionalSouvenirs, Cost FROM Souvenirs WHERE College == (:collegeName)");
     query->bindValue(":collegeName",customTrip.collegeList[souvenirIndex].collegeName);
     qDebug() << query->exec();
     souvenirModel->setQuery(*query);
@@ -217,4 +211,90 @@ void MainWindow::on_nextCollege_clicked()
 
         souvenirIndex++;
     }
+}
+
+/**
+ * @brief MainWindow::on_purchaseSouvenir_clicked
+ */
+void MainWindow::on_purchaseSouvenir_clicked() //purchase souvenir button
+{
+    souv newItem;
+    QString itemPrice;
+    visitedCollege visitedColl;
+
+
+//    tableIndex = ui->selectTable->selectionModel()->selection().indexes();
+
+//    qDebug() << tableIndex[0].data().toInt();
+
+
+
+    newItem.item = ui->selectTable->model()->data(ui->selectTable->model()->index(souvSelection, 0)).toString();
+    itemPrice = ui->selectTable->model()->data(ui->selectTable->model()->index(souvSelection, 1)).toString();
+
+    itemPrice = itemPrice.remove(0,1);
+    newItem.price = itemPrice.toFloat();
+
+    newItem.quantity = ui->souvenirQuantity->value();
+
+    visitedColl.collegeName = customTrip.collegeList[souvenirIndex].collegeName;
+    visitedColl.collegeCart.push_back(newItem);
+
+    customTrip.cart.push_back(visitedColl);
+
+    model = new QStandardItemModel(100,3,this); //11 Rows and 1 Columns
+    model->setHorizontalHeaderItem(0, new QStandardItem(QString("Souvenir")));
+    model->setHorizontalHeaderItem(1, new QStandardItem(QString("Price")));
+    model->setHorizontalHeaderItem(2, new QStandardItem(QString("Quantity")));
+    ui->mainTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    QStandardItem *souvName = new QStandardItem(newItem.item);
+    QStandardItem *souvPrice = new QStandardItem("$" + itemPrice);
+    QStandardItem *souvQuantity = new QStandardItem(QString::number(newItem.quantity));
+
+    model->setItem(cartRow, 0, souvName);
+    model->setItem(cartRow, 1, souvPrice);
+    model->setItem(cartRow, 2, souvQuantity);
+
+    ui->mainTable->setModel(model);
+
+    cartRow++;
+    ui->purchaseSouvenir->hide();
+    ui->nextPurchase->show();
+}
+
+void MainWindow::on_selectTable_clicked(const QModelIndex &index)
+{
+    souvSelection = index.row();
+
+}
+
+void MainWindow::on_nextPurchase_clicked()
+{
+    souv newItem;
+    QString itemPrice;
+    visitedCollege visitedColl;
+
+    newItem.item = ui->selectTable->model()->data(ui->selectTable->model()->index(souvSelection, 0)).toString();
+    itemPrice = ui->selectTable->model()->data(ui->selectTable->model()->index(souvSelection, 1)).toString();
+
+    itemPrice = itemPrice.remove(0,1);
+    newItem.price = itemPrice.toFloat();
+
+    newItem.quantity = ui->souvenirQuantity->value();
+
+    visitedColl.collegeName = customTrip.collegeList[souvenirIndex].collegeName;
+    visitedColl.collegeCart.push_back(newItem);
+
+    customTrip.cart.push_back(visitedColl);
+
+    QStandardItem *souvName = new QStandardItem(newItem.item);
+    QStandardItem *souvPrice = new QStandardItem("$" + itemPrice);
+    QStandardItem *souvQuantity = new QStandardItem(QString::number(newItem.quantity));
+
+    model->setItem(cartRow, 0, souvName);
+    model->setItem(cartRow, 1, souvPrice);
+    model->setItem(cartRow, 2, souvQuantity);
+
+    cartRow++;
 }
