@@ -28,6 +28,8 @@ public:
     float getDistance(QString startColl, QString collName);
 
     bool isVisited(QString collName, QVector<colleges> &collegeList, int elem);
+    
+    bool isInList(QString collName, QVector<colleges> &collegeList);
 
     float getSouvTotal();
 
