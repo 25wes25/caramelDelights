@@ -96,6 +96,18 @@ bool trip::isVisited(QString collName,QVector<colleges> &collegeList, int elem)
     return false;
 }
 
+bool trip::isInList(QString collName, QVector<colleges> &collegeList)
+{
+    for (int index = 0; index < collegeList.size();
+    {
+        if (collName == collegeList[index].collegeName)
+        {
+            return true;   
+        }
+    }
+    return false;
+}
+
 //float trip::getSouvTotal()
 //{
 //    float totalPurchased = 0;
@@ -159,7 +171,7 @@ void trip::Recursive(QVector<colleges> &collegeList, int elem)
     while (collegeList[elem].distance.size() != increment)
     {
         // Checks if the distance of the current element at the current increment is less than the previously closest distance and if the college is visited or not
-        if (collegeList[elem].distance[increment].distance < closestDistance && isVisited(collegeList[elem].distance[increment].collegeName,collegeList,elem) == false)
+        if (collegeList[elem].distance[increment].distance < closestDistance && isVisited(collegeList[elem].distance[increment].collegeName,collegeList,elem) == false && isInList(collegeList[elem].distance[increment].collegeName,collegeList))
         {
             // Stores the closest college distance in a temp float for use in finding the closest distance
             closestDistance = collegeList[elem].distance[increment].distance;
