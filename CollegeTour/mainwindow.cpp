@@ -133,6 +133,8 @@ void MainWindow::on_addCollege_clicked()
         collegeRow++;
         index++;
     }
+    QString totDist = QString::number(customTrip.getTotalDistance());
+    ui->labelTotalDistance->setText("Total Trip Distance: " + totDist);
 }
 /**
  * @brief MainWindow::on_startTrip_clicked

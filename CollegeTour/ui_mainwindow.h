@@ -46,11 +46,12 @@ public:
     QPushButton *pushButton;
     QPushButton *nextPurchase;
     QPushButton *purchaseSouvenir;
-    QWidget *widget;
+    QWidget *layoutWidget1;
     QVBoxLayout *verticalLayout;
     QPushButton *nextCollege;
     QTableView *selectTable;
     QSpinBox *souvenirQuantity;
+    QLabel *labelTotalDistance;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -121,20 +122,20 @@ public:
         purchaseSouvenir = new QPushButton(centralWidget);
         purchaseSouvenir->setObjectName(QStringLiteral("purchaseSouvenir"));
         purchaseSouvenir->setGeometry(QRect(10, 440, 431, 21));
-        widget = new QWidget(centralWidget);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(10, 100, 431, 341));
-        verticalLayout = new QVBoxLayout(widget);
+        layoutWidget1 = new QWidget(centralWidget);
+        layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
+        layoutWidget1->setGeometry(QRect(10, 100, 431, 341));
+        verticalLayout = new QVBoxLayout(layoutWidget1);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
-        nextCollege = new QPushButton(widget);
+        nextCollege = new QPushButton(layoutWidget1);
         nextCollege->setObjectName(QStringLiteral("nextCollege"));
 
         verticalLayout->addWidget(nextCollege);
 
-        selectTable = new QTableView(widget);
+        selectTable = new QTableView(layoutWidget1);
         selectTable->setObjectName(QStringLiteral("selectTable"));
         selectTable->horizontalHeader()->setCascadingSectionResizes(true);
         selectTable->horizontalHeader()->setStretchLastSection(true);
@@ -142,13 +143,17 @@ public:
 
         verticalLayout->addWidget(selectTable);
 
-        souvenirQuantity = new QSpinBox(widget);
+        souvenirQuantity = new QSpinBox(layoutWidget1);
         souvenirQuantity->setObjectName(QStringLiteral("souvenirQuantity"));
         souvenirQuantity->setMinimum(1);
 
         verticalLayout->addWidget(souvenirQuantity);
 
+        labelTotalDistance = new QLabel(centralWidget);
+        labelTotalDistance->setObjectName(QStringLiteral("labelTotalDistance"));
+        labelTotalDistance->setGeometry(QRect(120, 70, 151, 16));
         MainWindow->setCentralWidget(centralWidget);
+        purchaseSouvenir->raise();
         layoutWidget->raise();
         layoutWidget->raise();
         comboCollege->raise();
@@ -160,6 +165,7 @@ public:
         startTrip->raise();
         collegeLocation->raise();
         nextPurchase->raise();
+        labelTotalDistance->raise();
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 900, 20));
@@ -203,6 +209,7 @@ public:
         nextPurchase->setText(QApplication::translate("MainWindow", "Purchase", Q_NULLPTR));
         purchaseSouvenir->setText(QApplication::translate("MainWindow", "Purchase", Q_NULLPTR));
         nextCollege->setText(QApplication::translate("MainWindow", "Next College", Q_NULLPTR));
+        labelTotalDistance->setText(QApplication::translate("MainWindow", "Total Trip Distance: ", Q_NULLPTR));
     } // retranslateUi
 
 };

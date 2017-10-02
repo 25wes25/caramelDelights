@@ -240,7 +240,7 @@
      <string>Purchase</string>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -279,6 +279,20 @@
      </item>
     </layout>
    </widget>
+   <widget class="QLabel" name="labelTotalDistance">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>70</y>
+      <width>151</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Total Trip Distance: </string>
+    </property>
+   </widget>
+   <zorder>purchaseSouvenir</zorder>
    <zorder>layoutWidget</zorder>
    <zorder>layoutWidget</zorder>
    <zorder>comboCollege</zorder>
@@ -290,6 +304,7 @@
    <zorder>startTrip</zorder>
    <zorder>collegeLocation</zorder>
    <zorder>nextPurchase</zorder>
+   <zorder>labelTotalDistance</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

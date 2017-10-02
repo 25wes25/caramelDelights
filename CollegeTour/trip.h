@@ -57,6 +57,8 @@ public:
 
     QVector<visitedCollege> cart;
 
+    float getTotalDistance();
+
     //mutators
 
 
@@ -65,6 +67,7 @@ private:
     //vector holding the colleges and their respective
     //distances
 
+    float totalDistance;
 
     //vector holding the running total of items from their
     //colleges

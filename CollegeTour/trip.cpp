@@ -11,6 +11,7 @@ trip::trip()
 {
     collegeList.clear();
     cart.clear();
+    totalDistance = 0;
 }
 
 /**
@@ -23,7 +24,7 @@ trip::trip()
 trip::trip(QVector<QString> inColleges)
 {
 
-
+    totalDistance = 0;
 }
 
 trip::trip(QString startingCollege, int tripNumber)
@@ -36,6 +37,7 @@ trip::trip(QString startingCollege, int tripNumber)
     collegeList.push_back(startingCampus);
     //need code to populate the distances vector in the colleges struct
     //startingCampus.distance = SetCollegeList()
+    totalDistance = 0;
 }
 
 /**
@@ -144,6 +146,10 @@ float trip::getDistance(QString startColl, QString collName)
     return distanceFrom;
 }
 
+float trip::getTotalDistance()
+{
+    return totalDistance;
+}
 
 void trip::Recursive(QVector<colleges> &collegeList, int elem)
 {
@@ -172,6 +178,8 @@ void trip::Recursive(QVector<colleges> &collegeList, int elem)
         increment++;
     }
     qDebug() << "Closest College is "  << closestCollegeName;
+    totalDistance += closestDistance;
+    qDebug() << "Total Distance of trip is: " << totalDistance;
 
     //Checks if the next element of the collegeList vector is already the closest college
     if (collegeList[elem+1].collegeName != closestCollegeName)
