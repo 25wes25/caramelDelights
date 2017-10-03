@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>887</width>
-    <height>519</height>
+    <width>900</width>
+    <height>527</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -95,7 +95,7 @@
      <string>Select the college you wish to start at:</string>
     </property>
    </widget>
-   <widget class="QSpinBox" name="spinNumber">
+   <widget class="QSpinBox" name="spinCollege">
     <property name="geometry">
      <rect>
       <x>240</x>
@@ -140,26 +140,123 @@
      <string>Custom Trip</string>
     </property>
    </widget>
-   <widget class="QTableView" name="mainTable">
+   <widget class="QPushButton" name="addCollege">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
-      <x>450</x>
-      <y>10</y>
-      <width>431</width>
-      <height>441</height>
+      <x>290</x>
+      <y>40</y>
+      <width>81</width>
+      <height>23</height>
      </rect>
+    </property>
+    <property name="text">
+     <string>Add College</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="startTrip">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>70</y>
+      <width>81</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Start Trip</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="collegeLocation">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>30</y>
+      <width>371</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="text">
+     <string>You are here</string>
     </property>
    </widget>
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>190</y>
-      <width>391</width>
-      <height>254</height>
+      <x>450</x>
+      <y>10</y>
+      <width>431</width>
+      <height>451</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout_2">
+    <layout class="QVBoxLayout" name="verticalLayout_4">
+     <item>
+      <widget class="QTableView" name="mainTable"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton">
+       <property name="text">
+        <string>Remove From Cart</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QPushButton" name="nextPurchase">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>440</y>
+      <width>431</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Purchase</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="purchaseSouvenir">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>440</y>
+      <width>431</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Purchase</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>100</y>
+      <width>431</width>
+      <height>341</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QPushButton" name="nextCollege">
+       <property name="text">
+        <string>Next College</string>
+       </property>
+      </widget>
+     </item>
      <item>
       <widget class="QTableView" name="selectTable">
        <attribute name="horizontalHeaderCascadingSectionResizes">
@@ -174,46 +271,47 @@
       </widget>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
-        <widget class="QPushButton" name="pushButton">
-         <property name="text">
-          <string>Select College</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <layout class="QVBoxLayout" name="verticalLayout">
-         <item>
-          <widget class="QSpinBox" name="souvenirQuantity"/>
-         </item>
-         <item>
-          <widget class="QPushButton" name="purchaseSouvenir">
-           <property name="text">
-            <string>Purchase</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-      </layout>
+      <widget class="QSpinBox" name="souvenirQuantity">
+       <property name="minimum">
+        <number>1</number>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
+   <widget class="QLabel" name="labelTotalDistance">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>70</y>
+      <width>241</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Total Trip Distance: </string>
+    </property>
+   </widget>
+   <zorder>purchaseSouvenir</zorder>
+   <zorder>layoutWidget</zorder>
    <zorder>layoutWidget</zorder>
    <zorder>comboCollege</zorder>
    <zorder>labelCollege</zorder>
-   <zorder>spinNumber</zorder>
+   <zorder>spinCollege</zorder>
    <zorder>labelNumber</zorder>
-   <zorder>mainTable</zorder>
    <zorder>customTrip</zorder>
+   <zorder>addCollege</zorder>
+   <zorder>startTrip</zorder>
+   <zorder>collegeLocation</zorder>
+   <zorder>nextPurchase</zorder>
+   <zorder>labelTotalDistance</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>887</width>
+     <width>900</width>
      <height>22</height>
     </rect>
    </property>
@@ -232,4 +330,3 @@
  <resources/>
  <connections/>
 </ui>
-

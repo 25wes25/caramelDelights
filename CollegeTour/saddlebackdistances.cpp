@@ -3,6 +3,7 @@
 #include "database.h"
 #include <QSqlQueryModel>
 #include <QSqlError>
+#include <QDir>
 
 /*!
  * \brief SaddlebackDistances::SaddlebackDistances
@@ -16,7 +17,7 @@ SaddlebackDistances::SaddlebackDistances(QWidget *parent) :
     // /users/brycecallender/College.db working path for me ignore
     ui->setupUi(this);
     database = Database::getInstance();
-    database->SetDBPath("/users/brycecallender/College.db");
+    database->SetDBPath(QDir::currentPath() + "\\Database\\College.db");
 
     QSqlQueryModel * model = new QSqlQueryModel();
 

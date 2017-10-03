@@ -1,8 +1,22 @@
 #include "database.h"
 
+/*!
+ * \brief Database::created
+ * \var accesses created variable and sets to false
+ */
 bool Database::created = false;
+
+/*!
+ * \brief Database::globalBCInstance
+ * \var sets the global instance to nothing
+ */
 Database* Database::globalBCInstance = NULL;
 
+/*!
+ * \brief Database::getInstance
+ * \fn Gets instance
+ * \return Database pointer
+ */
 Database* Database::getInstance()
 {
     if (!created)
@@ -17,6 +31,11 @@ Database* Database::getInstance()
     }
 }
 
+/*!
+ * \brief Database::SetDBPath
+ * \param path
+ * \fn Sets path to the database based on the string provided
+ */
 void Database::SetDBPath(const QString &path)
 {
     db = QSqlDatabase::addDatabase("QSQLITE");
@@ -32,6 +51,20 @@ void Database::SetDBPath(const QString &path)
     }
 }
 
+/*!
+ * \brief Database::Autoload
+ */
+void Database::Autoload()
+{
+    //QDir::currentPath() + "/Database/database.db";
+}
+
+/*!
+ * \brief Database::GetCollegeInfo
+ * \fn takes the names of colleges and populates the structs vectors of distances
+ * \param inColleges
+ * \return vector of colleges
+ */
 QVector<colleges> Database::GetCollegeInfo(QVector<QString> inColleges)
 {
     QSqlQuery query(db);

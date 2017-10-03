@@ -1,11 +1,20 @@
 #include "trip.h"
+#include <QDir>
 
+/**
+ * @brief trip::trip
+ * CONSTRUCTOR
+ * basic constructor that clears its vector of colleges
+ * to start with a clean college vector
+ */
 trip::trip()
 {
-
+    collegeList.clear();
+    cart.clear();
+    totalDistance = 0;
 }
 
-/*
+/**
  * CONSTRUCTOR
  * INPUT: QVector of college names that will be visited(custom trip)
  *
@@ -15,12 +24,33 @@ trip::trip()
 trip::trip(QVector<QString> inColleges)
 {
 
-
+    totalDistance = 0;
 }
 
+trip::trip(QString startingCollege, int tripNumber)
+{
+    //sets the vector to the size of the trip
+    collegeList.clear();
+    //populates the starting struct with the needed values
+    colleges startingCampus;
+    startingCampus.collegeName = startingCollege;
+    collegeList.push_back(startingCampus);
+    //need code to populate the distances vector in the colleges struct
+    //startingCampus.distance = SetCollegeList()
+    totalDistance = 0;
+}
+
+/**
+ * @brief trip::SetCollegeList
+ * @param inColleges
+ * @return
+ * queries the database to set a vector of colleges, with their
+ * right names and distances
+ */
 QVector<colleges> trip::SetCollegeList(QVector<QString> inColleges)
 {
     Database* db = Database::getInstance();
+    db->SetDBPath(QDir::currentPath() + "\\Database\\College.db");
 
     collegeList.clear();
 
@@ -28,7 +58,12 @@ QVector<colleges> trip::SetCollegeList(QVector<QString> inColleges)
 
     return collegeList;
 }
-
+/**
+ * @brief trip::printCollegeList
+ *
+ * void function that iterates through the vector of colleges
+ * and prints out the college names and their respective distances
+ */
 void trip::printCollegeList()
 {
     for (int index = 0; index < collegeList.size(); index++)
@@ -44,7 +79,7 @@ void trip::printCollegeList()
 }
 
 
-/*
+/**
  * GET-FUNCTION
  * INPUT: collegeName
  * OUTPUT: bool (has/hasnt been visited)
@@ -81,7 +116,8 @@ bool trip::isVisited(QString collName,QVector<colleges> &collegeList, int elem)
 
 //}
 
-/* GET-FUNCTION
+/**
+ * GET-FUNCTION
  * INPUT: starting and ending college
  * OUTPUT: float of the distance between the two coll   eges
  *
@@ -110,6 +146,10 @@ float trip::getDistance(QString startColl, QString collName)
     return distanceFrom;
 }
 
+float trip::getTotalDistance()
+{
+    return totalDistance;
+}
 
 void trip::Recursive(QVector<colleges> &collegeList, int elem)
 {
@@ -126,7 +166,8 @@ void trip::Recursive(QVector<colleges> &collegeList, int elem)
     while (collegeList[elem].distance.size() != increment)
     {
         // Checks if the distance of the current element at the current increment is less than the previously closest distance and if the college is visited or not
-        if (collegeList[elem].distance[increment].distance < closestDistance && isVisited(collegeList[elem].distance[increment].collegeName,collegeList,elem) == false)
+        if (collegeList[elem].distance[increment].distance < closestDistance && isVisited(collegeList[elem].distance[increment].collegeName,collegeList,elem) == false
+            && isInList(collegeList[elem].distance[increment].collegeName,collegeList))
         {
             // Stores the closest college distance in a temp float for use in finding the closest distance
             closestDistance = collegeList[elem].distance[increment].distance;
@@ -138,6 +179,8 @@ void trip::Recursive(QVector<colleges> &collegeList, int elem)
         increment++;
     }
     qDebug() << "Closest College is "  << closestCollegeName;
+    totalDistance += closestDistance;
+    qDebug() << "Total Distance of trip is: " << totalDistance;
 
     //Checks if the next element of the collegeList vector is already the closest college
     if (collegeList[elem+1].collegeName != closestCollegeName)
@@ -180,4 +223,16 @@ void trip::Recursive(QVector<colleges> &collegeList, int elem)
         // Recursive call with the passed element count being incremented as the base case
         Recursive(collegeList, elem+1);
     }
+}
+
+bool trip::isInList(QString collName, QVector<colleges> &collegeList)
+{
+    for (int index = 0; index < collegeList.size();index++)
+    {
+        if (collName == collegeList[index].collegeName)
+        {
+            return true;
+        }
+    }
+    return false;
 }

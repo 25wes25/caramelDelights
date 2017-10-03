@@ -1,6 +1,8 @@
 #ifndef STRUCTS_H
 #define STRUCTS_H
 
+#include <QString>
+
 //struct of colleges and their distance from
 //the node they are on
 struct distances
@@ -14,6 +16,13 @@ struct souv
     QString item;
     float price;
     int quantity;
+};
+
+
+struct visitedCollege
+{
+    QString collegeName;
+    QVector<souv> collegeCart;
 };
 
 //This is the struct that holds all the above
