@@ -89,7 +89,7 @@ private:
     int souvSelection;
     QItemSelectionModel *select;
     int cartRow = 0;
-
+    QVector<colleges> list;
 };
 
 #endif // MAINWINDOW_H

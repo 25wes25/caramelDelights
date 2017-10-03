@@ -50,7 +50,7 @@ trip::trip(QString startingCollege, int tripNumber)
 QVector<colleges> trip::SetCollegeList(QVector<QString> inColleges)
 {
     Database* db = Database::getInstance();
-    db->SetDBPath(QDir::currentPath() + "\\Database\\College.db");
+    db->SetDBPath("/users/brycecallender/desktop/caramelDelights-Ronen2/CollegeTour/Database/College.db");
 
     collegeList.clear();
 
@@ -166,7 +166,8 @@ void trip::Recursive(QVector<colleges> &collegeList, int elem)
     while (collegeList[elem].distance.size() != increment)
     {
         // Checks if the distance of the current element at the current increment is less than the previously closest distance and if the college is visited or not
-        if (collegeList[elem].distance[increment].distance < closestDistance && isVisited(collegeList[elem].distance[increment].collegeName,collegeList,elem) == false)
+        if (collegeList[elem].distance[increment].distance < closestDistance && isVisited(collegeList[elem].distance[increment].collegeName,collegeList,elem) == false
+            && isInList(collegeList[elem].distance[increment].collegeName,collegeList))
         {
             // Stores the closest college distance in a temp float for use in finding the closest distance
             closestDistance = collegeList[elem].distance[increment].distance;
@@ -226,7 +227,7 @@ void trip::Recursive(QVector<colleges> &collegeList, int elem)
 
 bool trip::isInList(QString collName, QVector<colleges> &collegeList)
 {
-    for (int index = 0; index < collegeList.size();)
+    for (int index = 0; index < collegeList.size();index++)
     {
         if (collName == collegeList[index].collegeName)
         {

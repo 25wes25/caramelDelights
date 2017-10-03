@@ -124,7 +124,7 @@ void MainWindow::on_addCollege_clicked()
 
         customTrip.collegeList.push_back(newInsert);
 
-        QStandardItem *collegeName     = new QStandardItem(customTrip.collegeList[index].collegeName);
+        QStandardItem *collegeName = new QStandardItem(customTrip.collegeList[index].collegeName);
         model->setItem(collegeRow, 0, collegeName);
 
 
@@ -133,8 +133,6 @@ void MainWindow::on_addCollege_clicked()
         collegeRow++;
         index++;
     }
-    QString totDist = QString::number(customTrip.getTotalDistance());
-    ui->labelTotalDistance->setText("Total Trip Distance: " + totDist);
 }
 /**
  * @brief MainWindow::on_startTrip_clicked
@@ -147,6 +145,8 @@ void MainWindow::on_startTrip_clicked()
     ui->nextCollege->show();
     ui->labelCollege->hide();
     ui->comboCollege->hide();
+    ui->customTrip->hide();
+    ui->addCollege->hide();
 
     souvenirIndex = 0;
 
@@ -156,7 +156,7 @@ void MainWindow::on_startTrip_clicked()
     database = Database::getInstance();
     database->SetDBPath(QDir::currentPath() + "\\Database\\College.db");
 
-    QVector<colleges> list;
+
     QVector<QString>  tripNames;
 
     for(int index = 0; index < customTrip.collegeList.size(); index++)
@@ -174,12 +174,16 @@ void MainWindow::on_startTrip_clicked()
 
     customTrip.Recursive(list, 0);
 
+    QString totDist = QString::number(customTrip.getTotalDistance());
+    ui->labelTotalDistance->setText("Total Trip Distance: " + totDist);
+
     QSqlQueryModel * souvenirModel = new QSqlQueryModel();
 
     //sets up the query
     QSqlQuery *query = new QSqlQuery(database->db);
     query->prepare("SELECT TraditionalSouvenirs, Cost FROM Souvenirs WHERE College == (:collegeName)");
-    query->bindValue(":collegeName",customTrip.collegeList[souvenirIndex].collegeName);
+    query->bindValue(":collegeName",list[souvenirIndex].collegeName);
+    qDebug() << list[souvenirIndex].collegeName;
     qDebug() << query->exec();
     souvenirModel->setQuery(*query);
 
@@ -198,14 +202,15 @@ void MainWindow::on_nextCollege_clicked()
     }
     else
     {
-        ui->collegeLocation->setText(customTrip.collegeList[souvenirIndex].collegeName);
+        ui->collegeLocation->setText(list[souvenirIndex].collegeName);
 
         QSqlQueryModel * souvenirModel = new QSqlQueryModel();
 
         //sets up the query
         QSqlQuery *query = new QSqlQuery(database->db);
         query->prepare("SELECT * FROM Souvenirs WHERE College == (:collegeName)");
-        query->bindValue(":collegeName",customTrip.collegeList[souvenirIndex].collegeName);
+        query->bindValue(":collegeName",list[souvenirIndex].collegeName);
+        qDebug() << list[souvenirIndex].collegeName;
         qDebug() << query->exec();
         souvenirModel->setQuery(*query);
 
@@ -228,8 +233,6 @@ void MainWindow::on_purchaseSouvenir_clicked() //purchase souvenir button
 //    tableIndex = ui->selectTable->selectionModel()->selection().indexes();
 
 //    qDebug() << tableIndex[0].data().toInt();
-
-
 
     newItem.item = ui->selectTable->model()->data(ui->selectTable->model()->index(souvSelection, 0)).toString();
     itemPrice = ui->selectTable->model()->data(ui->selectTable->model()->index(souvSelection, 1)).toString();
