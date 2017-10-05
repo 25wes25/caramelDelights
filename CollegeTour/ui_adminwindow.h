@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QFormLayout>
 #include <QtWidgets/QGridLayout>
@@ -38,32 +39,32 @@ public:
     QGroupBox *deleteBox;
     QFormLayout *formLayout_2;
     QLabel *label_4;
-    QLineEdit *deleteCollegeName;
     QLabel *label_5;
-    QLineEdit *deleteSouvenirName;
     QPushButton *deleteSouvenirButtonBox;
+    QComboBox *deleteComboCollege;
+    QLineEdit *deleteSouvenirName;
     QGroupBox *addBox;
     QFormLayout *formLayout;
+    QLabel *label_3;
     QLabel *label;
     QLineEdit *souvenirName;
     QLabel *label_2;
-    QPushButton *sumbitSouvenirButton;
-    QLabel *label_3;
-    QLineEdit *nameOfCollege;
     QLineEdit *souvenirPrice;
+    QPushButton *sumbitSouvenirButton;
+    QComboBox *addComboCollege;
     QTableView *souvenirTableView;
     QPushButton *addSouvenirButton;
     QPushButton *deleteSouvenirButton;
     QPushButton *modifySouvenir;
     QGroupBox *modifyBox;
     QGridLayout *gridLayout_2;
-    QLabel *label_8;
     QLabel *label_7;
-    QLineEdit *updateCollegeName;
+    QLabel *label_8;
     QLabel *label_6;
-    QLineEdit *updateSouvenirName;
     QLineEdit *updateSouvenirPrice;
     QPushButton *updateSouvenirButton;
+    QComboBox *modifyComboCollege;
+    QComboBox *modifySouvenirCombo;
     QPushButton *updateDB;
     QWidget *tab_2;
 
@@ -89,25 +90,25 @@ public:
 
         formLayout_2->setWidget(0, QFormLayout::LabelRole, label_4);
 
-        deleteCollegeName = new QLineEdit(deleteBox);
-        deleteCollegeName->setObjectName(QStringLiteral("deleteCollegeName"));
-
-        formLayout_2->setWidget(1, QFormLayout::LabelRole, deleteCollegeName);
-
         label_5 = new QLabel(deleteBox);
         label_5->setObjectName(QStringLiteral("label_5"));
 
         formLayout_2->setWidget(2, QFormLayout::LabelRole, label_5);
 
-        deleteSouvenirName = new QLineEdit(deleteBox);
-        deleteSouvenirName->setObjectName(QStringLiteral("deleteSouvenirName"));
-
-        formLayout_2->setWidget(3, QFormLayout::LabelRole, deleteSouvenirName);
-
         deleteSouvenirButtonBox = new QPushButton(deleteBox);
         deleteSouvenirButtonBox->setObjectName(QStringLiteral("deleteSouvenirButtonBox"));
 
         formLayout_2->setWidget(4, QFormLayout::LabelRole, deleteSouvenirButtonBox);
+
+        deleteComboCollege = new QComboBox(deleteBox);
+        deleteComboCollege->setObjectName(QStringLiteral("deleteComboCollege"));
+
+        formLayout_2->setWidget(1, QFormLayout::SpanningRole, deleteComboCollege);
+
+        deleteSouvenirName = new QLineEdit(deleteBox);
+        deleteSouvenirName->setObjectName(QStringLiteral("deleteSouvenirName"));
+
+        formLayout_2->setWidget(3, QFormLayout::SpanningRole, deleteSouvenirName);
 
 
         gridLayout->addWidget(deleteBox, 3, 2, 1, 1);
@@ -116,6 +117,11 @@ public:
         addBox->setObjectName(QStringLiteral("addBox"));
         formLayout = new QFormLayout(addBox);
         formLayout->setObjectName(QStringLiteral("formLayout"));
+        label_3 = new QLabel(addBox);
+        label_3->setObjectName(QStringLiteral("label_3"));
+
+        formLayout->setWidget(0, QFormLayout::LabelRole, label_3);
+
         label = new QLabel(addBox);
         label->setObjectName(QStringLiteral("label"));
 
@@ -131,25 +137,20 @@ public:
 
         formLayout->setWidget(4, QFormLayout::LabelRole, label_2);
 
+        souvenirPrice = new QLineEdit(addBox);
+        souvenirPrice->setObjectName(QStringLiteral("souvenirPrice"));
+
+        formLayout->setWidget(5, QFormLayout::SpanningRole, souvenirPrice);
+
         sumbitSouvenirButton = new QPushButton(addBox);
         sumbitSouvenirButton->setObjectName(QStringLiteral("sumbitSouvenirButton"));
 
         formLayout->setWidget(6, QFormLayout::LabelRole, sumbitSouvenirButton);
 
-        label_3 = new QLabel(addBox);
-        label_3->setObjectName(QStringLiteral("label_3"));
+        addComboCollege = new QComboBox(addBox);
+        addComboCollege->setObjectName(QStringLiteral("addComboCollege"));
 
-        formLayout->setWidget(0, QFormLayout::LabelRole, label_3);
-
-        nameOfCollege = new QLineEdit(addBox);
-        nameOfCollege->setObjectName(QStringLiteral("nameOfCollege"));
-
-        formLayout->setWidget(1, QFormLayout::SpanningRole, nameOfCollege);
-
-        souvenirPrice = new QLineEdit(addBox);
-        souvenirPrice->setObjectName(QStringLiteral("souvenirPrice"));
-
-        formLayout->setWidget(5, QFormLayout::SpanningRole, souvenirPrice);
+        formLayout->setWidget(1, QFormLayout::SpanningRole, addComboCollege);
 
 
         gridLayout->addWidget(addBox, 3, 0, 1, 1);
@@ -178,30 +179,20 @@ public:
         modifyBox->setObjectName(QStringLiteral("modifyBox"));
         gridLayout_2 = new QGridLayout(modifyBox);
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
-        label_8 = new QLabel(modifyBox);
-        label_8->setObjectName(QStringLiteral("label_8"));
-
-        gridLayout_2->addWidget(label_8, 4, 0, 1, 1);
-
         label_7 = new QLabel(modifyBox);
         label_7->setObjectName(QStringLiteral("label_7"));
 
         gridLayout_2->addWidget(label_7, 2, 0, 1, 1);
 
-        updateCollegeName = new QLineEdit(modifyBox);
-        updateCollegeName->setObjectName(QStringLiteral("updateCollegeName"));
+        label_8 = new QLabel(modifyBox);
+        label_8->setObjectName(QStringLiteral("label_8"));
 
-        gridLayout_2->addWidget(updateCollegeName, 1, 0, 1, 1);
+        gridLayout_2->addWidget(label_8, 4, 0, 1, 1);
 
         label_6 = new QLabel(modifyBox);
         label_6->setObjectName(QStringLiteral("label_6"));
 
         gridLayout_2->addWidget(label_6, 0, 0, 1, 1);
-
-        updateSouvenirName = new QLineEdit(modifyBox);
-        updateSouvenirName->setObjectName(QStringLiteral("updateSouvenirName"));
-
-        gridLayout_2->addWidget(updateSouvenirName, 3, 0, 1, 1);
 
         updateSouvenirPrice = new QLineEdit(modifyBox);
         updateSouvenirPrice->setObjectName(QStringLiteral("updateSouvenirPrice"));
@@ -213,13 +204,23 @@ public:
 
         gridLayout_2->addWidget(updateSouvenirButton, 6, 0, 1, 1);
 
+        modifyComboCollege = new QComboBox(modifyBox);
+        modifyComboCollege->setObjectName(QStringLiteral("modifyComboCollege"));
+
+        gridLayout_2->addWidget(modifyComboCollege, 1, 0, 1, 1);
+
+        modifySouvenirCombo = new QComboBox(modifyBox);
+        modifySouvenirCombo->setObjectName(QStringLiteral("modifySouvenirCombo"));
+
+        gridLayout_2->addWidget(modifySouvenirCombo, 3, 0, 1, 1);
+
         updateSouvenirButton->raise();
-        updateCollegeName->raise();
-        updateSouvenirName->raise();
         updateSouvenirPrice->raise();
         label_6->raise();
         label_7->raise();
         label_8->raise();
+        modifyComboCollege->raise();
+        modifySouvenirCombo->raise();
 
         gridLayout->addWidget(modifyBox, 5, 0, 1, 3);
 
@@ -252,16 +253,16 @@ public:
         label_5->setText(QApplication::translate("AdminWindow", "Name Of Souvenir", Q_NULLPTR));
         deleteSouvenirButtonBox->setText(QApplication::translate("AdminWindow", "Submit", Q_NULLPTR));
         addBox->setTitle(QApplication::translate("AdminWindow", "Add", Q_NULLPTR));
+        label_3->setText(QApplication::translate("AdminWindow", "Name of College", Q_NULLPTR));
         label->setText(QApplication::translate("AdminWindow", "Name of Souvenir", Q_NULLPTR));
         label_2->setText(QApplication::translate("AdminWindow", "Price ", Q_NULLPTR));
         sumbitSouvenirButton->setText(QApplication::translate("AdminWindow", "Sumbit", Q_NULLPTR));
-        label_3->setText(QApplication::translate("AdminWindow", "Name of College", Q_NULLPTR));
         addSouvenirButton->setText(QApplication::translate("AdminWindow", "Add Souvenir ", Q_NULLPTR));
         deleteSouvenirButton->setText(QApplication::translate("AdminWindow", "Delete Souvenir", Q_NULLPTR));
         modifySouvenir->setText(QApplication::translate("AdminWindow", "Modify Souvenir Price", Q_NULLPTR));
         modifyBox->setTitle(QApplication::translate("AdminWindow", "Modify Souvenir Price", Q_NULLPTR));
+        label_7->setText(QApplication::translate("AdminWindow", "Name of Souvenir", Q_NULLPTR));
         label_8->setText(QApplication::translate("AdminWindow", "New Price", Q_NULLPTR));
-        label_7->setText(QApplication::translate("AdminWindow", "Nmae of Souvenir", Q_NULLPTR));
         label_6->setText(QApplication::translate("AdminWindow", "Name Of College", Q_NULLPTR));
         updateSouvenirButton->setText(QApplication::translate("AdminWindow", "Submit", Q_NULLPTR));
         updateDB->setText(QApplication::translate("AdminWindow", "Update Database", Q_NULLPTR));

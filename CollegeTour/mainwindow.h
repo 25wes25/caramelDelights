@@ -60,6 +60,10 @@ private slots:
 
     void on_nextPurchase_clicked();
 
+    void on_uciTripButton_clicked();
+
+    void on_souvenirFindButton_clicked();
+
 private:
     /**
      * @brief ui

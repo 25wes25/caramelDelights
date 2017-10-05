@@ -55,6 +55,7 @@ private:
 
 
 public:
+    QVector<QString> setCollegeNames();
     /*!
      * \brief db
      * \var db object for QT interactions

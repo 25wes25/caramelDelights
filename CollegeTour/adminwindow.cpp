@@ -38,6 +38,15 @@ AdminWindow::AdminWindow(QWidget *parent) :
     ui->souvenirTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->souvenirTableView->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
+    QVector<QString> names = database->setCollegeNames();
+
+    for(int i = 0; i < names.size(); i++)
+    {
+        ui->addComboCollege->addItem(names[i]);
+        ui->deleteComboCollege->addItem(names[i]);
+        ui->modifyComboCollege->addItem(names[i]);
+    }
+
 }
 
 /*!
@@ -63,7 +72,7 @@ void AdminWindow::on_addSouvenirButton_clicked()
  */
 void AdminWindow::on_sumbitSouvenirButton_clicked()
 {
-    QString college = ui->nameOfCollege->text();
+    QString college = ui->addComboCollege->currentText();
     QString name = ui->souvenirName->text();
     QString cost = ui->souvenirPrice->text();
     cost = '$' + cost;
@@ -84,7 +93,6 @@ void AdminWindow::on_sumbitSouvenirButton_clicked()
         QMessageBox::information(this,"Souvenir not successfully Added", "Souvenir Not Successfully Added", QMessageBox::Ok);
     }
 
-    ui->nameOfCollege->clear();
     ui->souvenirName->clear();
     ui->souvenirPrice->clear();
     ui->addBox->hide();
@@ -97,7 +105,7 @@ void AdminWindow::on_sumbitSouvenirButton_clicked()
  */
 void AdminWindow::on_deleteSouvenirButtonBox_clicked()
 {
-    QString college = ui->deleteCollegeName->text();
+    QString college = ui->deleteComboCollege->currentText();
     QString name = ui->deleteSouvenirName->text();
 
     //sets up the querys
@@ -115,7 +123,6 @@ void AdminWindow::on_deleteSouvenirButtonBox_clicked()
         QMessageBox::information(this,"Souvenir not successfully deleted", "Souvenir Not Successfully Deleted", QMessageBox::Ok);
     }
 
-    ui->deleteCollegeName->clear();
     ui->deleteSouvenirName->clear();
     ui->deleteBox->hide();
 
@@ -128,8 +135,8 @@ void AdminWindow::on_deleteSouvenirButtonBox_clicked()
  */
 void AdminWindow::on_updateSouvenirButton_clicked()
 {
-    QString college = ui->updateCollegeName->text();
-    QString name = ui->updateSouvenirName->text();
+    QString college = ui->modifyComboCollege->currentText();
+    QString name = ui->modifySouvenirCombo->currentText();
     QString cost = ui->updateSouvenirPrice->text();
     cost = '$' + cost;
 
@@ -149,8 +156,6 @@ void AdminWindow::on_updateSouvenirButton_clicked()
         QMessageBox::information(this,"Souvenir not successfully Updated", "Souvenir Not Successfully Updated", QMessageBox::Ok);
     }
 
-    ui->updateCollegeName->clear();
-    ui->updateSouvenirName->clear();
     ui->updateSouvenirPrice->clear();
     ui->modifyBox->hide();
 }
@@ -169,7 +174,6 @@ void AdminWindow::on_updateDB_clicked()
     query->exec();
 
     model->setQuery(*query);
-
 
     //sets the resultant query into a tableview and stretches it to make it look nice.
     ui->souvenirTableView->setModel(model);

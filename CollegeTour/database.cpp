@@ -112,3 +112,19 @@ QVector<colleges> Database::GetCollegeInfo(QVector<QString> inColleges)
     return collegeList;
 
 }
+
+QVector<QString> Database::setCollegeNames()
+{
+    QSqlQuery query(db);
+    QVector<QString> collegeNames;
+    query.prepare("SELECT distinct StartingCollege FROM Distances");
+    query.exec();
+
+    while(query.next())
+    {
+        collegeNames.push_back(query.value(0).toString());
+    }
+
+    return collegeNames;
+
+}

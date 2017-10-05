@@ -24,6 +24,16 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->selectTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->labelTotalDistance->hide();
 
+    database = Database::getInstance();
+    database->SetDBPath(QDir::currentPath() + "\\Database\\College.db");
+    QVector<QString> names = database->setCollegeNames();
+
+    for(int i = 0; i < names.size(); i++)
+    {
+        ui->comboCollege->addItem(names[i]);
+        ui->souvenirComboBox->addItem(names[i]);
+    }
+
 }
 /**
  * @brief MainWindow::~MainWindow
@@ -304,4 +314,53 @@ void MainWindow::on_nextPurchase_clicked()
     model->setItem(cartRow, 2, souvQuantity);
 
     cartRow++;
+}
+
+
+void MainWindow::on_uciTripButton_clicked()
+{
+
+    QVector<QString> tripNames= {"University of California, Irvine (UCI)", "Arizona State University", "Northwestern","Saddleback College","Ohio State University","University of  Michigan","Massachusetts Institute of Technology (MIT)","University of California, Los Angeles (UCLA)","University of Oregon","University of the Pacific","University of Wisconsin"};
+
+    trip newTrip;
+
+    list = newTrip.SetCollegeList(tripNames);
+
+    newTrip.Recursive(list,0);
+
+    QStandardItemModel* model = new QStandardItemModel(20,1,this); //20 Rows and 1 Columns
+    model->setHorizontalHeaderItem(0, new QStandardItem("Colleges"));
+
+
+    for(int i = 0; i < list.size();i++)
+    {
+        model->setItem(i, new QStandardItem(list[i].collegeName));
+    }
+
+    ui->uciTableView->setModel(model);
+    ui->uciTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->uciTableView->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    QString totDist = QString::number(customTrip.getTotalDistance());
+    ui->uciTotalDistance->setText("Total Trip Distance: " + totDist);
+
+}
+
+void MainWindow::on_souvenirFindButton_clicked()
+{
+    QString name = ui->souvenirComboBox->currentText();
+
+    QSqlQueryModel *model = new QSqlQueryModel();
+
+    QSqlQuery *query = new QSqlQuery(database->db);
+    query->prepare("SELECT TraditionalSouvenirs, Cost FROM Souvenirs WHERE College == (:collegeName)");
+    query->bindValue(":collegeName",name);
+    query->exec();
+
+    model->setQuery(*query);
+
+    ui->souvenirTableView->setModel(model);
+    ui->souvenirTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->souvenirTableView->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
 }

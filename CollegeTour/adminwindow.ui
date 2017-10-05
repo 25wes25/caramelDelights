@@ -37,9 +37,6 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
-           <widget class="QLineEdit" name="deleteCollegeName"/>
-          </item>
           <item row="2" column="0">
            <widget class="QLabel" name="label_5">
             <property name="text">
@@ -47,15 +44,18 @@
             </property>
            </widget>
           </item>
-          <item row="3" column="0">
-           <widget class="QLineEdit" name="deleteSouvenirName"/>
-          </item>
           <item row="4" column="0">
            <widget class="QPushButton" name="deleteSouvenirButtonBox">
             <property name="text">
              <string>Submit</string>
             </property>
            </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+           <widget class="QComboBox" name="deleteComboCollege"/>
+          </item>
+          <item row="3" column="0" colspan="2">
+           <widget class="QLineEdit" name="deleteSouvenirName"/>
           </item>
          </layout>
         </widget>
@@ -66,6 +66,13 @@
           <string>Add</string>
          </property>
          <layout class="QFormLayout" name="formLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>Name of College</string>
+            </property>
+           </widget>
+          </item>
           <item row="2" column="0">
            <widget class="QLabel" name="label">
             <property name="text">
@@ -83,6 +90,9 @@
             </property>
            </widget>
           </item>
+          <item row="5" column="0" colspan="2">
+           <widget class="QLineEdit" name="souvenirPrice"/>
+          </item>
           <item row="6" column="0">
            <widget class="QPushButton" name="sumbitSouvenirButton">
             <property name="text">
@@ -90,18 +100,8 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_3">
-            <property name="text">
-             <string>Name of College</string>
-            </property>
-           </widget>
-          </item>
           <item row="1" column="0" colspan="2">
-           <widget class="QLineEdit" name="nameOfCollege"/>
-          </item>
-          <item row="5" column="0" colspan="2">
-           <widget class="QLineEdit" name="souvenirPrice"/>
+           <widget class="QComboBox" name="addComboCollege"/>
           </item>
          </layout>
         </widget>
@@ -136,6 +136,13 @@
           <string>Modify Souvenir Price</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_2">
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_7">
+            <property name="text">
+             <string>Name of Souvenir</string>
+            </property>
+           </widget>
+          </item>
           <item row="4" column="0">
            <widget class="QLabel" name="label_8">
             <property name="text">
@@ -143,25 +150,12 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_7">
-            <property name="text">
-             <string>Nmae of Souvenir</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLineEdit" name="updateCollegeName"/>
-          </item>
           <item row="0" column="0">
            <widget class="QLabel" name="label_6">
             <property name="text">
              <string>Name Of College</string>
             </property>
            </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLineEdit" name="updateSouvenirName"/>
           </item>
           <item row="5" column="0">
            <widget class="QLineEdit" name="updateSouvenirPrice"/>
@@ -173,14 +167,20 @@
             </property>
            </widget>
           </item>
+          <item row="1" column="0">
+           <widget class="QComboBox" name="modifyComboCollege"/>
+          </item>
+          <item row="3" column="0">
+           <widget class="QComboBox" name="modifySouvenirCombo"/>
+          </item>
          </layout>
          <zorder>updateSouvenirButton</zorder>
-         <zorder>updateCollegeName</zorder>
-         <zorder>updateSouvenirName</zorder>
          <zorder>updateSouvenirPrice</zorder>
          <zorder>label_6</zorder>
          <zorder>label_7</zorder>
          <zorder>label_8</zorder>
+         <zorder>modifyComboCollege</zorder>
+         <zorder>modifySouvenirCombo</zorder>
         </widget>
        </item>
        <item row="4" column="1">
