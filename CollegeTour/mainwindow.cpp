@@ -228,7 +228,14 @@ void MainWindow::on_nextCollege_clicked()
 
         ui->selectTable->setModel(souvenirModel);
 
-        souvenirIndex++;
+        if(souvenirIndex >= list.size()-1)
+        {
+
+        }
+        else
+        {
+            souvenirIndex++;
+        }
     }
 }
 
