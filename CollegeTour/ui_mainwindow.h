@@ -202,8 +202,6 @@ public:
         tabWidget->addTab(tab, QString());
         collegeLocation->raise();
         labelTotalDistance->raise();
-        collegeLocation->raise();
-        labelTotalDistance->raise();
         mainTable->raise();
         pushButton->raise();
         labelCollege->raise();
@@ -271,7 +269,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 907, 22));
+        menuBar->setGeometry(QRect(0, 0, 907, 21));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -282,7 +280,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(3);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
