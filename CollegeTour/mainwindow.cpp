@@ -203,7 +203,7 @@ void MainWindow::on_startTrip_clicked()
     ui->selectTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->selectTable->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
-    qDebug() << "Start of trip: " << souvenirIndex;
+    souvenirIndex++;
 }
 
 void MainWindow::on_nextCollege_clicked()
@@ -228,17 +228,7 @@ void MainWindow::on_nextCollege_clicked()
 
         ui->selectTable->setModel(souvenirModel);
 
-
-        qDebug() << "list size: " << list.size();
-        if(souvenirIndex >= list.size()-1)
-        {
-
-        }
-        else
-        {
-           souvenirIndex++;
-        }
-        qDebug() << "NextCollege clicked: " << souvenirIndex;
+        souvenirIndex++;
     }
 }
 
@@ -298,7 +288,6 @@ void MainWindow::on_selectTable_clicked(const QModelIndex &index)
 
 void MainWindow::on_nextPurchase_clicked()
 {
-    qDebug() << "nextPurchase clicked: " << souvenirIndex;
     souv newItem;
     QString itemPrice;
     visitedCollege visitedColl;

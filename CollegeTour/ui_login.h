@@ -34,12 +34,15 @@ public:
     QPushButton *pushButton_2;
     QLineEdit *AdminInput;
     QLabel *label_3;
+    QLabel *label;
+    QLabel *printNewUserLabel;
+    QLabel *label_2;
 
     void setupUi(QDialog *login)
     {
         if (login->objectName().isEmpty())
             login->setObjectName(QStringLiteral("login"));
-        login->resize(717, 510);
+        login->resize(721, 510);
         UserNameInput = new QLineEdit(login);
         UserNameInput->setObjectName(QStringLiteral("UserNameInput"));
         UserNameInput->setGeometry(QRect(60, 230, 591, 20));
@@ -55,7 +58,7 @@ public:
         passwordLabel->setGeometry(QRect(60, 270, 141, 21));
         CreateCheckBox = new QCheckBox(login);
         CreateCheckBox->setObjectName(QStringLiteral("CreateCheckBox"));
-        CreateCheckBox->setGeometry(QRect(60, 320, 91, 31));
+        CreateCheckBox->setGeometry(QRect(60, 310, 91, 41));
         LoginButton = new QPushButton(login);
         LoginButton->setObjectName(QStringLiteral("LoginButton"));
         LoginButton->setGeometry(QRect(490, 320, 75, 23));
@@ -64,10 +67,36 @@ public:
         pushButton_2->setGeometry(QRect(570, 320, 81, 23));
         AdminInput = new QLineEdit(login);
         AdminInput->setObjectName(QStringLiteral("AdminInput"));
-        AdminInput->setGeometry(QRect(290, 320, 171, 21));
+        AdminInput->setGeometry(QRect(290, 320, 181, 21));
         label_3 = new QLabel(login);
         label_3->setObjectName(QStringLiteral("label_3"));
-        label_3->setGeometry(QRect(230, 310, 71, 51));
+        label_3->setGeometry(QRect(220, 310, 61, 41));
+        label = new QLabel(login);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(50, 10, 601, 331));
+        label->setPixmap(QPixmap(QString::fromUtf8(":/new/prefix1/CollegeTourTitle.png")));
+        label->setScaledContents(true);
+        label->setWordWrap(false);
+        printNewUserLabel = new QLabel(login);
+        printNewUserLabel->setObjectName(QStringLiteral("printNewUserLabel"));
+        printNewUserLabel->setGeometry(QRect(290, 350, 361, 21));
+        label_2 = new QLabel(login);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setGeometry(QRect(380, 0, 341, 201));
+        label_2->setPixmap(QPixmap(QString::fromUtf8(":/new/prefix1/pictures/scrollllll.png")));
+        label_2->setScaledContents(true);
+        label_2->raise();
+        label->raise();
+        UserNameInput->raise();
+        PasswordInput->raise();
+        userNameLabel->raise();
+        passwordLabel->raise();
+        CreateCheckBox->raise();
+        LoginButton->raise();
+        pushButton_2->raise();
+        AdminInput->raise();
+        label_3->raise();
+        printNewUserLabel->raise();
 
         retranslateUi(login);
 
@@ -83,6 +112,9 @@ public:
         LoginButton->setText(QApplication::translate("login", "Login", Q_NULLPTR));
         pushButton_2->setText(QApplication::translate("login", "Help", Q_NULLPTR));
         label_3->setText(QApplication::translate("login", "Admin code:", Q_NULLPTR));
+        label->setText(QString());
+        printNewUserLabel->setText(QApplication::translate("login", ".", Q_NULLPTR));
+        label_2->setText(QString());
     } // retranslateUi
 
 };

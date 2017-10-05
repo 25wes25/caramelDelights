@@ -6,6 +6,7 @@ INPUT(
 ./release\saddlebackdistances.o
 ./release\trip.o
 ./release\adminwindow.o
+./release\qrc_resource.o
 ./release\moc_mainwindow.o
 ./release\moc_login.o
 ./release\moc_saddlebackdistances.o

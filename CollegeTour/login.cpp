@@ -110,18 +110,39 @@ void login::on_LoginButton_clicked()
     QString inName = ui->UserNameInput->text();
     QString inPass = ui->PasswordInput->text();
 
-    if(isAccount(inName, inPass))
+    if(ui->CreateCheckBox->isChecked() == true)
     {
-        if(isAdmin(inName,inPass))
+        addAccount(inName,inPass, false);
+        ui->printNewUserLabel->setText(inName + " account has been made!");
+    }
+    else
+    {
+        if(isAccount(inName, inPass))
         {
-            this->close();
-            adminWindow.show();
+            if(isAdmin(inName,inPass))
+            {
+                this->close();
+                adminWindow.show();
+            }
+            else
+            {
+                this->close();
+                interface.show();
+            }
         }
-        else
-        {
-            this->close();
-            interface.show();
-        }
+    }
+}
 
+void login::on_CreateCheckBox_toggled(bool checked)
+{
+    ui->userNameLabel->setText("Desired Username: ");
+    ui->passwordLabel->setText("Desired Password: ");
+    ui->LoginButton->setText("Create");
+    if(checked == false)
+    {
+        ui->userNameLabel->setText("Username: ");
+        ui->passwordLabel->setText("Password: ");
+        ui->LoginButton->setText("Login");
+        ui->printNewUserLabel->setText("");
     }
 }

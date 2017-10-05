@@ -43,3 +43,6 @@ FORMS    += mainwindow.ui \
     login.ui \
     saddlebackdistances.ui \
     adminwindow.ui
+
+RESOURCES += \
+    resource.qrc

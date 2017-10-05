@@ -47,6 +47,8 @@ public:
 private slots:
     void on_LoginButton_clicked(); //!< "Login" push button  */
 
+    void on_CreateCheckBox_toggled(bool checked);
+
 private:
     Ui::login *ui;
     QVector<user> accounts; /*!< QVector of struct 'user'  */

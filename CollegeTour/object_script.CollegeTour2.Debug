@@ -6,6 +6,7 @@ INPUT(
 ./debug\saddlebackdistances.o
 ./debug\trip.o
 ./debug\adminwindow.o
+./debug\qrc_resource.o
 ./debug\moc_mainwindow.o
 ./debug\moc_login.o
 ./debug\moc_saddlebackdistances.o

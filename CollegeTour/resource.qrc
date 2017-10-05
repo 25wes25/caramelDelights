@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>CollegeTourTitle.png</file>
+        <file>pictures/ucilogo.png</file>
+        <file>pictures/uci.gif</file>
+        <file>pictures/SADDLEBACK_LOGO-01.png</file>
+        <file>pictures/Saddleback_President_Webby_t670.png</file>
+        <file>pictures/University-of-Michigan-Logo.png</file>
+        <file>pictures/OIC motto transparent.png</file>
+        <file>pictures/scrollllll.png</file>
+    </qresource>
+</RCC>
