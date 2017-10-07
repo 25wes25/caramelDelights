@@ -14,11 +14,11 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QGridLayout" name="gridLayout_2">
-    <item row="0" column="0">
+   <layout class="QFormLayout" name="formLayout">
+    <item row="0" column="1">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>3</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -39,13 +39,6 @@
          <widget class="QLabel" name="labelTotalDistance">
           <property name="text">
            <string>Total Trip Distance: </string>
-          </property>
-         </widget>
-        </item>
-        <item row="10" column="3">
-         <widget class="QPushButton" name="pushButton">
-          <property name="text">
-           <string>Remove From Cart</string>
           </property>
          </widget>
         </item>
@@ -143,6 +136,25 @@
            </widget>
           </item>
           <item>
+           <widget class="QLabel" name="customQuantityLabel">
+            <property name="font">
+             <font>
+              <pointsize>7</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Quantity:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSpinBox" name="souvenirQuantity">
+            <property name="minimum">
+             <number>1</number>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QPushButton" name="nextPurchase">
             <property name="text">
              <string>Purchase</string>
@@ -157,23 +169,18 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="souvenirQuantity">
-            <property name="minimum">
-             <number>1</number>
+           <widget class="QPushButton" name="customRemoveCart">
+            <property name="text">
+             <string>Remove From Cart</string>
             </property>
            </widget>
           </item>
          </layout>
         </item>
        </layout>
-       <zorder>layoutWidget</zorder>
-       <zorder>collegeLocation</zorder>
-       <zorder>labelTotalDistance</zorder>
-       <zorder>layoutWidget</zorder>
        <zorder>collegeLocation</zorder>
        <zorder>labelTotalDistance</zorder>
        <zorder>mainTable</zorder>
-       <zorder>pushButton</zorder>
        <zorder>labelCollege</zorder>
        <zorder>comboCollege</zorder>
        <zorder>addCollege</zorder>
@@ -181,32 +188,73 @@
        <zorder>spinCollege</zorder>
        <zorder>customTrip</zorder>
        <zorder>startTrip</zorder>
-       <zorder>layoutWidget</zorder>
       </widget>
       <widget class="QWidget" name="tab_2">
        <attribute name="title">
         <string>UCI Trip</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_3">
-        <item row="0" column="0">
-         <widget class="QLabel" name="label">
-          <property name="text">
-           <string>Starting at UCI here is the most efficient path to all the colleges!</string>
+        <item row="0" column="2">
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
           </property>
-         </widget>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
         </item>
-        <item row="2" column="0">
-         <widget class="QTableView" name="uciTableView"/>
-        </item>
-        <item row="1" column="0">
+        <item row="2" column="1">
          <widget class="QPushButton" name="uciTripButton">
           <property name="text">
            <string>Start Trip</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="0">
+        <item row="4" column="1">
          <widget class="QLineEdit" name="uciTotalDistance"/>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLabel" name="label_3">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="pixmap">
+           <pixmap resource="resource.qrc">:/new/prefix1/pictures/ucilogo-300x300.png</pixmap>
+          </property>
+          <property name="scaledContents">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QTableView" name="uciTableView"/>
+        </item>
+        <item row="0" column="0">
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>Starting at UCI here is the most efficient path to all the colleges!</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -234,6 +282,104 @@
        <attribute name="title">
         <string>Michigan Trip</string>
        </attribute>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="4" column="0">
+         <widget class="QLabel" name="michiganLocationLabel">
+          <property name="font">
+           <font>
+            <pointsize>14</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>YouAreHere</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="michiganDistanceLabel">
+          <property name="text">
+           <string>Distance</string>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="1">
+         <widget class="QSpinBox" name="michiganSouvQuantity">
+          <property name="minimum">
+           <number>1</number>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="michiganLabel">
+          <property name="text">
+           <string>How many colleges do you want to visit? (Includes University of Michigan)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="1">
+         <widget class="QTableView" name="SouvenirNames"/>
+        </item>
+        <item row="2" column="0">
+         <widget class="QPushButton" name="michiganTripButton">
+          <property name="text">
+           <string>Make Trip</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QSpinBox" name="michiganSpinBox">
+          <property name="minimum">
+           <number>1</number>
+          </property>
+         </widget>
+        </item>
+        <item row="13" column="1">
+         <widget class="QTableView" name="souvenirCart"/>
+        </item>
+        <item row="7" column="0" rowspan="7">
+         <widget class="QTableView" name="michiganTripTableView"/>
+        </item>
+        <item row="11" column="1">
+         <widget class="QPushButton" name="michiganNextPurchase">
+          <property name="text">
+           <string>Purchase</string>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="1">
+         <widget class="QPushButton" name="michiganPurchase">
+          <property name="text">
+           <string>Purchase</string>
+          </property>
+         </widget>
+        </item>
+        <item row="12" column="1">
+         <widget class="QPushButton" name="michiganRemoveCart">
+          <property name="text">
+           <string>Remove From Cart</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QPushButton" name="michiganNextCollege">
+          <property name="text">
+           <string>Next College</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="1">
+         <widget class="QLabel" name="michiganQuantityLabel">
+          <property name="font">
+           <font>
+            <pointsize>7</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>Quantity:</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>
@@ -245,7 +391,7 @@
      <x>0</x>
      <y>0</y>
      <width>907</width>
-     <height>22</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>
@@ -260,6 +406,8 @@
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="resource.qrc"/>
+ </resources>
  <connections/>
 </ui>

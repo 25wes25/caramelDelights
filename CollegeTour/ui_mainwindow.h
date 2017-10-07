@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.8.0
+** Created by: Qt User Interface Compiler version 5.9.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -14,6 +14,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QComboBox>
+#include <QtWidgets/QFormLayout>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -21,6 +22,7 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
@@ -35,14 +37,13 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralWidget;
-    QGridLayout *gridLayout_2;
+    QFormLayout *formLayout;
     QTabWidget *tabWidget;
     QWidget *tab;
     QGridLayout *gridLayout;
     QVBoxLayout *verticalLayout_4;
     QLabel *labelNumber;
     QLabel *labelTotalDistance;
-    QPushButton *pushButton;
     QComboBox *comboCollege;
     QPushButton *startTrip;
     QLabel *collegeLocation;
@@ -54,21 +55,41 @@ public:
     QVBoxLayout *verticalLayout;
     QPushButton *nextCollege;
     QTableView *selectTable;
+    QLabel *customQuantityLabel;
+    QSpinBox *souvenirQuantity;
     QPushButton *nextPurchase;
     QPushButton *purchaseSouvenir;
-    QSpinBox *souvenirQuantity;
+    QPushButton *customRemoveCart;
     QWidget *tab_2;
     QGridLayout *gridLayout_3;
-    QLabel *label;
-    QTableView *uciTableView;
+    QSpacerItem *horizontalSpacer_2;
     QPushButton *uciTripButton;
     QLineEdit *uciTotalDistance;
+    QLabel *label_3;
+    QTableView *uciTableView;
+    QSpacerItem *horizontalSpacer;
+    QLabel *label;
     QWidget *tab_3;
     QVBoxLayout *verticalLayout_2;
     QComboBox *souvenirComboBox;
     QPushButton *souvenirFindButton;
     QTableView *souvenirTableView;
     QWidget *tab_4;
+    QGridLayout *gridLayout_2;
+    QLabel *michiganLocationLabel;
+    QLabel *michiganDistanceLabel;
+    QSpinBox *michiganSouvQuantity;
+    QLabel *michiganLabel;
+    QTableView *SouvenirNames;
+    QPushButton *michiganTripButton;
+    QSpinBox *michiganSpinBox;
+    QTableView *souvenirCart;
+    QTableView *michiganTripTableView;
+    QPushButton *michiganNextPurchase;
+    QPushButton *michiganPurchase;
+    QPushButton *michiganRemoveCart;
+    QPushButton *michiganNextCollege;
+    QLabel *michiganQuantityLabel;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -80,10 +101,10 @@ public:
         MainWindow->resize(907, 655);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        gridLayout_2 = new QGridLayout(centralWidget);
-        gridLayout_2->setSpacing(6);
-        gridLayout_2->setContentsMargins(11, 11, 11, 11);
-        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
+        formLayout = new QFormLayout(centralWidget);
+        formLayout->setSpacing(6);
+        formLayout->setContentsMargins(11, 11, 11, 11);
+        formLayout->setObjectName(QStringLiteral("formLayout"));
         tabWidget = new QTabWidget(centralWidget);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
         tab = new QWidget();
@@ -107,11 +128,6 @@ public:
         labelTotalDistance->setObjectName(QStringLiteral("labelTotalDistance"));
 
         gridLayout->addWidget(labelTotalDistance, 7, 0, 1, 1);
-
-        pushButton = new QPushButton(tab);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
-
-        gridLayout->addWidget(pushButton, 10, 3, 1, 1);
 
         comboCollege = new QComboBox(tab);
         comboCollege->setObjectName(QStringLiteral("comboCollege"));
@@ -180,6 +196,20 @@ public:
 
         verticalLayout->addWidget(selectTable);
 
+        customQuantityLabel = new QLabel(tab);
+        customQuantityLabel->setObjectName(QStringLiteral("customQuantityLabel"));
+        QFont font1;
+        font1.setPointSize(7);
+        customQuantityLabel->setFont(font1);
+
+        verticalLayout->addWidget(customQuantityLabel);
+
+        souvenirQuantity = new QSpinBox(tab);
+        souvenirQuantity->setObjectName(QStringLiteral("souvenirQuantity"));
+        souvenirQuantity->setMinimum(1);
+
+        verticalLayout->addWidget(souvenirQuantity);
+
         nextPurchase = new QPushButton(tab);
         nextPurchase->setObjectName(QStringLiteral("nextPurchase"));
 
@@ -190,11 +220,10 @@ public:
 
         verticalLayout->addWidget(purchaseSouvenir);
 
-        souvenirQuantity = new QSpinBox(tab);
-        souvenirQuantity->setObjectName(QStringLiteral("souvenirQuantity"));
-        souvenirQuantity->setMinimum(1);
+        customRemoveCart = new QPushButton(tab);
+        customRemoveCart->setObjectName(QStringLiteral("customRemoveCart"));
 
-        verticalLayout->addWidget(souvenirQuantity);
+        verticalLayout->addWidget(customRemoveCart);
 
 
         gridLayout->addLayout(verticalLayout, 9, 0, 1, 2);
@@ -202,10 +231,7 @@ public:
         tabWidget->addTab(tab, QString());
         collegeLocation->raise();
         labelTotalDistance->raise();
-        collegeLocation->raise();
-        labelTotalDistance->raise();
         mainTable->raise();
-        pushButton->raise();
         labelCollege->raise();
         comboCollege->raise();
         addCollege->raise();
@@ -219,25 +245,41 @@ public:
         gridLayout_3->setSpacing(6);
         gridLayout_3->setContentsMargins(11, 11, 11, 11);
         gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
-        label = new QLabel(tab_2);
-        label->setObjectName(QStringLiteral("label"));
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        gridLayout_3->addWidget(label, 0, 0, 1, 1);
-
-        uciTableView = new QTableView(tab_2);
-        uciTableView->setObjectName(QStringLiteral("uciTableView"));
-
-        gridLayout_3->addWidget(uciTableView, 2, 0, 1, 1);
+        gridLayout_3->addItem(horizontalSpacer_2, 0, 2, 1, 1);
 
         uciTripButton = new QPushButton(tab_2);
         uciTripButton->setObjectName(QStringLiteral("uciTripButton"));
 
-        gridLayout_3->addWidget(uciTripButton, 1, 0, 1, 1);
+        gridLayout_3->addWidget(uciTripButton, 2, 1, 1, 1);
 
         uciTotalDistance = new QLineEdit(tab_2);
         uciTotalDistance->setObjectName(QStringLiteral("uciTotalDistance"));
 
-        gridLayout_3->addWidget(uciTotalDistance, 3, 0, 1, 1);
+        gridLayout_3->addWidget(uciTotalDistance, 4, 1, 1, 1);
+
+        label_3 = new QLabel(tab_2);
+        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setEnabled(true);
+        label_3->setPixmap(QPixmap(QString::fromUtf8(":/new/prefix1/pictures/ucilogo-300x300.png")));
+        label_3->setScaledContents(true);
+
+        gridLayout_3->addWidget(label_3, 0, 1, 1, 1);
+
+        uciTableView = new QTableView(tab_2);
+        uciTableView->setObjectName(QStringLiteral("uciTableView"));
+
+        gridLayout_3->addWidget(uciTableView, 3, 1, 1, 1);
+
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout_3->addItem(horizontalSpacer, 0, 0, 1, 1);
+
+        label = new QLabel(tab_2);
+        label->setObjectName(QStringLiteral("label"));
+
+        gridLayout_3->addWidget(label, 1, 1, 1, 1);
 
         tabWidget->addTab(tab_2, QString());
         tab_3 = new QWidget();
@@ -264,14 +306,94 @@ public:
         tabWidget->addTab(tab_3, QString());
         tab_4 = new QWidget();
         tab_4->setObjectName(QStringLiteral("tab_4"));
+        gridLayout_2 = new QGridLayout(tab_4);
+        gridLayout_2->setSpacing(6);
+        gridLayout_2->setContentsMargins(11, 11, 11, 11);
+        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
+        michiganLocationLabel = new QLabel(tab_4);
+        michiganLocationLabel->setObjectName(QStringLiteral("michiganLocationLabel"));
+        QFont font2;
+        font2.setPointSize(14);
+        michiganLocationLabel->setFont(font2);
+
+        gridLayout_2->addWidget(michiganLocationLabel, 4, 0, 1, 1);
+
+        michiganDistanceLabel = new QLabel(tab_4);
+        michiganDistanceLabel->setObjectName(QStringLiteral("michiganDistanceLabel"));
+
+        gridLayout_2->addWidget(michiganDistanceLabel, 5, 0, 1, 1);
+
+        michiganSouvQuantity = new QSpinBox(tab_4);
+        michiganSouvQuantity->setObjectName(QStringLiteral("michiganSouvQuantity"));
+        michiganSouvQuantity->setMinimum(1);
+
+        gridLayout_2->addWidget(michiganSouvQuantity, 9, 1, 1, 1);
+
+        michiganLabel = new QLabel(tab_4);
+        michiganLabel->setObjectName(QStringLiteral("michiganLabel"));
+
+        gridLayout_2->addWidget(michiganLabel, 0, 0, 1, 1);
+
+        SouvenirNames = new QTableView(tab_4);
+        SouvenirNames->setObjectName(QStringLiteral("SouvenirNames"));
+
+        gridLayout_2->addWidget(SouvenirNames, 7, 1, 1, 1);
+
+        michiganTripButton = new QPushButton(tab_4);
+        michiganTripButton->setObjectName(QStringLiteral("michiganTripButton"));
+
+        gridLayout_2->addWidget(michiganTripButton, 2, 0, 1, 1);
+
+        michiganSpinBox = new QSpinBox(tab_4);
+        michiganSpinBox->setObjectName(QStringLiteral("michiganSpinBox"));
+        michiganSpinBox->setMinimum(1);
+
+        gridLayout_2->addWidget(michiganSpinBox, 1, 0, 1, 1);
+
+        souvenirCart = new QTableView(tab_4);
+        souvenirCart->setObjectName(QStringLiteral("souvenirCart"));
+
+        gridLayout_2->addWidget(souvenirCart, 13, 1, 1, 1);
+
+        michiganTripTableView = new QTableView(tab_4);
+        michiganTripTableView->setObjectName(QStringLiteral("michiganTripTableView"));
+
+        gridLayout_2->addWidget(michiganTripTableView, 7, 0, 7, 1);
+
+        michiganNextPurchase = new QPushButton(tab_4);
+        michiganNextPurchase->setObjectName(QStringLiteral("michiganNextPurchase"));
+
+        gridLayout_2->addWidget(michiganNextPurchase, 11, 1, 1, 1);
+
+        michiganPurchase = new QPushButton(tab_4);
+        michiganPurchase->setObjectName(QStringLiteral("michiganPurchase"));
+
+        gridLayout_2->addWidget(michiganPurchase, 10, 1, 1, 1);
+
+        michiganRemoveCart = new QPushButton(tab_4);
+        michiganRemoveCart->setObjectName(QStringLiteral("michiganRemoveCart"));
+
+        gridLayout_2->addWidget(michiganRemoveCart, 12, 1, 1, 1);
+
+        michiganNextCollege = new QPushButton(tab_4);
+        michiganNextCollege->setObjectName(QStringLiteral("michiganNextCollege"));
+
+        gridLayout_2->addWidget(michiganNextCollege, 5, 1, 1, 1);
+
+        michiganQuantityLabel = new QLabel(tab_4);
+        michiganQuantityLabel->setObjectName(QStringLiteral("michiganQuantityLabel"));
+        michiganQuantityLabel->setFont(font1);
+
+        gridLayout_2->addWidget(michiganQuantityLabel, 8, 1, 1, 1);
+
         tabWidget->addTab(tab_4, QString());
 
-        gridLayout_2->addWidget(tabWidget, 0, 0, 1, 1);
+        formLayout->setWidget(0, QFormLayout::FieldRole, tabWidget);
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 907, 22));
+        menuBar->setGeometry(QRect(0, 0, 907, 20));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -282,7 +404,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(3);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -293,21 +415,32 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
         labelNumber->setText(QApplication::translate("MainWindow", "Select the number of colleges you wish to visit:", Q_NULLPTR));
         labelTotalDistance->setText(QApplication::translate("MainWindow", "Total Trip Distance: ", Q_NULLPTR));
-        pushButton->setText(QApplication::translate("MainWindow", "Remove From Cart", Q_NULLPTR));
         startTrip->setText(QApplication::translate("MainWindow", "Start Trip", Q_NULLPTR));
         collegeLocation->setText(QApplication::translate("MainWindow", "You are here", Q_NULLPTR));
         addCollege->setText(QApplication::translate("MainWindow", "Add College", Q_NULLPTR));
         labelCollege->setText(QApplication::translate("MainWindow", "Select the college you wish to start at:", Q_NULLPTR));
         customTrip->setText(QApplication::translate("MainWindow", "Custom Trip", Q_NULLPTR));
         nextCollege->setText(QApplication::translate("MainWindow", "Next College", Q_NULLPTR));
+        customQuantityLabel->setText(QApplication::translate("MainWindow", "Quantity:", Q_NULLPTR));
         nextPurchase->setText(QApplication::translate("MainWindow", "Purchase", Q_NULLPTR));
         purchaseSouvenir->setText(QApplication::translate("MainWindow", "Purchase", Q_NULLPTR));
+        customRemoveCart->setText(QApplication::translate("MainWindow", "Remove From Cart", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindow", "Custom Trip", Q_NULLPTR));
-        label->setText(QApplication::translate("MainWindow", "Starting at UCI here is the most efficient path to all the colleges!", Q_NULLPTR));
         uciTripButton->setText(QApplication::translate("MainWindow", "Start Trip", Q_NULLPTR));
+        label_3->setText(QString());
+        label->setText(QApplication::translate("MainWindow", "Starting at UCI here is the most efficient path to all the colleges!", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "UCI Trip", Q_NULLPTR));
         souvenirFindButton->setText(QApplication::translate("MainWindow", "Find Souvenirs", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("MainWindow", "Souvenirs", Q_NULLPTR));
+        michiganLocationLabel->setText(QApplication::translate("MainWindow", "YouAreHere", Q_NULLPTR));
+        michiganDistanceLabel->setText(QApplication::translate("MainWindow", "Distance", Q_NULLPTR));
+        michiganLabel->setText(QApplication::translate("MainWindow", "How many colleges do you want to visit? (Includes University of Michigan)", Q_NULLPTR));
+        michiganTripButton->setText(QApplication::translate("MainWindow", "Make Trip", Q_NULLPTR));
+        michiganNextPurchase->setText(QApplication::translate("MainWindow", "Purchase", Q_NULLPTR));
+        michiganPurchase->setText(QApplication::translate("MainWindow", "Purchase", Q_NULLPTR));
+        michiganRemoveCart->setText(QApplication::translate("MainWindow", "Remove From Cart", Q_NULLPTR));
+        michiganNextCollege->setText(QApplication::translate("MainWindow", "Next College", Q_NULLPTR));
+        michiganQuantityLabel->setText(QApplication::translate("MainWindow", "Quantity:", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(tab_4), QApplication::translate("MainWindow", "Michigan Trip", Q_NULLPTR));
     } // retranslateUi
 

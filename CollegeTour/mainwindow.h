@@ -64,6 +64,24 @@ private slots:
 
     void on_souvenirFindButton_clicked();
 
+    void on_michiganTripButton_clicked();
+
+    void on_michiganNextCollege_clicked();
+
+    void on_michiganPurchase_clicked();
+
+    void on_SouvenirNames_clicked(const QModelIndex &index);
+
+    void on_michiganNextPurchase_clicked();
+
+    void on_michiganRemoveCart_clicked();
+
+    void on_souvenirCart_clicked(const QModelIndex &index);
+
+    void on_mainTable_clicked(const QModelIndex &index);
+
+    void on_customRemoveCart_clicked();
+
 private:
     /**
      * @brief ui
@@ -74,7 +92,7 @@ private:
      * @brief model
      * \var
      */
-    QStandardItemModel *model;
+    QStandardItemModel *customModel, *michiganModel, *uciModel;
     /**
      * @brief database
      * \var
@@ -85,15 +103,21 @@ private:
      * \var
      */
     trip customTrip;
+    trip michiganTrip;
+    trip uciTrip;
     /**
      * @brief collegeRow
      * \var
      */
     int collegeRow, souvenirIndex, index;
-    int souvSelection;
+    int customSouvSelection, michiganSouvSelection;
+    int michiganCartSelection, customCartSelection;
     QItemSelectionModel *select;
-    int cartRow = 0;
-    QVector<colleges> list;
+    int customCartRow = 0;
+    int michiganCartRow = 0;
+    QVector<colleges> customTripList, michiganList, uciList;
+    int maxVectorSize;
+    int decision;
 };
 
 #endif // MAINWINDOW_H
