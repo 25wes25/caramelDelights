@@ -82,6 +82,8 @@ private slots:
 
     void on_customRemoveCart_clicked();
 
+    void on_saddleStartButton_clicked();
+
 private:
     /**
      * @brief ui
@@ -105,6 +107,7 @@ private:
     trip customTrip;
     trip michiganTrip;
     trip uciTrip;
+    trip saddleTrip;
     /**
      * @brief collegeRow
      * \var
@@ -115,7 +118,7 @@ private:
     QItemSelectionModel *select;
     int customCartRow = 0;
     int michiganCartRow = 0;
-    QVector<colleges> customTripList, michiganList, uciList;
+    QVector<colleges> customTripList, michiganList, uciList, saddleList;
     int maxVectorSize;
     int decision;
 };

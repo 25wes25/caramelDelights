@@ -628,3 +628,29 @@ void MainWindow::on_mainTable_clicked(const QModelIndex &index)
 {
     customCartSelection = index.row();
 }
+
+void MainWindow::on_saddleStartButton_clicked()
+{
+    QVector<QString> tripNames;
+
+    souvenirIndex = 0;
+
+    //Makes sure the trip doesnt get messed up from invalid input!
+    //ui->michiganSpinBox->setMaximum(maxVectorSize);
+
+    tripNames.push_back("Saddleback College");
+
+    QSqlQuery *query = new QSqlQuery(database->db);
+    query->prepare("SELECT distinct StartingCollege FROM Distances WHERE StartingCollege != 'Saddleback College'");
+    qDebug() << query->exec();
+
+    while(query->next())
+    {
+        tripNames.push_back(query->value(0).toString());
+    }
+
+
+    saddleList = saddleTrip.SetCollegeList(tripNames);
+    saddleTrip.Recursive(saddleList,0);
+
+}
