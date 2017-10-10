@@ -176,7 +176,6 @@ void MainWindow::on_startTrip_clicked()
     ui->labelTotalDistance->show();
     ui->souvenirQuantity->show();
     ui->purchaseSouvenir->show();
-    ui->customRemoveCart->show();
     ui->customQuantityLabel->show();
 
     souvenirIndex = 0;
@@ -265,6 +264,8 @@ void MainWindow::on_purchaseSouvenir_clicked() //purchase souvenir button
     souv newItem;
     QString itemPrice;
     visitedCollege visitedColl;
+
+    ui->customRemoveCart->show();
 
 
 //    tableIndex = ui->selectTable->selectionModel()->selection().indexes();
@@ -412,7 +413,6 @@ void MainWindow::on_michiganTripButton_clicked()
     ui->michiganSouvQuantity->show();
     ui->michiganQuantityLabel->show();
     ui->michiganPurchase->show();
-    ui->michiganRemoveCart->show();
 
     QVector<QString> tripNames;
 
@@ -512,6 +512,7 @@ void MainWindow::on_michiganNextCollege_clicked()
 
 void MainWindow::on_michiganPurchase_clicked()
 {
+    ui->michiganRemoveCart->show();
     souv newItem;
     QString itemPrice;
     visitedCollege visitedColl;
