@@ -90,6 +90,10 @@ private slots:
 
     void on_saddleRemoveCart_clicked();
 
+    void on_saddleNextPurchase_clicked();
+
+    void on_saddleNextCollege_clicked();
+
 private:
     /**
      * @brief ui
