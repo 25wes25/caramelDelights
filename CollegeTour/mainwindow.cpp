@@ -37,6 +37,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->customRemoveCart->hide();
     ui->michiganPurchase->hide();
     ui->michiganRemoveCart->hide();
+    ui->saddlebackLocationLabel->hide();
+    ui->saddleDistanceLabel->hide();
+    ui->saddleNextCollege->hide();
+    ui->saddlePurchase->hide();
+    ui->saddleNextPurchase->hide();
+    ui->saddleSouvQuantity->hide();
+    ui->saddleQuantityLabel->hide();
+    ui->saddleRemoveCart->hide();
 
     database = Database::getInstance();
     database->SetDBPath(QDir::currentPath() + "\\Database\\College.db");
@@ -631,6 +639,13 @@ void MainWindow::on_mainTable_clicked(const QModelIndex &index)
 
 void MainWindow::on_saddleStartButton_clicked()
 {
+    ui->saddleNextCollege->show();
+    ui->saddleQuantityLabel->show();
+    ui->saddleSouvQuantity->show();
+    ui->saddlePurchase->show();
+    ui->saddleStartButton->hide();
+    ui->saddleLabel->setText("");
+
     QVector<QString> tripNames;
 
     souvenirIndex = 0;
@@ -653,4 +668,99 @@ void MainWindow::on_saddleStartButton_clicked()
     saddleList = saddleTrip.SetCollegeList(tripNames);
     saddleTrip.Recursive(saddleList,0);
 
+    ui->saddlebackLocationLabel->setText((saddleTrip.collegeList[souvenirIndex].collegeName));
+    ui->saddlebackLocationLabel->show();
+    ui->saddleDistanceLabel->show();
+
+    QString totDist = QString::number(saddleTrip.getTotalDistance());
+    ui->saddleDistanceLabel->setText("Total Trip Distance: " + totDist);
+
+    QStandardItemModel* model = new QStandardItemModel(saddleTrip.collegeList.size(),1,this);
+    model->setHorizontalHeaderItem(0, new QStandardItem("Colleges"));
+
+    for(int i = 0; i < saddleTrip.collegeList.size(); i++)
+    {
+        model->setItem(i, new QStandardItem(saddleList[i].collegeName));
+    }
+
+    ui->saddleCollegeTable->setModel(model);
+    ui->saddleCollegeTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->saddleCollegeTable->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    QSqlQueryModel * souvenirModel = new QSqlQueryModel();
+
+    //sets up the query
+    QSqlQuery *souvenirQuery = new QSqlQuery(database->db);
+    souvenirQuery->prepare("SELECT TraditionalSouvenirs,Cost FROM Souvenirs WHERE College == (:collegeName)");
+    souvenirQuery->bindValue(":collegeName",saddleList[souvenirIndex].collegeName);
+    qDebug() << saddleList[souvenirIndex].collegeName;
+    qDebug() << souvenirQuery->exec();
+    souvenirModel->setQuery(*souvenirQuery);
+
+    ui->saddleShopTable->setModel(souvenirModel);
+    ui->saddleShopTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->saddleShopTable->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    souvenirIndex++;
+}
+
+void MainWindow::on_saddlePurchase_clicked()
+{
+    ui->saddleRemoveCart->show();
+    souv newItem;
+    QString itemPrice;
+    visitedCollege visitedColl;
+
+
+    newItem.item = ui->saddleShopTable->model()->data(ui->saddleShopTable->model()->index(saddleCartSelection, 0)).toString();
+    itemPrice = ui->saddleShopTable->model()->data(ui->saddleShopTable->model()->index(saddleCartSelection, 1)).toString();
+
+    itemPrice = itemPrice.remove(0,1);
+    newItem.price = itemPrice.toFloat();
+
+    newItem.quantity = ui->saddleSouvQuantity->value();
+
+    visitedColl.collegeName = saddleTrip.collegeList[souvenirIndex].collegeName;
+    visitedColl.collegeCart.push_back(newItem);
+
+    saddleTrip.cart.push_back(visitedColl);
+
+    saddleModel = new QStandardItemModel(100,3,this); //11 Rows and 1 Columns
+    saddleModel->setHorizontalHeaderItem(0, new QStandardItem(QString("Souvenir")));
+    saddleModel->setHorizontalHeaderItem(1, new QStandardItem(QString("Price")));
+    saddleModel->setHorizontalHeaderItem(2, new QStandardItem(QString("Quantity")));
+    ui->saddleCartTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    QStandardItem *souvName = new QStandardItem(newItem.item);
+    QStandardItem *souvPrice = new QStandardItem("$" + itemPrice);
+    QStandardItem *souvQuantity = new QStandardItem(QString::number(newItem.quantity));
+
+    saddleModel->setItem(saddleCartRow, 0, souvName);
+    saddleModel->setItem(saddleCartRow, 1, souvPrice);
+    saddleModel->setItem(saddleCartRow, 2, souvQuantity);
+
+    ui->saddleCartTable->setModel(saddleModel);
+
+    saddleCartRow++;
+    ui->saddlePurchase->hide();
+    ui->saddleNextPurchase->show();
+    ui->saddleSouvQuantity->setValue(1);
+}
+
+void MainWindow::on_saddleShopTable_clicked(const QModelIndex &index)
+{
+    saddleCartSelection = index.row();
+}
+
+void MainWindow::on_saddleRemoveCart_clicked()
+{
+    if(ui->saddleCartTable->selectionModel()->isSelected(ui->saddleCartTable->currentIndex()))
+    {
+        saddleModel->removeRow(saddleCartSelection);
+        if(saddleCartRow > 0)
+        {
+            saddleCartRow--;
+            saddleCartSelection--;
+        }
+    }
 }

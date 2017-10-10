@@ -14,8 +14,8 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QFormLayout" name="formLayout">
-    <item row="0" column="1">
+   <layout class="QGridLayout" name="gridLayout_4">
+    <item row="0" column="0">
      <widget class="QTabWidget" name="saddlebackTab">
       <property name="currentIndex">
        <number>4</number>
@@ -385,60 +385,100 @@
        <attribute name="title">
         <string>Saddleback Trip</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout_4">
-        <item row="2" column="0">
+       <layout class="QGridLayout" name="gridLayout_5">
+        <item row="0" column="0">
          <widget class="QLabel" name="saddleLabel">
           <property name="text">
            <string>Starting at Saddleback, and visiting all the available colleges</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="0">
+        <item row="1" column="0">
          <widget class="QPushButton" name="saddleStartButton">
           <property name="text">
            <string>Start Trip</string>
           </property>
          </widget>
         </item>
-        <item row="1" column="1">
-         <widget class="QTableView" name="saddleShopTable"/>
-        </item>
-        <item row="4" column="0">
-         <widget class="QTableWidget" name="saddleCollegeTable"/>
-        </item>
-        <item row="0" column="1">
-         <widget class="QLabel" name="label_2">
+        <item row="2" column="0">
+         <widget class="QLabel" name="saddlebackLocationLabel">
+          <property name="font">
+           <font>
+            <pointsize>14</pointsize>
+           </font>
+          </property>
           <property name="text">
-           <string>Available Souvenirs:</string>
+           <string>YouAreHere</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="1">
+        <item row="3" column="0">
+         <widget class="QLabel" name="saddleDistanceLabel">
+          <property name="text">
+           <string>Distance</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0" rowspan="8">
+         <widget class="QTableView" name="saddleCollegeTable"/>
+        </item>
+        <item row="4" column="1">
+         <widget class="QTableView" name="saddleShopTable"/>
+        </item>
+        <item row="5" column="1">
+         <widget class="QLabel" name="saddleQuantityLabel">
+          <property name="font">
+           <font>
+            <pointsize>7</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>Quantity:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="1">
+         <widget class="QSpinBox" name="saddleSouvQuantity">
+          <property name="minimum">
+           <number>1</number>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="1">
+         <widget class="QPushButton" name="saddlePurchase">
+          <property name="text">
+           <string>Purchase</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="1">
+         <widget class="QPushButton" name="saddleNextPurchase">
+          <property name="text">
+           <string>Purchase</string>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="1">
+         <widget class="QPushButton" name="saddleRemoveCart">
+          <property name="text">
+           <string>Remove From Cart</string>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="1">
          <widget class="QLabel" name="label_4">
           <property name="text">
            <string>Cart:</string>
           </property>
          </widget>
         </item>
-        <item row="4" column="1">
+        <item row="11" column="1">
          <widget class="QTableView" name="saddleCartTable"/>
         </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_5">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
+        <item row="3" column="1">
+         <widget class="QPushButton" name="saddleNextCollege">
           <property name="text">
-           <string/>
-          </property>
-          <property name="pixmap">
-           <pixmap resource="resource.qrc">:/new/prefix1/pictures/Saddleback_President_Webby_t670.png</pixmap>
-          </property>
-          <property name="scaledContents">
-           <bool>false</bool>
+           <string>Next College</string>
           </property>
          </widget>
         </item>
