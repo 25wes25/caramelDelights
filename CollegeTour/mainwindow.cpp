@@ -24,6 +24,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->selectTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->SouvenirNames->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->souvenirCart->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->michiganTripTableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->SouvenirNames->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->souvenirCart->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->saddleCollegeTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->saddleShopTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->saddleCartTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->uciTableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->labelTotalDistance->hide();
     ui->michiganLocationLabel->hide();
     ui->michiganNextPurchase->hide();
@@ -45,6 +52,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->saddleSouvQuantity->hide();
     ui->saddleQuantityLabel->hide();
     ui->saddleRemoveCart->hide();
+    ui->customTripTotal->hide();
+    ui->michiganTripTotal->hide();
+    ui->saddleTripTotal->hide();
+
+    saddleTotals.reserve(20);
 
     database = Database::getInstance();
     database->SetDBPath(QDir::currentPath() + "\\Database\\College.db");
@@ -235,7 +247,8 @@ void MainWindow::on_nextCollege_clicked()
 {
     if(souvenirIndex == customTrip.collegeList.size())
     {
-
+        ui->nextCollege->hide();
+        ui->customTripTotal->show();
     }
     else
     {
@@ -255,7 +268,8 @@ void MainWindow::on_nextCollege_clicked()
 
         if(souvenirIndex >= customTripList.size()-1)
         {
-
+            ui->nextCollege->hide();
+            ui->customTripTotal->show();
         }
         else
         {
@@ -497,7 +511,8 @@ void MainWindow::on_michiganNextCollege_clicked()
 {
     if(souvenirIndex == customTrip.collegeList.size())
     {
-
+        ui->michiganNextCollege->hide();
+        ui->michiganTripTotal->show();
     }
     else
     {
@@ -517,7 +532,8 @@ void MainWindow::on_michiganNextCollege_clicked()
 
         if(souvenirIndex >= michiganList.size()-1)
         {
-
+            ui->michiganNextCollege->hide();
+            ui->michiganTripTotal->show();
         }
         else
         {
@@ -730,10 +746,29 @@ void MainWindow::on_saddlePurchase_clicked()
         souv newItem;
         QString itemPrice;
         visitedCollege visitedColl;
+        float cartValue;
 
+//        if (std::find(saddleTrip.cart[souvenirIndex].collegeCart.begin(), saddleTrip.cart[souvenirIndex].collegeCart.end(), ui->saddleShopTable->model()->data(ui->saddleShopTable->model()->index(saddleCartSelection, 0)).toString()) != saddleTrip.cart[souvenirIndex].collegeCart.end())
+//        {
+//          QVector<souv>::iterator it = std::find(saddleTrip.cart[souvenirIndex].collegeCart.begin(), saddleTrip.cart[souvenirIndex].collegeCart.end(), ui->saddleShopTable->model()->data(ui->saddleShopTable->model()->index(saddleCartSelection, 0)).toString());
+//          qDebug() << "Iterator Name: " << it->item;
+//          qDebug() << "Iterator Quantity Before: " << it->quantity;
+//          it->quantity += ui->saddleSouvQuantity->value();
+//          qDebug() << "Iterator Quantity After: " << it->quantity;
+//        }
+//        else
+//        {
+
+//        }
 
         newItem.item = ui->saddleShopTable->model()->data(ui->saddleShopTable->model()->index(saddleCartSelection, 0)).toString();
         itemPrice = ui->saddleShopTable->model()->data(ui->saddleShopTable->model()->index(saddleCartSelection, 1)).toString();
+
+//        cartValue = ui->saddleCartTable->model()->data(ui->saddleCartTable->model()->index(saddleCartSelection, 1)).toFloat();
+
+//        saddleTotals[souvenirIndex]
+
+//        saddleTotals[souvenirIndex] = ui->saddleCartTable->model()->data(ui->saddleCartTable->model()->index(, 1)).toFloat();
 
         itemPrice = itemPrice.remove(0,1);
         newItem.price = itemPrice.toFloat();
@@ -776,6 +811,7 @@ void MainWindow::on_saddleShopTable_clicked(const QModelIndex &index)
 
 void MainWindow::on_saddleRemoveCart_clicked()
 {
+    qDebug() << "Cart Selection: " << ui->saddleCartTable->model()->data(ui->saddleCartTable->model()->index(saddleCartSelection, 0)).toString();
     if(ui->saddleCartTable->selectionModel()->isSelected(ui->saddleCartTable->currentIndex()))
     {
         saddleModel->removeRow(saddleCartSelection);
@@ -790,7 +826,7 @@ void MainWindow::on_saddleRemoveCart_clicked()
 
 void MainWindow::on_saddleNextPurchase_clicked()
 {
-    if(ui->saddleShopTable->selectionModel()->isSelected(ui->saddleShopTable->currentIndex()) && !(ui->saddleShopTable->model()->data(ui->saddleShopTable->model()->index(saddleCartSelection, 0)).toString().isEmpty()))
+    if(ui->saddleShopTable->selectionModel()->isSelected(ui->saddleShopTable->currentIndex()))
     {
         souv newItem;
         QString itemPrice;
@@ -798,6 +834,8 @@ void MainWindow::on_saddleNextPurchase_clicked()
 
         newItem.item = ui->saddleShopTable->model()->data(ui->saddleShopTable->model()->index(saddleCartSelection, 0)).toString();
         itemPrice = ui->saddleShopTable->model()->data(ui->saddleShopTable->model()->index(saddleCartSelection, 1)).toString();
+
+//        saddleTotals[souvenirIndex] += ui->saddleCartTable->model()->data(ui->saddleCartTable->model()->index(saddleCartSelection, 1)).toFloat();
 
         itemPrice = itemPrice.remove(0,1);
         newItem.price = itemPrice.toFloat();
@@ -828,7 +866,8 @@ void MainWindow::on_saddleNextCollege_clicked()
 {
     if(souvenirIndex == customTrip.collegeList.size())
     {
-
+        ui->saddleNextCollege->hide();
+        ui->saddleTripTotal->show();
     }
     else
     {
@@ -848,11 +887,25 @@ void MainWindow::on_saddleNextCollege_clicked()
 
         if(souvenirIndex >= saddleList.size()-1)
         {
-
+            ui->saddleNextCollege->hide();
+            ui->saddleTripTotal->show();
         }
         else
         {
             souvenirIndex++;
         }
     }
+}
+
+void MainWindow::on_saddleTripTotal_clicked()
+{
+    for(QVector<float>::iterator it = saddleTotals.begin(); it != saddleTotals.end(); it++)
+    {
+        qDebug() << "total: " << *it;
+    }
+//    int saddleTotalRow;
+//    int saddleQuantityRow;
+
+//    for(saddleTotalRow = 0; )
+//    ui->saddleCartTable->model()->data(ui->saddleCartTable->model()->index(saddleTotalRow, 1))
 }

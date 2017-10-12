@@ -18,7 +18,7 @@
     <item row="0" column="0">
      <widget class="QTabWidget" name="saddlebackTab">
       <property name="currentIndex">
-       <number>3</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -119,6 +119,13 @@
            <widget class="QPushButton" name="nextCollege">
             <property name="text">
              <string>Next College</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="customTripTotal">
+            <property name="text">
+             <string>Trip Total</string>
             </property>
            </widget>
           </item>
@@ -302,6 +309,13 @@
           </property>
          </widget>
         </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="michiganLabel">
+          <property name="text">
+           <string>How many colleges do you want to visit? (Includes University of Michigan)</string>
+          </property>
+         </widget>
+        </item>
         <item row="9" column="1">
          <widget class="QSpinBox" name="michiganSouvQuantity">
           <property name="minimum">
@@ -309,10 +323,10 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="michiganLabel">
-          <property name="text">
-           <string>How many colleges do you want to visit? (Includes University of Michigan)</string>
+        <item row="1" column="0">
+         <widget class="QSpinBox" name="michiganSpinBox">
+          <property name="minimum">
+           <number>1</number>
           </property>
          </widget>
         </item>
@@ -323,13 +337,6 @@
          <widget class="QPushButton" name="michiganTripButton">
           <property name="text">
            <string>Make Trip</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QSpinBox" name="michiganSpinBox">
-          <property name="minimum">
-           <number>1</number>
           </property>
          </widget>
         </item>
@@ -346,27 +353,6 @@
           </property>
          </widget>
         </item>
-        <item row="10" column="1">
-         <widget class="QPushButton" name="michiganPurchase">
-          <property name="text">
-           <string>Purchase</string>
-          </property>
-         </widget>
-        </item>
-        <item row="12" column="1">
-         <widget class="QPushButton" name="michiganRemoveCart">
-          <property name="text">
-           <string>Remove From Cart</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="1">
-         <widget class="QPushButton" name="michiganNextCollege">
-          <property name="text">
-           <string>Next College</string>
-          </property>
-         </widget>
-        </item>
         <item row="8" column="1">
          <widget class="QLabel" name="michiganQuantityLabel">
           <property name="font">
@@ -379,6 +365,34 @@
           </property>
          </widget>
         </item>
+        <item row="10" column="1">
+         <widget class="QPushButton" name="michiganPurchase">
+          <property name="text">
+           <string>Purchase</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QPushButton" name="michiganNextCollege">
+          <property name="text">
+           <string>Next College</string>
+          </property>
+         </widget>
+        </item>
+        <item row="12" column="1">
+         <widget class="QPushButton" name="michiganRemoveCart">
+          <property name="text">
+           <string>Remove From Cart</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QPushButton" name="michiganTripTotal">
+          <property name="text">
+           <string>Trip Total</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="tab_5">
@@ -386,17 +400,17 @@
         <string>Saddleback Trip</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_5">
-        <item row="0" column="0">
-         <widget class="QLabel" name="saddleLabel">
-          <property name="text">
-           <string>Starting at Saddleback, and visiting all the available colleges</string>
-          </property>
-         </widget>
-        </item>
         <item row="1" column="0">
          <widget class="QPushButton" name="saddleStartButton">
           <property name="text">
            <string>Start Trip</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="saddleLabel">
+          <property name="text">
+           <string>Starting at Saddleback, and visiting all the available colleges</string>
           </property>
          </widget>
         </item>
@@ -419,13 +433,13 @@
           </property>
          </widget>
         </item>
-        <item row="4" column="0" rowspan="8">
+        <item row="5" column="0" rowspan="8">
          <widget class="QTableView" name="saddleCollegeTable"/>
         </item>
-        <item row="4" column="1">
+        <item row="5" column="1">
          <widget class="QTableView" name="saddleShopTable"/>
         </item>
-        <item row="5" column="1">
+        <item row="6" column="1">
          <widget class="QLabel" name="saddleQuantityLabel">
           <property name="font">
            <font>
@@ -437,48 +451,55 @@
           </property>
          </widget>
         </item>
-        <item row="6" column="1">
-         <widget class="QSpinBox" name="saddleSouvQuantity">
-          <property name="minimum">
-           <number>1</number>
-          </property>
-         </widget>
-        </item>
-        <item row="7" column="1">
+        <item row="8" column="1">
          <widget class="QPushButton" name="saddlePurchase">
           <property name="text">
            <string>Purchase</string>
           </property>
          </widget>
         </item>
-        <item row="8" column="1">
+        <item row="7" column="1">
+         <widget class="QSpinBox" name="saddleSouvQuantity">
+          <property name="minimum">
+           <number>1</number>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="1">
          <widget class="QPushButton" name="saddleNextPurchase">
           <property name="text">
            <string>Purchase</string>
           </property>
          </widget>
         </item>
-        <item row="9" column="1">
+        <item row="10" column="1">
          <widget class="QPushButton" name="saddleRemoveCart">
           <property name="text">
            <string>Remove From Cart</string>
           </property>
          </widget>
         </item>
-        <item row="10" column="1">
+        <item row="11" column="1">
          <widget class="QLabel" name="label_4">
           <property name="text">
            <string>Cart:</string>
           </property>
          </widget>
         </item>
-        <item row="11" column="1">
+        <item row="12" column="1">
          <widget class="QTableView" name="saddleCartTable"/>
         </item>
         <item row="3" column="1">
          <widget class="QPushButton" name="saddleNextCollege">
           <property name="text">
            <string>Next College</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QPushButton" name="saddleTripTotal">
+          <property name="text">
+           <string>Trip Total</string>
           </property>
          </widget>
         </item>
@@ -494,7 +515,7 @@
      <x>0</x>
      <y>0</y>
      <width>907</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

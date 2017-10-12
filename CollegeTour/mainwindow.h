@@ -5,6 +5,7 @@
 #include <QStandardItemModel>
 #include "database.h"
 #include <QItemSelectionModel>
+#include <algorithm>
 
 namespace Ui {
 class MainWindow;
@@ -94,6 +95,8 @@ private slots:
 
     void on_saddleNextCollege_clicked();
 
+    void on_saddleTripTotal_clicked();
+
 private:
     /**
      * @brief ui
@@ -132,6 +135,7 @@ private:
     QVector<colleges> customTripList, michiganList, uciList, saddleList;
     int maxVectorSize;
     int decision;
+    QVector<float> saddleTotals;
 };
 
 #endif // MAINWINDOW_H
