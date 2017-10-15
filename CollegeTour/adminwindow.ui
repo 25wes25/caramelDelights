@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>749</width>
-    <height>640</height>
+    <height>642</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -37,6 +37,9 @@
             </property>
            </widget>
           </item>
+          <item row="1" column="0" colspan="2">
+           <widget class="QComboBox" name="deleteComboCollege"/>
+          </item>
           <item row="2" column="0">
            <widget class="QLabel" name="label_5">
             <property name="text">
@@ -51,11 +54,8 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="0" colspan="2">
-           <widget class="QComboBox" name="deleteComboCollege"/>
-          </item>
           <item row="3" column="0" colspan="2">
-           <widget class="QLineEdit" name="deleteSouvenirName"/>
+           <widget class="QComboBox" name="souvenirDeleteName"/>
           </item>
          </layout>
         </widget>
@@ -72,6 +72,9 @@
              <string>Name of College</string>
             </property>
            </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+           <widget class="QComboBox" name="addComboCollege"/>
           </item>
           <item row="2" column="0">
            <widget class="QLabel" name="label">
@@ -90,9 +93,6 @@
             </property>
            </widget>
           </item>
-          <item row="5" column="0" colspan="2">
-           <widget class="QLineEdit" name="souvenirPrice"/>
-          </item>
           <item row="6" column="0">
            <widget class="QPushButton" name="sumbitSouvenirButton">
             <property name="text">
@@ -100,8 +100,8 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="0" colspan="2">
-           <widget class="QComboBox" name="addComboCollege"/>
+          <item row="5" column="0" colspan="2">
+           <widget class="QDoubleSpinBox" name="doubleAddSpinBox"/>
           </item>
          </layout>
         </widget>
@@ -136,6 +136,13 @@
           <string>Modify Souvenir Price</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_2">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_6">
+            <property name="text">
+             <string>Name Of College</string>
+            </property>
+           </widget>
+          </item>
           <item row="2" column="0">
            <widget class="QLabel" name="label_7">
             <property name="text">
@@ -150,16 +157,6 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_6">
-            <property name="text">
-             <string>Name Of College</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="0">
-           <widget class="QLineEdit" name="updateSouvenirPrice"/>
-          </item>
           <item row="6" column="0">
            <widget class="QPushButton" name="updateSouvenirButton">
             <property name="text">
@@ -173,14 +170,24 @@
           <item row="3" column="0">
            <widget class="QComboBox" name="modifySouvenirCombo"/>
           </item>
+          <item row="5" column="0">
+           <widget class="QDoubleSpinBox" name="doubleModifySpinBox">
+            <property name="maximum">
+             <double>99998.990000000005239</double>
+            </property>
+            <property name="singleStep">
+             <double>5.000000000000000</double>
+            </property>
+           </widget>
+          </item>
          </layout>
          <zorder>updateSouvenirButton</zorder>
-         <zorder>updateSouvenirPrice</zorder>
          <zorder>label_6</zorder>
          <zorder>label_7</zorder>
          <zorder>label_8</zorder>
          <zorder>modifyComboCollege</zorder>
          <zorder>modifySouvenirCombo</zorder>
+         <zorder>doubleModifySpinBox</zorder>
         </widget>
        </item>
        <item row="4" column="1">
@@ -194,8 +201,17 @@
      </widget>
      <widget class="QWidget" name="tab_2">
       <attribute name="title">
-       <string>Tab 2</string>
+       <string>New Colleges</string>
       </attribute>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0">
+        <widget class="QPushButton" name="loadColleges">
+         <property name="text">
+          <string>Load New Colleges!</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
    </item>

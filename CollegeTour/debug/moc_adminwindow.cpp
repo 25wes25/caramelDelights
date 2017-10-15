@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'adminwindow.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.8.0)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.9.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,7 +12,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'adminwindow.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.8.0. It"
+#error "This file was generated using the moc from 5.9.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_AdminWindow_t {
-    QByteArrayData data[9];
-    char stringdata0[219];
+    QByteArrayData data[13];
+    char stringdata0[312];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -39,7 +39,11 @@ QT_MOC_LITERAL(4, 74, 34), // "on_deleteSouvenirButtonBox_cl..."
 QT_MOC_LITERAL(5, 109, 31), // "on_updateSouvenirButton_clicked"
 QT_MOC_LITERAL(6, 141, 19), // "on_updateDB_clicked"
 QT_MOC_LITERAL(7, 161, 31), // "on_deleteSouvenirButton_clicked"
-QT_MOC_LITERAL(8, 193, 25) // "on_modifySouvenir_clicked"
+QT_MOC_LITERAL(8, 193, 25), // "on_modifySouvenir_clicked"
+QT_MOC_LITERAL(9, 219, 31), // "on_modifyComboCollege_activated"
+QT_MOC_LITERAL(10, 251, 4), // "arg1"
+QT_MOC_LITERAL(11, 256, 31), // "on_deleteComboCollege_activated"
+QT_MOC_LITERAL(12, 288, 23) // "on_loadColleges_clicked"
 
     },
     "AdminWindow\0on_addSouvenirButton_clicked\0"
@@ -47,7 +51,10 @@ QT_MOC_LITERAL(8, 193, 25) // "on_modifySouvenir_clicked"
     "on_deleteSouvenirButtonBox_clicked\0"
     "on_updateSouvenirButton_clicked\0"
     "on_updateDB_clicked\0on_deleteSouvenirButton_clicked\0"
-    "on_modifySouvenir_clicked"
+    "on_modifySouvenir_clicked\0"
+    "on_modifyComboCollege_activated\0arg1\0"
+    "on_deleteComboCollege_activated\0"
+    "on_loadColleges_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -57,7 +64,7 @@ static const uint qt_meta_data_AdminWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       7,   14, // methods
+      10,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -65,13 +72,16 @@ static const uint qt_meta_data_AdminWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   49,    2, 0x08 /* Private */,
-       3,    0,   50,    2, 0x08 /* Private */,
-       4,    0,   51,    2, 0x08 /* Private */,
-       5,    0,   52,    2, 0x08 /* Private */,
-       6,    0,   53,    2, 0x08 /* Private */,
-       7,    0,   54,    2, 0x08 /* Private */,
-       8,    0,   55,    2, 0x08 /* Private */,
+       1,    0,   64,    2, 0x08 /* Private */,
+       3,    0,   65,    2, 0x08 /* Private */,
+       4,    0,   66,    2, 0x08 /* Private */,
+       5,    0,   67,    2, 0x08 /* Private */,
+       6,    0,   68,    2, 0x08 /* Private */,
+       7,    0,   69,    2, 0x08 /* Private */,
+       8,    0,   70,    2, 0x08 /* Private */,
+       9,    1,   71,    2, 0x08 /* Private */,
+      11,    1,   74,    2, 0x08 /* Private */,
+      12,    0,   77,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -80,6 +90,9 @@ static const uint qt_meta_data_AdminWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,   10,
+    QMetaType::Void, QMetaType::QString,   10,
     QMetaType::Void,
 
        0        // eod
@@ -98,15 +111,17 @@ void AdminWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 4: _t->on_updateDB_clicked(); break;
         case 5: _t->on_deleteSouvenirButton_clicked(); break;
         case 6: _t->on_modifySouvenir_clicked(); break;
+        case 7: _t->on_modifyComboCollege_activated((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 8: _t->on_deleteComboCollege_activated((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 9: _t->on_loadColleges_clicked(); break;
         default: ;
         }
     }
-    Q_UNUSED(_a);
 }
 
 const QMetaObject AdminWindow::staticMetaObject = {
     { &QDialog::staticMetaObject, qt_meta_stringdata_AdminWindow.data,
-      qt_meta_data_AdminWindow,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
+      qt_meta_data_AdminWindow,  qt_static_metacall, nullptr, nullptr}
 };
 
 
@@ -117,7 +132,7 @@ const QMetaObject *AdminWindow::metaObject() const
 
 void *AdminWindow::qt_metacast(const char *_clname)
 {
-    if (!_clname) return Q_NULLPTR;
+    if (!_clname) return nullptr;
     if (!strcmp(_clname, qt_meta_stringdata_AdminWindow.stringdata0))
         return static_cast<void*>(const_cast< AdminWindow*>(this));
     return QDialog::qt_metacast(_clname);
@@ -129,13 +144,13 @@ int AdminWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 7)
+        if (_id < 10)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 7;
+        _id -= 10;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 7)
+        if (_id < 10)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 7;
+        _id -= 10;
     }
     return _id;
 }

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.8.0
+** Created by: Qt User Interface Compiler version 5.9.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -15,6 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QGridLayout>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -93,21 +94,27 @@ public:
     QPushButton *michiganTripTotal;
     QWidget *tab_5;
     QGridLayout *gridLayout_5;
-    QPushButton *saddleStartButton;
     QLabel *saddleLabel;
+    QPushButton *saddleStartButton;
+    QHBoxLayout *horizontalLayout;
+    QLabel *collegeTotalLabel;
+    QLabel *saddleGrandTotalLabel;
+    QHBoxLayout *horizontalLayout_2;
+    QLabel *collegeCartTotal;
+    QLabel *saddleGrandTotal;
     QLabel *saddlebackLocationLabel;
     QLabel *saddleDistanceLabel;
+    QPushButton *saddleNextCollege;
+    QPushButton *saddleTripTotal;
     QTableView *saddleCollegeTable;
     QTableView *saddleShopTable;
     QLabel *saddleQuantityLabel;
-    QPushButton *saddlePurchase;
     QSpinBox *saddleSouvQuantity;
+    QPushButton *saddlePurchase;
     QPushButton *saddleNextPurchase;
     QPushButton *saddleRemoveCart;
     QLabel *label_4;
     QTableView *saddleCartTable;
-    QPushButton *saddleNextCollege;
-    QPushButton *saddleTripTotal;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -421,83 +428,121 @@ public:
         gridLayout_5->setSpacing(6);
         gridLayout_5->setContentsMargins(11, 11, 11, 11);
         gridLayout_5->setObjectName(QStringLiteral("gridLayout_5"));
-        saddleStartButton = new QPushButton(tab_5);
-        saddleStartButton->setObjectName(QStringLiteral("saddleStartButton"));
-
-        gridLayout_5->addWidget(saddleStartButton, 1, 0, 1, 1);
-
         saddleLabel = new QLabel(tab_5);
         saddleLabel->setObjectName(QStringLiteral("saddleLabel"));
 
         gridLayout_5->addWidget(saddleLabel, 0, 0, 1, 1);
 
+        saddleStartButton = new QPushButton(tab_5);
+        saddleStartButton->setObjectName(QStringLiteral("saddleStartButton"));
+
+        gridLayout_5->addWidget(saddleStartButton, 1, 0, 1, 1);
+
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setSpacing(6);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        collegeTotalLabel = new QLabel(tab_5);
+        collegeTotalLabel->setObjectName(QStringLiteral("collegeTotalLabel"));
+        collegeTotalLabel->setFont(font1);
+
+        horizontalLayout->addWidget(collegeTotalLabel);
+
+        saddleGrandTotalLabel = new QLabel(tab_5);
+        saddleGrandTotalLabel->setObjectName(QStringLiteral("saddleGrandTotalLabel"));
+        saddleGrandTotalLabel->setFont(font1);
+
+        horizontalLayout->addWidget(saddleGrandTotalLabel);
+
+
+        gridLayout_5->addLayout(horizontalLayout, 1, 1, 1, 1);
+
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setSpacing(6);
+        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        collegeCartTotal = new QLabel(tab_5);
+        collegeCartTotal->setObjectName(QStringLiteral("collegeCartTotal"));
+        QFont font3;
+        font3.setPointSize(20);
+        collegeCartTotal->setFont(font3);
+
+        horizontalLayout_2->addWidget(collegeCartTotal);
+
+        saddleGrandTotal = new QLabel(tab_5);
+        saddleGrandTotal->setObjectName(QStringLiteral("saddleGrandTotal"));
+        saddleGrandTotal->setFont(font3);
+
+        horizontalLayout_2->addWidget(saddleGrandTotal);
+
+
+        gridLayout_5->addLayout(horizontalLayout_2, 2, 1, 1, 1);
+
         saddlebackLocationLabel = new QLabel(tab_5);
         saddlebackLocationLabel->setObjectName(QStringLiteral("saddlebackLocationLabel"));
         saddlebackLocationLabel->setFont(font2);
 
-        gridLayout_5->addWidget(saddlebackLocationLabel, 2, 0, 1, 1);
+        gridLayout_5->addWidget(saddlebackLocationLabel, 3, 0, 1, 1);
 
         saddleDistanceLabel = new QLabel(tab_5);
         saddleDistanceLabel->setObjectName(QStringLiteral("saddleDistanceLabel"));
 
-        gridLayout_5->addWidget(saddleDistanceLabel, 3, 0, 1, 1);
+        gridLayout_5->addWidget(saddleDistanceLabel, 4, 0, 1, 1);
+
+        saddleNextCollege = new QPushButton(tab_5);
+        saddleNextCollege->setObjectName(QStringLiteral("saddleNextCollege"));
+
+        gridLayout_5->addWidget(saddleNextCollege, 4, 1, 1, 1);
+
+        saddleTripTotal = new QPushButton(tab_5);
+        saddleTripTotal->setObjectName(QStringLiteral("saddleTripTotal"));
+
+        gridLayout_5->addWidget(saddleTripTotal, 5, 1, 1, 1);
 
         saddleCollegeTable = new QTableView(tab_5);
         saddleCollegeTable->setObjectName(QStringLiteral("saddleCollegeTable"));
 
-        gridLayout_5->addWidget(saddleCollegeTable, 5, 0, 8, 1);
+        gridLayout_5->addWidget(saddleCollegeTable, 6, 0, 8, 1);
 
         saddleShopTable = new QTableView(tab_5);
         saddleShopTable->setObjectName(QStringLiteral("saddleShopTable"));
 
-        gridLayout_5->addWidget(saddleShopTable, 5, 1, 1, 1);
+        gridLayout_5->addWidget(saddleShopTable, 6, 1, 1, 1);
 
         saddleQuantityLabel = new QLabel(tab_5);
         saddleQuantityLabel->setObjectName(QStringLiteral("saddleQuantityLabel"));
         saddleQuantityLabel->setFont(font1);
 
-        gridLayout_5->addWidget(saddleQuantityLabel, 6, 1, 1, 1);
-
-        saddlePurchase = new QPushButton(tab_5);
-        saddlePurchase->setObjectName(QStringLiteral("saddlePurchase"));
-
-        gridLayout_5->addWidget(saddlePurchase, 8, 1, 1, 1);
+        gridLayout_5->addWidget(saddleQuantityLabel, 7, 1, 1, 1);
 
         saddleSouvQuantity = new QSpinBox(tab_5);
         saddleSouvQuantity->setObjectName(QStringLiteral("saddleSouvQuantity"));
         saddleSouvQuantity->setMinimum(1);
 
-        gridLayout_5->addWidget(saddleSouvQuantity, 7, 1, 1, 1);
+        gridLayout_5->addWidget(saddleSouvQuantity, 8, 1, 1, 1);
+
+        saddlePurchase = new QPushButton(tab_5);
+        saddlePurchase->setObjectName(QStringLiteral("saddlePurchase"));
+
+        gridLayout_5->addWidget(saddlePurchase, 9, 1, 1, 1);
 
         saddleNextPurchase = new QPushButton(tab_5);
         saddleNextPurchase->setObjectName(QStringLiteral("saddleNextPurchase"));
 
-        gridLayout_5->addWidget(saddleNextPurchase, 9, 1, 1, 1);
+        gridLayout_5->addWidget(saddleNextPurchase, 10, 1, 1, 1);
 
         saddleRemoveCart = new QPushButton(tab_5);
         saddleRemoveCart->setObjectName(QStringLiteral("saddleRemoveCart"));
 
-        gridLayout_5->addWidget(saddleRemoveCart, 10, 1, 1, 1);
+        gridLayout_5->addWidget(saddleRemoveCart, 11, 1, 1, 1);
 
         label_4 = new QLabel(tab_5);
         label_4->setObjectName(QStringLiteral("label_4"));
 
-        gridLayout_5->addWidget(label_4, 11, 1, 1, 1);
+        gridLayout_5->addWidget(label_4, 12, 1, 1, 1);
 
         saddleCartTable = new QTableView(tab_5);
         saddleCartTable->setObjectName(QStringLiteral("saddleCartTable"));
 
-        gridLayout_5->addWidget(saddleCartTable, 12, 1, 1, 1);
-
-        saddleNextCollege = new QPushButton(tab_5);
-        saddleNextCollege->setObjectName(QStringLiteral("saddleNextCollege"));
-
-        gridLayout_5->addWidget(saddleNextCollege, 3, 1, 1, 1);
-
-        saddleTripTotal = new QPushButton(tab_5);
-        saddleTripTotal->setObjectName(QStringLiteral("saddleTripTotal"));
-
-        gridLayout_5->addWidget(saddleTripTotal, 4, 1, 1, 1);
+        gridLayout_5->addWidget(saddleCartTable, 13, 1, 1, 1);
 
         saddlebackTab->addTab(tab_5, QString());
 
@@ -506,7 +551,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 907, 21));
+        menuBar->setGeometry(QRect(0, 0, 907, 20));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -557,17 +602,21 @@ public:
         michiganRemoveCart->setText(QApplication::translate("MainWindow", "Remove From Cart", Q_NULLPTR));
         michiganTripTotal->setText(QApplication::translate("MainWindow", "Trip Total", Q_NULLPTR));
         saddlebackTab->setTabText(saddlebackTab->indexOf(tab_4), QApplication::translate("MainWindow", "Michigan Trip", Q_NULLPTR));
-        saddleStartButton->setText(QApplication::translate("MainWindow", "Start Trip", Q_NULLPTR));
         saddleLabel->setText(QApplication::translate("MainWindow", "Starting at Saddleback, and visiting all the available colleges", Q_NULLPTR));
+        saddleStartButton->setText(QApplication::translate("MainWindow", "Start Trip", Q_NULLPTR));
+        collegeTotalLabel->setText(QApplication::translate("MainWindow", "College Cart Total:", Q_NULLPTR));
+        saddleGrandTotalLabel->setText(QApplication::translate("MainWindow", "Grand Total:", Q_NULLPTR));
+        collegeCartTotal->setText(QApplication::translate("MainWindow", "Total", Q_NULLPTR));
+        saddleGrandTotal->setText(QApplication::translate("MainWindow", "Total", Q_NULLPTR));
         saddlebackLocationLabel->setText(QApplication::translate("MainWindow", "YouAreHere", Q_NULLPTR));
         saddleDistanceLabel->setText(QApplication::translate("MainWindow", "Distance", Q_NULLPTR));
+        saddleNextCollege->setText(QApplication::translate("MainWindow", "Next College", Q_NULLPTR));
+        saddleTripTotal->setText(QApplication::translate("MainWindow", "Trip Total", Q_NULLPTR));
         saddleQuantityLabel->setText(QApplication::translate("MainWindow", "Quantity:", Q_NULLPTR));
         saddlePurchase->setText(QApplication::translate("MainWindow", "Purchase", Q_NULLPTR));
         saddleNextPurchase->setText(QApplication::translate("MainWindow", "Purchase", Q_NULLPTR));
         saddleRemoveCart->setText(QApplication::translate("MainWindow", "Remove From Cart", Q_NULLPTR));
         label_4->setText(QApplication::translate("MainWindow", "Cart:", Q_NULLPTR));
-        saddleNextCollege->setText(QApplication::translate("MainWindow", "Next College", Q_NULLPTR));
-        saddleTripTotal->setText(QApplication::translate("MainWindow", "Trip Total", Q_NULLPTR));
         saddlebackTab->setTabText(saddlebackTab->indexOf(tab_5), QApplication::translate("MainWindow", "Saddleback Trip", Q_NULLPTR));
     } // retranslateUi
 

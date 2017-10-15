@@ -2,6 +2,7 @@
 #include "ui_adminwindow.h"
 #include <QDir>
 #include <QMessageBox>
+#include <QSqlError>
 
 /*!
  * \brief AdminWindow::AdminWindow
@@ -62,7 +63,7 @@ AdminWindow::~AdminWindow()
  */
 void AdminWindow::on_addSouvenirButton_clicked()
 {
-    ui->addBox->show();   
+    ui->addBox->show();
 }
 
 /*!
@@ -74,7 +75,9 @@ void AdminWindow::on_sumbitSouvenirButton_clicked()
 {
     QString college = ui->addComboCollege->currentText();
     QString name = ui->souvenirName->text();
-    QString cost = ui->souvenirPrice->text();
+    double value = ui->doubleAddSpinBox->value();
+
+    QString cost = QString::number(value);
     cost = '$' + cost;
 
     //sets up the querys
@@ -94,7 +97,6 @@ void AdminWindow::on_sumbitSouvenirButton_clicked()
     }
 
     ui->souvenirName->clear();
-    ui->souvenirPrice->clear();
     ui->addBox->hide();
 }
 
@@ -106,7 +108,7 @@ void AdminWindow::on_sumbitSouvenirButton_clicked()
 void AdminWindow::on_deleteSouvenirButtonBox_clicked()
 {
     QString college = ui->deleteComboCollege->currentText();
-    QString name = ui->deleteSouvenirName->text();
+    QString name = ui->souvenirDeleteName->currentText();
 
     //sets up the querys
     QSqlQuery *query = new QSqlQuery(database->db);
@@ -123,7 +125,6 @@ void AdminWindow::on_deleteSouvenirButtonBox_clicked()
         QMessageBox::information(this,"Souvenir not successfully deleted", "Souvenir Not Successfully Deleted", QMessageBox::Ok);
     }
 
-    ui->deleteSouvenirName->clear();
     ui->deleteBox->hide();
 
 }
@@ -137,8 +138,11 @@ void AdminWindow::on_updateSouvenirButton_clicked()
 {
     QString college = ui->modifyComboCollege->currentText();
     QString name = ui->modifySouvenirCombo->currentText();
-    QString cost = ui->updateSouvenirPrice->text();
+    double value = ui->doubleModifySpinBox->value();
+
+    QString cost = QString::number(value);
     cost = '$' + cost;
+    qDebug() << "Cost is" << cost;
 
     //sets up the querys
     QSqlQuery *query = new QSqlQuery(database->db);
@@ -155,8 +159,6 @@ void AdminWindow::on_updateSouvenirButton_clicked()
     {
         QMessageBox::information(this,"Souvenir not successfully Updated", "Souvenir Not Successfully Updated", QMessageBox::Ok);
     }
-
-    ui->updateSouvenirPrice->clear();
     ui->modifyBox->hide();
 }
 
@@ -181,12 +183,156 @@ void AdminWindow::on_updateDB_clicked()
     ui->souvenirTableView->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
+/*!
+ * \brief AdminWindow::on_deleteSouvenirButton_clicked
+ * \fn shows the delete souvenir box on the ui
+ */
 void AdminWindow::on_deleteSouvenirButton_clicked()
 {
     ui->deleteBox->show();
 }
 
+/*!
+ * \brief AdminWindow::on_modifySouvenir_clicked
+ * \fn shows the modify box on the ui
+ */
 void AdminWindow::on_modifySouvenir_clicked()
 {
     ui->modifyBox->show();
+}
+
+/*!
+ * \brief AdminWindow::on_modifyComboCollege_activated
+ * \param arg1
+ * \fn This function makes it so when the user
+ * chooses a college it then populates the
+ * souvenir combo box with the appropriate
+ * names of the respective colleges to
+ * keep the user from entering errors
+ */
+void AdminWindow::on_modifyComboCollege_activated(const QString &arg1)
+{
+    ui->modifySouvenirCombo->clear();
+    QVector<QString> souvNames;
+    //sets up the querys
+    QSqlQuery *query = new QSqlQuery(database->db);
+    query->prepare("SELECT TraditionalSouvenirs FROM Souvenirs WHERE College == (:collegeName)");
+    query->bindValue(":collegeName",arg1);
+    query->exec();
+
+    while(query->next())
+    {
+        souvNames.push_back(query->value(0).toString());
+    }
+
+    for(int i = 0; i < souvNames.size(); i++)
+    {
+        ui->modifySouvenirCombo->addItem(souvNames.at(i));
+    }
+}
+
+/*!
+ * \brief AdminWindow::on_deleteComboCollege_activated
+ * \param arg1 string for the name of the combo box
+ * \fn This function makes it so when the user
+ * chooses a college it then populates the
+ * souvenir combo box with the appropriate
+ * names of the respective colleges to
+ * keep the user from entering errors
+ */
+void AdminWindow::on_deleteComboCollege_activated(const QString &arg1)
+{
+    ui->souvenirDeleteName->clear();
+    QVector<QString> souvNames;
+    //sets up the querys
+    QSqlQuery *query = new QSqlQuery(database->db);
+    query->prepare("SELECT TraditionalSouvenirs FROM Souvenirs WHERE College == (:collegeName)");
+    query->bindValue(":collegeName",arg1);
+    query->exec();
+
+    while(query->next())
+    {
+        souvNames.push_back(query->value(0).toString());
+    }
+
+    for(int i = 0; i < souvNames.size(); i++)
+    {
+        ui->souvenirDeleteName->addItem(souvNames.at(i));
+    }
+}
+
+/*!
+ * \brief AdminWindow::on_loadColleges_clicked
+ * \fn Reads a csv file and goes through takes the data
+ * line by line and appends quotes where necessary in order
+ * for sequel to understand these are the data points that
+ * we will be inserting into the database
+ */
+void AdminWindow::on_loadColleges_clicked()
+{
+    //bool to keep track of the quotes we hit made by excel in making the csv file
+    bool quote = false;
+    //Open the csv file
+    QFile file("/users/brycecallender/desktop/caramelDelights-Ronen3/CollegeTour/NewCampuses.csv");
+    //Opens file and signals it to be read only
+    if(file.open (QIODevice::ReadOnly))
+    {
+        QSqlQuery query;
+        QTextStream ts(&file);
+        //Travel through the csv file
+        while(!ts.atEnd())
+        {
+            QString line = ts.readLine();
+            //Gets the beginning part of the query ready
+            QString queryString = "INSERT INTO Distances VALUES(";
+            for (int i = 0; i < line.length (); ++i)
+            {
+                //If the data has a \" then we hit a quote and this quote
+                //means the data has a comma in it so we need to make
+                //sure to not put any quotes in this area
+                if (line[i] == "\"")
+                {
+                    quote = !quote;
+                }
+                else
+                {
+                    //If the line at this character is a comma and quote is finsihed
+                    //or not exisitent in this data we are reading then append
+                    if (line[i] == "," && quote == false)
+                    {
+                        if (line[i-1] != "\"")
+                        {
+                            queryString.append("\"");
+                        }
+                    }
+                }
+                //If it is at the beginning and the data has no \" then append
+                if (i == 0 && line[i] != "\"")
+                {
+                    queryString.append("\"");
+                }
+                //Append the characters of the data
+                queryString.append(line[i]);
+
+                //If the line is a comma and the next line after has no quote
+                //then append
+                if (line[i] == "," && line[i+1] != "\"" && quote == false)
+                {
+                    queryString.append("\"");
+                }
+            }
+            //Append the final quote and the end parenthesis to finish off the
+            //query string
+            queryString.append("\")");
+            //Execute query
+            qDebug() << query.exec(queryString);
+            //Show if any errors occured
+            qDebug() << query.lastError();
+            qDebug() << queryString;
+            //Reset quote to false for next iteration
+            quote = false;
+        }
+    }
+    //Close the input file
+    file.close();
 }

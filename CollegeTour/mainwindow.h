@@ -6,6 +6,7 @@
 #include "database.h"
 #include <QItemSelectionModel>
 #include <algorithm>
+#include <QtMath>
 
 namespace Ui {
 class MainWindow;
@@ -135,7 +136,10 @@ private:
     QVector<colleges> customTripList, michiganList, uciList, saddleList;
     int maxVectorSize;
     int decision;
-    QVector<float> saddleTotals;
+    int cartTotalCount = 0;
+    QVector<QString> saddleCurrentCartName;
+    double cartTotal = 0;
+    double labelTotal = 0;
 };
 
 #endif // MAINWINDOW_H

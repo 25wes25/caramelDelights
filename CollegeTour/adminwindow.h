@@ -52,9 +52,32 @@ private slots:
      */
     void on_updateDB_clicked();
 
+    /*!
+     * \brief on_deleteSouvenirButton_clicked
+     */
     void on_deleteSouvenirButton_clicked();
 
+    /*!
+     * \brief on_modifySouvenir_clicked
+     */
     void on_modifySouvenir_clicked();
+
+    /*!
+     * \brief on_modifyComboCollege_activated
+     * \param arg1
+     */
+    void on_modifyComboCollege_activated(const QString &arg1);
+
+    /*!
+     * \brief on_deleteComboCollege_activated
+     * \param arg1
+     */
+    void on_deleteComboCollege_activated(const QString &arg1);
+
+    /*!
+     * \brief on_loadColleges_clicked
+     */
+    void on_loadColleges_clicked();
 
 private:
     /*!
