@@ -335,4 +335,17 @@ void AdminWindow::on_loadColleges_clicked()
     }
     //Close the input file
     file.close();
+
+    QVector<QString> names = database->setCollegeNames();
+
+    ui->addComboCollege->clear();
+    ui->deleteComboCollege->clear();
+    ui->modifyComboCollege->clear();
+
+    for(int i = 0; i < names.size(); i++)
+    {
+        ui->addComboCollege->addItem(names[i]);
+        ui->deleteComboCollege->addItem(names[i]);
+        ui->modifyComboCollege->addItem(names[i]);
+    }
 }
