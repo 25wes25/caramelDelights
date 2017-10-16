@@ -19,10 +19,7 @@ AdminWindow::AdminWindow(QWidget *parent) :
     ui->modifyBox->hide();
 
     database = Database::getInstance();
-    //Path for bryce "/users/brycecallender/desktop/caramelDelights-Ronen2/CollegeTour/Database/College.db"
-    //QDir::currentPath() + "\\Database\\College.db"
     database->SetDBPath(QDir::currentPath() + "\\Database\\College.db");
-    //C:\Users\Wesley\Desktop\caramelDelights-Ronen2\CollegeTour\Database
 
     QSqlQueryModel * model = new QSqlQueryModel();
 

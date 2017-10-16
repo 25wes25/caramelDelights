@@ -104,23 +104,6 @@ bool trip::isVisited(QString collName,QVector<colleges> &collegeList, int elem)
     return false;
 }
 
-//float trip::getSouvTotal()
-//{
-//    float totalPurchased = 0;
-//    float cartTotal = 0;
-
-//    for(int index = 0; index < collegeList.size(); index++)
-//    {
-//        for(int second = 0; second < collegeList[index].cart.size(); second++)
-//        {
-
-
-//        }
-
-//    }
-
-//}
-
 /**
  * GET-FUNCTION
  * INPUT: starting and ending college

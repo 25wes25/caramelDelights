@@ -68,8 +68,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->customCartTotal->hide();
     ui->customGrandTotalLabel->hide();
     ui->customGrandTotal->hide();
+    ui->labelNumber->hide();
+    ui->spinCollege->hide();
 
-//    saddleTotals.reserve(20);
 
     database = Database::getInstance();
     database->SetDBPath(QDir::currentPath() + "\\Database\\College.db");
@@ -130,8 +131,7 @@ void MainWindow::on_customTrip_clicked() //custom trip button
 
     //struct to be pushed onto the collegeList vector
     colleges newInsert;
-    //model->clear();
-    customModel = new QStandardItemModel(100,1,this); //11 Rows and 1 Columns
+    customModel = new QStandardItemModel(100,1,this); //100 Rows and 1 Columns
     customModel->setHorizontalHeaderItem(0, new QStandardItem(QString("College")));
     ui->mainTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->mainTable->setModel(customModel);
@@ -139,7 +139,6 @@ void MainWindow::on_customTrip_clicked() //custom trip button
     //text input from combo and spin box
     newInsert.collegeName = ui->comboCollege->currentText();
     int indexChosen = ui->comboCollege->currentIndex();
-    int campusTotal = ui->spinCollege->value();
 
     customTrip.collegeList.push_back(newInsert);
 
@@ -151,7 +150,6 @@ void MainWindow::on_customTrip_clicked() //custom trip button
     index++;
 
     ui->comboCollege->removeItem(indexChosen);
-    //ui->customTrip->setText("Add College");
     ui->customTrip->hide();
     ui->addCollege->show();
 
@@ -159,10 +157,11 @@ void MainWindow::on_customTrip_clicked() //custom trip button
 }
 /**
  * @brief MainWindow::on_selectCollege_clicked
+ * \fn does nothing
  */
-void MainWindow::on_selectCollege_clicked() //should add the selected college to data structure of trip destinations
+void MainWindow::on_selectCollege_clicked()
 {
-    //ui->selectTable->currentIndex()
+
 }
 /**
  * @brief MainWindow::on_addCollege_clicked
@@ -261,7 +260,10 @@ void MainWindow::on_startTrip_clicked()
 
     souvenirIndex++;
 }
-
+/*!
+ * \brief MainWindow::on_nextCollege_clicked
+ * \fn changes souvenirs to next college
+ */
 void MainWindow::on_nextCollege_clicked()
 {
     customCurrentCartName.clear();
@@ -329,7 +331,7 @@ void MainWindow::on_purchaseSouvenir_clicked() //purchase souvenir button
 
         customTrip.cart.push_back(visitedColl);
 
-        customModel = new QStandardItemModel(100,3,this); //11 Rows and 1 Columns
+        customModel = new QStandardItemModel(100,3,this); //100 Rows and 1 Columns
         customModel->setHorizontalHeaderItem(0, new QStandardItem(QString("Souvenir")));
         customModel->setHorizontalHeaderItem(1, new QStandardItem(QString("Price")));
         customModel->setHorizontalHeaderItem(2, new QStandardItem(QString("Quantity")));
@@ -370,12 +372,20 @@ void MainWindow::on_purchaseSouvenir_clicked() //purchase souvenir button
     }
 }
 
+/*!
+ * \brief MainWindow::on_selectTable_clicked
+ * \fn grabs row index
+ * \param index
+ */
 void MainWindow::on_selectTable_clicked(const QModelIndex &index)
 {
     customShopSelection = index.row();
 
 }
-
+/*!
+ * \brief MainWindow::on_nextPurchase_clicked
+ * \fn grabs the new item and price pushes to cart and changes price
+ */
 void MainWindow::on_nextPurchase_clicked()
 {
     if(ui->selectTable->selectionModel()->isSelected(ui->selectTable->currentIndex()))
@@ -589,6 +599,10 @@ void MainWindow::on_michiganTripButton_clicked()
     souvenirIndex++;
 }
 
+/*!
+ * \brief MainWindow::on_michiganNextCollege_clicked
+ * \fn changesa souvenirs
+ */
 void MainWindow::on_michiganNextCollege_clicked()
 {
     michiganCurrentCartName.clear();
@@ -627,6 +641,10 @@ void MainWindow::on_michiganNextCollege_clicked()
     }
 }
 
+/*!
+ * \brief MainWindow::on_michiganPurchase_clicked
+ * \fn pushes souv's to cart
+ */
 void MainWindow::on_michiganPurchase_clicked()
 {
     if(ui->SouvenirNames->selectionModel()->isSelected(ui->SouvenirNames->currentIndex()))
@@ -653,7 +671,7 @@ void MainWindow::on_michiganPurchase_clicked()
 
         michiganTrip.cart.push_back(visitedColl);
 
-        michiganModel = new QStandardItemModel(100,3,this); //11 Rows and 3 Columns
+        michiganModel = new QStandardItemModel(100,3,this); //100 Rows and 3 Columns
         michiganModel->setHorizontalHeaderItem(0, new QStandardItem(QString("Souvenir")));
         michiganModel->setHorizontalHeaderItem(1, new QStandardItem(QString("Price")));
         michiganModel->setHorizontalHeaderItem(2, new QStandardItem(QString("Quantity")));
@@ -693,12 +711,20 @@ void MainWindow::on_michiganPurchase_clicked()
         michiganCartTotalCount++;
     }
 }
-
+/*!
+ * \brief MainWindow::on_SouvenirNames_clicked
+ * \fn grabs row index
+ * \param index
+ */
 void MainWindow::on_SouvenirNames_clicked(const QModelIndex &index)
 {
     michiganShopSelection = index.row();
 }
 
+/*!
+ * \brief MainWindow::on_michiganNextPurchase_clicked
+ * \fn michigan total and adds souvs to the table cart
+ */
 void MainWindow::on_michiganNextPurchase_clicked()
 {
     if(ui->SouvenirNames->selectionModel()->isSelected(ui->SouvenirNames->currentIndex()))
@@ -755,6 +781,10 @@ void MainWindow::on_michiganNextPurchase_clicked()
     }
 }
 
+/*!
+ * \brief MainWindow::on_michiganRemoveCart_clicked
+ * \fn removes souv from michigan cart
+ */
 void MainWindow::on_michiganRemoveCart_clicked()
 {
     if(ui->souvenirCart->selectionModel()->isSelected(ui->souvenirCart->currentIndex()) && !(ui->souvenirCart->model()->data(ui->souvenirCart->model()->index(michiganCartSelection, 1)).toString().isEmpty()))
@@ -794,11 +824,20 @@ void MainWindow::on_michiganRemoveCart_clicked()
     ui->souvenirCart->clearSelection();
 }
 
+/*!
+ * \brief MainWindow::on_souvenirCart_clicked
+ * \fn grabs row index
+ * \param index
+ */
 void MainWindow::on_souvenirCart_clicked(const QModelIndex &index)
 {
     michiganCartSelection = index.row();
 }
 
+/*!
+ * \brief MainWindow::on_customRemoveCart_clicked
+ * \fn removes souv from custom cart
+ */
 void MainWindow::on_customRemoveCart_clicked()
 {
     if(ui->mainTable->selectionModel()->isSelected(ui->mainTable->currentIndex()) && !(ui->mainTable->model()->data(ui->mainTable->model()->index(customCartSelection, 1)).toString().isEmpty()))
@@ -838,11 +877,20 @@ void MainWindow::on_customRemoveCart_clicked()
     ui->mainTable->clearSelection();
 }
 
+/*!
+ * \brief MainWindow::on_mainTable_clicked
+ * \fn grabs index row
+ * \param index
+ */
 void MainWindow::on_mainTable_clicked(const QModelIndex &index)
 {
     customCartSelection = index.row();
 }
 
+/*!
+ * \brief MainWindow::on_saddleStartButton_clicked
+ * \fn starts saddleback's trip to all colleges
+ */
 void MainWindow::on_saddleStartButton_clicked()
 {
     ui->saddleNextCollege->show();
@@ -916,6 +964,10 @@ void MainWindow::on_saddleStartButton_clicked()
     souvenirIndex++;
 }
 
+/*!
+ * \brief MainWindow::on_saddlePurchase_clicked
+ * \fn pushes souv and price to cart
+ */
 void MainWindow::on_saddlePurchase_clicked()
 {
     if(ui->saddleShopTable->selectionModel()->isSelected(ui->saddleShopTable->currentIndex()))
@@ -941,7 +993,7 @@ void MainWindow::on_saddlePurchase_clicked()
 
         saddleTrip.cart.push_back(visitedColl);
 
-        saddleModel = new QStandardItemModel(100,3,this); //11 Rows and 3 Columns
+        saddleModel = new QStandardItemModel(100,3,this); //100 Rows and 3 Columns
         saddleModel->setHorizontalHeaderItem(0, new QStandardItem(QString("Souvenir")));
         saddleModel->setHorizontalHeaderItem(1, new QStandardItem(QString("Price")));
         saddleModel->setHorizontalHeaderItem(2, new QStandardItem(QString("Quantity")));
@@ -983,11 +1035,20 @@ void MainWindow::on_saddlePurchase_clicked()
     }
 }
 
+/*!
+ * \brief MainWindow::on_saddleShopTable_clicked
+ * \fn grabs row index
+ * \param index
+ */
 void MainWindow::on_saddleShopTable_clicked(const QModelIndex &index)
 {
     saddleShopSelection = index.row();
 }
 
+/*!
+ * \brief MainWindow::on_saddleRemoveCart_clicked
+ * \fn removes souv from cart
+ */
 void MainWindow::on_saddleRemoveCart_clicked()
 {
     if(ui->saddleCartTable->selectionModel()->isSelected(ui->saddleCartTable->currentIndex()) && !(ui->saddleCartTable->model()->data(ui->saddleCartTable->model()->index(saddleCartSelection, 1)).toString().isEmpty()))
@@ -1027,6 +1088,10 @@ void MainWindow::on_saddleRemoveCart_clicked()
     ui->saddleCartTable->clearSelection();
 }
 
+/*!
+ * \brief MainWindow::on_saddleNextPurchase_clicked
+ * \fn grabs price and adds to cart also shows balance
+ */
 void MainWindow::on_saddleNextPurchase_clicked()
 {
     if(ui->saddleShopTable->selectionModel()->isSelected(ui->saddleShopTable->currentIndex()))
@@ -1084,6 +1149,10 @@ void MainWindow::on_saddleNextPurchase_clicked()
     }
 }
 
+/*!
+ * \brief MainWindow::on_saddleNextCollege_clicked
+ * \fn goes to next college and changes souvenirs
+ */
 void MainWindow::on_saddleNextCollege_clicked()
 {
     saddleCurrentCartName.clear();
@@ -1121,17 +1190,27 @@ void MainWindow::on_saddleNextCollege_clicked()
         }
     }
 }
-
+/*!
+ * \brief MainWindow::on_saddleTripTotal_clicked
+ * \fn does nothing
+ */
 void MainWindow::on_saddleTripTotal_clicked()
 {
 
 }
-
+/*!
+ * \brief MainWindow::on_saddleCartTable_clicked
+ * \fn gets the row we clicked on
+ * \param index
+ */
 void MainWindow::on_saddleCartTable_clicked(const QModelIndex &index)
 {
     saddleCartSelection = index.row();
 }
-
+/*!
+ * \brief MainWindow::on_pushButton_clicked
+ * \fn shows saddleback window
+ */
 void MainWindow::on_pushButton_clicked()
 {
     s.show();

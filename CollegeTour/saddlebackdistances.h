@@ -12,6 +12,8 @@ namespace Ui
 
 /*!
  * \brief The SaddlebackDistances class
+ * \class Shows saddleback distances in correlation to other colleges
+ * ordered by ascending order.
  */
 class SaddlebackDistances : public QDialog
 {
