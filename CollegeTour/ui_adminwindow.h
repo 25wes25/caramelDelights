@@ -251,7 +251,7 @@ public:
 
         retranslateUi(AdminWindow);
 
-        SouvenirTab->setCurrentIndex(0);
+        SouvenirTab->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(AdminWindow);

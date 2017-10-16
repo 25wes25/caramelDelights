@@ -642,7 +642,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        saddlebackTab->setCurrentIndex(0);
+        saddlebackTab->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);

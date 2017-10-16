@@ -80,7 +80,6 @@ MainWindow::MainWindow(QWidget *parent) :
     {
         ui->comboCollege->addItem(names[i]);
         ui->souvenirComboBox->addItem(names[i]);
-
     }
     maxVectorSize = names.size();
 }
@@ -472,6 +471,7 @@ void MainWindow::on_uciTripButton_clicked()
     QString totDist = QString::number(uciTrip.getTotalDistance());
     ui->uciTotalDistance->setText("Total Trip Distance: " + totDist);
 
+    ui->uciTripButton->setDisabled(true);
 }
 
 /*!

@@ -345,4 +345,5 @@ void AdminWindow::on_loadColleges_clicked()
         ui->deleteComboCollege->addItem(names[i]);
         ui->modifyComboCollege->addItem(names[i]);
     }
+    ui->loadColleges->setDisabled(true);
 }

@@ -45,4 +45,5 @@ FORMS    += mainwindow.ui \
     adminwindow.ui
 
 RESOURCES += \
-    resource.qrc
+    resource.qrc \
+    qdarkstyle/style.qrc

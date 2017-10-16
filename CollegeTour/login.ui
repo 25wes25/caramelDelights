@@ -19,7 +19,7 @@
      <x>60</x>
      <y>230</y>
      <width>591</width>
-     <height>20</height>
+     <height>31</height>
     </rect>
    </property>
   </widget>
@@ -29,7 +29,7 @@
      <x>60</x>
      <y>290</y>
      <width>591</width>
-     <height>20</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="echoMode">
@@ -42,7 +42,7 @@
      <x>60</x>
      <y>210</y>
      <width>141</width>
-     <height>21</height>
+     <height>16</height>
     </rect>
    </property>
    <property name="text">
@@ -55,7 +55,7 @@
      <x>60</x>
      <y>270</y>
      <width>141</width>
-     <height>21</height>
+     <height>16</height>
     </rect>
    </property>
    <property name="text">
@@ -66,7 +66,7 @@
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>310</y>
+     <y>330</y>
      <width>91</width>
      <height>41</height>
     </rect>
@@ -79,10 +79,15 @@
    <property name="geometry">
     <rect>
      <x>490</x>
-     <y>320</y>
+     <y>340</y>
      <width>75</width>
-     <height>23</height>
+     <height>21</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>7</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>Login</string>
@@ -92,10 +97,15 @@
    <property name="geometry">
     <rect>
      <x>570</x>
-     <y>320</y>
+     <y>340</y>
      <width>81</width>
-     <height>23</height>
+     <height>21</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>7</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>Help</string>
@@ -105,7 +115,7 @@
    <property name="geometry">
     <rect>
      <x>290</x>
-     <y>320</y>
+     <y>340</y>
      <width>181</width>
      <height>21</height>
     </rect>
@@ -115,7 +125,7 @@
    <property name="geometry">
     <rect>
      <x>220</x>
-     <y>310</y>
+     <y>330</y>
      <width>61</width>
      <height>41</height>
     </rect>
@@ -150,35 +160,15 @@
    <property name="geometry">
     <rect>
      <x>290</x>
-     <y>350</y>
+     <y>371</y>
      <width>361</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>.</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_2">
-   <property name="geometry">
-    <rect>
-     <x>380</x>
-     <y>0</y>
-     <width>341</width>
-     <height>201</height>
+     <height>20</height>
     </rect>
    </property>
    <property name="text">
     <string/>
    </property>
-   <property name="pixmap">
-    <pixmap resource="resource.qrc">:/new/prefix1/pictures/scrollllll.png</pixmap>
-   </property>
-   <property name="scaledContents">
-    <bool>true</bool>
-   </property>
   </widget>
-  <zorder>label_2</zorder>
   <zorder>label</zorder>
   <zorder>UserNameInput</zorder>
   <zorder>PasswordInput</zorder>
