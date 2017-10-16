@@ -41,17 +41,18 @@ public:
     QTabWidget *saddlebackTab;
     QWidget *tab;
     QGridLayout *gridLayout;
-    QVBoxLayout *verticalLayout_4;
-    QLabel *labelNumber;
-    QLabel *labelTotalDistance;
-    QComboBox *comboCollege;
     QPushButton *startTrip;
-    QLabel *collegeLocation;
-    QPushButton *addCollege;
-    QTableView *mainTable;
-    QLabel *labelCollege;
+    QLabel *customCartTotal;
     QSpinBox *spinCollege;
+    QVBoxLayout *verticalLayout_4;
+    QLabel *labelCollege;
+    QComboBox *comboCollege;
     QPushButton *customTrip;
+    QPushButton *addCollege;
+    QLabel *labelNumber;
+    QLabel *customGrandTotalLabel;
+    QLabel *collegeLocation;
+    QLabel *customCartTotalLabel;
     QVBoxLayout *verticalLayout;
     QPushButton *nextCollege;
     QPushButton *customTripTotal;
@@ -61,6 +62,9 @@ public:
     QPushButton *nextPurchase;
     QPushButton *purchaseSouvenir;
     QPushButton *customRemoveCart;
+    QLabel *customGrandTotal;
+    QTableView *mainTable;
+    QLabel *labelTotalDistance;
     QWidget *tab_2;
     QGridLayout *gridLayout_3;
     QSpacerItem *horizontalSpacer_2;
@@ -77,21 +81,27 @@ public:
     QTableView *souvenirTableView;
     QWidget *tab_4;
     QGridLayout *gridLayout_2;
+    QLabel *michiganLabel;
+    QSpinBox *michiganSpinBox;
+    QPushButton *michiganPurchase;
     QLabel *michiganLocationLabel;
     QLabel *michiganDistanceLabel;
-    QLabel *michiganLabel;
-    QSpinBox *michiganSouvQuantity;
-    QSpinBox *michiganSpinBox;
+    QPushButton *michiganNextCollege;
     QTableView *SouvenirNames;
-    QPushButton *michiganTripButton;
     QTableView *souvenirCart;
-    QTableView *michiganTripTableView;
+    QPushButton *michiganTripTotal;
     QPushButton *michiganNextPurchase;
     QLabel *michiganQuantityLabel;
-    QPushButton *michiganPurchase;
-    QPushButton *michiganNextCollege;
+    QPushButton *michiganTripButton;
+    QTableView *michiganTripTableView;
+    QSpinBox *michiganSouvQuantity;
     QPushButton *michiganRemoveCart;
-    QPushButton *michiganTripTotal;
+    QHBoxLayout *horizontalLayout_4;
+    QLabel *michiganCartTotal;
+    QLabel *michiganGrandTotal;
+    QHBoxLayout *horizontalLayout_3;
+    QLabel *michiganCartTotalLabel;
+    QLabel *michiganGrandTotalLabel;
     QWidget *tab_5;
     QGridLayout *gridLayout_5;
     QLabel *saddleLabel;
@@ -138,59 +148,18 @@ public:
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        verticalLayout_4 = new QVBoxLayout();
-        verticalLayout_4->setSpacing(6);
-        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
-
-        gridLayout->addLayout(verticalLayout_4, 0, 0, 1, 1);
-
-        labelNumber = new QLabel(tab);
-        labelNumber->setObjectName(QStringLiteral("labelNumber"));
-
-        gridLayout->addWidget(labelNumber, 5, 0, 1, 1);
-
-        labelTotalDistance = new QLabel(tab);
-        labelTotalDistance->setObjectName(QStringLiteral("labelTotalDistance"));
-
-        gridLayout->addWidget(labelTotalDistance, 7, 0, 1, 1);
-
-        comboCollege = new QComboBox(tab);
-        comboCollege->setObjectName(QStringLiteral("comboCollege"));
-        comboCollege->setMaxVisibleItems(13);
-
-        gridLayout->addWidget(comboCollege, 1, 1, 1, 1);
-
         startTrip = new QPushButton(tab);
         startTrip->setObjectName(QStringLiteral("startTrip"));
 
         gridLayout->addWidget(startTrip, 6, 1, 1, 1);
 
-        collegeLocation = new QLabel(tab);
-        collegeLocation->setObjectName(QStringLiteral("collegeLocation"));
+        customCartTotal = new QLabel(tab);
+        customCartTotal->setObjectName(QStringLiteral("customCartTotal"));
         QFont font;
-        font.setPointSize(14);
-        font.setBold(false);
-        font.setWeight(50);
-        collegeLocation->setFont(font);
-        collegeLocation->setLayoutDirection(Qt::LeftToRight);
+        font.setPointSize(20);
+        customCartTotal->setFont(font);
 
-        gridLayout->addWidget(collegeLocation, 6, 0, 1, 1);
-
-        addCollege = new QPushButton(tab);
-        addCollege->setObjectName(QStringLiteral("addCollege"));
-        addCollege->setEnabled(true);
-
-        gridLayout->addWidget(addCollege, 3, 1, 1, 1);
-
-        mainTable = new QTableView(tab);
-        mainTable->setObjectName(QStringLiteral("mainTable"));
-
-        gridLayout->addWidget(mainTable, 9, 2, 1, 2);
-
-        labelCollege = new QLabel(tab);
-        labelCollege->setObjectName(QStringLiteral("labelCollege"));
-
-        gridLayout->addWidget(labelCollege, 1, 0, 1, 1);
+        gridLayout->addWidget(customCartTotal, 6, 2, 1, 1);
 
         spinCollege = new QSpinBox(tab);
         spinCollege->setObjectName(QStringLiteral("spinCollege"));
@@ -200,10 +169,63 @@ public:
 
         gridLayout->addWidget(spinCollege, 5, 1, 1, 1);
 
+        verticalLayout_4 = new QVBoxLayout();
+        verticalLayout_4->setSpacing(6);
+        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
+
+        gridLayout->addLayout(verticalLayout_4, 0, 0, 1, 1);
+
+        labelCollege = new QLabel(tab);
+        labelCollege->setObjectName(QStringLiteral("labelCollege"));
+
+        gridLayout->addWidget(labelCollege, 1, 0, 1, 1);
+
+        comboCollege = new QComboBox(tab);
+        comboCollege->setObjectName(QStringLiteral("comboCollege"));
+        comboCollege->setMaxVisibleItems(13);
+
+        gridLayout->addWidget(comboCollege, 1, 1, 1, 1);
+
         customTrip = new QPushButton(tab);
         customTrip->setObjectName(QStringLiteral("customTrip"));
 
         gridLayout->addWidget(customTrip, 2, 1, 1, 1);
+
+        addCollege = new QPushButton(tab);
+        addCollege->setObjectName(QStringLiteral("addCollege"));
+        addCollege->setEnabled(true);
+
+        gridLayout->addWidget(addCollege, 3, 1, 1, 1);
+
+        labelNumber = new QLabel(tab);
+        labelNumber->setObjectName(QStringLiteral("labelNumber"));
+
+        gridLayout->addWidget(labelNumber, 5, 0, 1, 1);
+
+        customGrandTotalLabel = new QLabel(tab);
+        customGrandTotalLabel->setObjectName(QStringLiteral("customGrandTotalLabel"));
+        QFont font1;
+        font1.setPointSize(7);
+        customGrandTotalLabel->setFont(font1);
+
+        gridLayout->addWidget(customGrandTotalLabel, 5, 3, 1, 1);
+
+        collegeLocation = new QLabel(tab);
+        collegeLocation->setObjectName(QStringLiteral("collegeLocation"));
+        QFont font2;
+        font2.setPointSize(14);
+        font2.setBold(false);
+        font2.setWeight(50);
+        collegeLocation->setFont(font2);
+        collegeLocation->setLayoutDirection(Qt::LeftToRight);
+
+        gridLayout->addWidget(collegeLocation, 6, 0, 1, 1);
+
+        customCartTotalLabel = new QLabel(tab);
+        customCartTotalLabel->setObjectName(QStringLiteral("customCartTotalLabel"));
+        customCartTotalLabel->setFont(font1);
+
+        gridLayout->addWidget(customCartTotalLabel, 5, 2, 1, 1);
 
         verticalLayout = new QVBoxLayout();
         verticalLayout->setSpacing(6);
@@ -228,8 +250,6 @@ public:
 
         customQuantityLabel = new QLabel(tab);
         customQuantityLabel->setObjectName(QStringLiteral("customQuantityLabel"));
-        QFont font1;
-        font1.setPointSize(7);
         customQuantityLabel->setFont(font1);
 
         verticalLayout->addWidget(customQuantityLabel);
@@ -258,6 +278,22 @@ public:
 
         gridLayout->addLayout(verticalLayout, 9, 0, 1, 2);
 
+        customGrandTotal = new QLabel(tab);
+        customGrandTotal->setObjectName(QStringLiteral("customGrandTotal"));
+        customGrandTotal->setFont(font);
+
+        gridLayout->addWidget(customGrandTotal, 6, 3, 1, 1);
+
+        mainTable = new QTableView(tab);
+        mainTable->setObjectName(QStringLiteral("mainTable"));
+
+        gridLayout->addWidget(mainTable, 9, 2, 1, 2);
+
+        labelTotalDistance = new QLabel(tab);
+        labelTotalDistance->setObjectName(QStringLiteral("labelTotalDistance"));
+
+        gridLayout->addWidget(labelTotalDistance, 7, 0, 1, 1);
+
         saddlebackTab->addTab(tab, QString());
         collegeLocation->raise();
         labelTotalDistance->raise();
@@ -269,6 +305,10 @@ public:
         spinCollege->raise();
         customTrip->raise();
         startTrip->raise();
+        customCartTotalLabel->raise();
+        customGrandTotalLabel->raise();
+        customCartTotal->raise();
+        customGrandTotal->raise();
         tab_2 = new QWidget();
         tab_2->setObjectName(QStringLiteral("tab_2"));
         gridLayout_3 = new QGridLayout(tab_2);
@@ -340,29 +380,10 @@ public:
         gridLayout_2->setSpacing(6);
         gridLayout_2->setContentsMargins(11, 11, 11, 11);
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
-        michiganLocationLabel = new QLabel(tab_4);
-        michiganLocationLabel->setObjectName(QStringLiteral("michiganLocationLabel"));
-        QFont font2;
-        font2.setPointSize(14);
-        michiganLocationLabel->setFont(font2);
-
-        gridLayout_2->addWidget(michiganLocationLabel, 4, 0, 1, 1);
-
-        michiganDistanceLabel = new QLabel(tab_4);
-        michiganDistanceLabel->setObjectName(QStringLiteral("michiganDistanceLabel"));
-
-        gridLayout_2->addWidget(michiganDistanceLabel, 5, 0, 1, 1);
-
         michiganLabel = new QLabel(tab_4);
         michiganLabel->setObjectName(QStringLiteral("michiganLabel"));
 
         gridLayout_2->addWidget(michiganLabel, 0, 0, 1, 1);
-
-        michiganSouvQuantity = new QSpinBox(tab_4);
-        michiganSouvQuantity->setObjectName(QStringLiteral("michiganSouvQuantity"));
-        michiganSouvQuantity->setMinimum(1);
-
-        gridLayout_2->addWidget(michiganSouvQuantity, 9, 1, 1, 1);
 
         michiganSpinBox = new QSpinBox(tab_4);
         michiganSpinBox->setObjectName(QStringLiteral("michiganSpinBox"));
@@ -370,56 +391,111 @@ public:
 
         gridLayout_2->addWidget(michiganSpinBox, 1, 0, 1, 1);
 
+        michiganPurchase = new QPushButton(tab_4);
+        michiganPurchase->setObjectName(QStringLiteral("michiganPurchase"));
+
+        gridLayout_2->addWidget(michiganPurchase, 8, 1, 1, 1);
+
+        michiganLocationLabel = new QLabel(tab_4);
+        michiganLocationLabel->setObjectName(QStringLiteral("michiganLocationLabel"));
+        QFont font3;
+        font3.setPointSize(14);
+        michiganLocationLabel->setFont(font3);
+
+        gridLayout_2->addWidget(michiganLocationLabel, 3, 0, 1, 1);
+
+        michiganDistanceLabel = new QLabel(tab_4);
+        michiganDistanceLabel->setObjectName(QStringLiteral("michiganDistanceLabel"));
+
+        gridLayout_2->addWidget(michiganDistanceLabel, 4, 0, 1, 1);
+
+        michiganNextCollege = new QPushButton(tab_4);
+        michiganNextCollege->setObjectName(QStringLiteral("michiganNextCollege"));
+
+        gridLayout_2->addWidget(michiganNextCollege, 4, 1, 1, 1);
+
         SouvenirNames = new QTableView(tab_4);
         SouvenirNames->setObjectName(QStringLiteral("SouvenirNames"));
 
-        gridLayout_2->addWidget(SouvenirNames, 7, 1, 1, 1);
+        gridLayout_2->addWidget(SouvenirNames, 5, 1, 1, 1);
+
+        souvenirCart = new QTableView(tab_4);
+        souvenirCart->setObjectName(QStringLiteral("souvenirCart"));
+
+        gridLayout_2->addWidget(souvenirCart, 11, 1, 1, 1);
+
+        michiganTripTotal = new QPushButton(tab_4);
+        michiganTripTotal->setObjectName(QStringLiteral("michiganTripTotal"));
+
+        gridLayout_2->addWidget(michiganTripTotal, 3, 1, 1, 1);
+
+        michiganNextPurchase = new QPushButton(tab_4);
+        michiganNextPurchase->setObjectName(QStringLiteral("michiganNextPurchase"));
+
+        gridLayout_2->addWidget(michiganNextPurchase, 9, 1, 1, 1);
+
+        michiganQuantityLabel = new QLabel(tab_4);
+        michiganQuantityLabel->setObjectName(QStringLiteral("michiganQuantityLabel"));
+        michiganQuantityLabel->setFont(font1);
+
+        gridLayout_2->addWidget(michiganQuantityLabel, 6, 1, 1, 1);
 
         michiganTripButton = new QPushButton(tab_4);
         michiganTripButton->setObjectName(QStringLiteral("michiganTripButton"));
 
         gridLayout_2->addWidget(michiganTripButton, 2, 0, 1, 1);
 
-        souvenirCart = new QTableView(tab_4);
-        souvenirCart->setObjectName(QStringLiteral("souvenirCart"));
-
-        gridLayout_2->addWidget(souvenirCart, 13, 1, 1, 1);
-
         michiganTripTableView = new QTableView(tab_4);
         michiganTripTableView->setObjectName(QStringLiteral("michiganTripTableView"));
 
-        gridLayout_2->addWidget(michiganTripTableView, 7, 0, 7, 1);
+        gridLayout_2->addWidget(michiganTripTableView, 5, 0, 7, 1);
 
-        michiganNextPurchase = new QPushButton(tab_4);
-        michiganNextPurchase->setObjectName(QStringLiteral("michiganNextPurchase"));
+        michiganSouvQuantity = new QSpinBox(tab_4);
+        michiganSouvQuantity->setObjectName(QStringLiteral("michiganSouvQuantity"));
+        michiganSouvQuantity->setMinimum(1);
 
-        gridLayout_2->addWidget(michiganNextPurchase, 11, 1, 1, 1);
-
-        michiganQuantityLabel = new QLabel(tab_4);
-        michiganQuantityLabel->setObjectName(QStringLiteral("michiganQuantityLabel"));
-        michiganQuantityLabel->setFont(font1);
-
-        gridLayout_2->addWidget(michiganQuantityLabel, 8, 1, 1, 1);
-
-        michiganPurchase = new QPushButton(tab_4);
-        michiganPurchase->setObjectName(QStringLiteral("michiganPurchase"));
-
-        gridLayout_2->addWidget(michiganPurchase, 10, 1, 1, 1);
-
-        michiganNextCollege = new QPushButton(tab_4);
-        michiganNextCollege->setObjectName(QStringLiteral("michiganNextCollege"));
-
-        gridLayout_2->addWidget(michiganNextCollege, 5, 1, 1, 1);
+        gridLayout_2->addWidget(michiganSouvQuantity, 7, 1, 1, 1);
 
         michiganRemoveCart = new QPushButton(tab_4);
         michiganRemoveCart->setObjectName(QStringLiteral("michiganRemoveCart"));
 
-        gridLayout_2->addWidget(michiganRemoveCart, 12, 1, 1, 1);
+        gridLayout_2->addWidget(michiganRemoveCart, 10, 1, 1, 1);
 
-        michiganTripTotal = new QPushButton(tab_4);
-        michiganTripTotal->setObjectName(QStringLiteral("michiganTripTotal"));
+        horizontalLayout_4 = new QHBoxLayout();
+        horizontalLayout_4->setSpacing(6);
+        horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
+        michiganCartTotal = new QLabel(tab_4);
+        michiganCartTotal->setObjectName(QStringLiteral("michiganCartTotal"));
+        michiganCartTotal->setFont(font);
 
-        gridLayout_2->addWidget(michiganTripTotal, 4, 1, 1, 1);
+        horizontalLayout_4->addWidget(michiganCartTotal);
+
+        michiganGrandTotal = new QLabel(tab_4);
+        michiganGrandTotal->setObjectName(QStringLiteral("michiganGrandTotal"));
+        michiganGrandTotal->setFont(font);
+
+        horizontalLayout_4->addWidget(michiganGrandTotal);
+
+
+        gridLayout_2->addLayout(horizontalLayout_4, 2, 1, 1, 1);
+
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setSpacing(6);
+        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
+        michiganCartTotalLabel = new QLabel(tab_4);
+        michiganCartTotalLabel->setObjectName(QStringLiteral("michiganCartTotalLabel"));
+        michiganCartTotalLabel->setFont(font1);
+
+        horizontalLayout_3->addWidget(michiganCartTotalLabel);
+
+        michiganGrandTotalLabel = new QLabel(tab_4);
+        michiganGrandTotalLabel->setObjectName(QStringLiteral("michiganGrandTotalLabel"));
+        michiganGrandTotalLabel->setFont(font1);
+
+        horizontalLayout_3->addWidget(michiganGrandTotalLabel);
+
+
+        gridLayout_2->addLayout(horizontalLayout_3, 1, 1, 1, 1);
 
         saddlebackTab->addTab(tab_4, QString());
         tab_5 = new QWidget();
@@ -461,15 +537,13 @@ public:
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         collegeCartTotal = new QLabel(tab_5);
         collegeCartTotal->setObjectName(QStringLiteral("collegeCartTotal"));
-        QFont font3;
-        font3.setPointSize(20);
-        collegeCartTotal->setFont(font3);
+        collegeCartTotal->setFont(font);
 
         horizontalLayout_2->addWidget(collegeCartTotal);
 
         saddleGrandTotal = new QLabel(tab_5);
         saddleGrandTotal->setObjectName(QStringLiteral("saddleGrandTotal"));
-        saddleGrandTotal->setFont(font3);
+        saddleGrandTotal->setFont(font);
 
         horizontalLayout_2->addWidget(saddleGrandTotal);
 
@@ -478,7 +552,7 @@ public:
 
         saddlebackLocationLabel = new QLabel(tab_5);
         saddlebackLocationLabel->setObjectName(QStringLiteral("saddlebackLocationLabel"));
-        saddlebackLocationLabel->setFont(font2);
+        saddlebackLocationLabel->setFont(font3);
 
         gridLayout_5->addWidget(saddlebackLocationLabel, 3, 0, 1, 1);
 
@@ -571,19 +645,23 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
-        labelNumber->setText(QApplication::translate("MainWindow", "Select the number of colleges you wish to visit:", Q_NULLPTR));
-        labelTotalDistance->setText(QApplication::translate("MainWindow", "Total Trip Distance: ", Q_NULLPTR));
         startTrip->setText(QApplication::translate("MainWindow", "Start Trip", Q_NULLPTR));
-        collegeLocation->setText(QApplication::translate("MainWindow", "You are here", Q_NULLPTR));
-        addCollege->setText(QApplication::translate("MainWindow", "Add College", Q_NULLPTR));
+        customCartTotal->setText(QApplication::translate("MainWindow", "Total", Q_NULLPTR));
         labelCollege->setText(QApplication::translate("MainWindow", "Select the college you wish to start at:", Q_NULLPTR));
         customTrip->setText(QApplication::translate("MainWindow", "Custom Trip", Q_NULLPTR));
+        addCollege->setText(QApplication::translate("MainWindow", "Add College", Q_NULLPTR));
+        labelNumber->setText(QApplication::translate("MainWindow", "Select the number of colleges you wish to visit:", Q_NULLPTR));
+        customGrandTotalLabel->setText(QApplication::translate("MainWindow", "Grand Total:", Q_NULLPTR));
+        collegeLocation->setText(QApplication::translate("MainWindow", "You are here", Q_NULLPTR));
+        customCartTotalLabel->setText(QApplication::translate("MainWindow", "College Cart Total:", Q_NULLPTR));
         nextCollege->setText(QApplication::translate("MainWindow", "Next College", Q_NULLPTR));
-        customTripTotal->setText(QApplication::translate("MainWindow", "Trip Total", Q_NULLPTR));
+        customTripTotal->setText(QApplication::translate("MainWindow", "Complete", Q_NULLPTR));
         customQuantityLabel->setText(QApplication::translate("MainWindow", "Quantity:", Q_NULLPTR));
         nextPurchase->setText(QApplication::translate("MainWindow", "Purchase", Q_NULLPTR));
         purchaseSouvenir->setText(QApplication::translate("MainWindow", "Purchase", Q_NULLPTR));
         customRemoveCart->setText(QApplication::translate("MainWindow", "Remove From Cart", Q_NULLPTR));
+        customGrandTotal->setText(QApplication::translate("MainWindow", "Total", Q_NULLPTR));
+        labelTotalDistance->setText(QApplication::translate("MainWindow", "Total Trip Distance: ", Q_NULLPTR));
         saddlebackTab->setTabText(saddlebackTab->indexOf(tab), QApplication::translate("MainWindow", "Custom Trip", Q_NULLPTR));
         uciTripButton->setText(QApplication::translate("MainWindow", "Start Trip", Q_NULLPTR));
         label_3->setText(QString());
@@ -591,16 +669,20 @@ public:
         saddlebackTab->setTabText(saddlebackTab->indexOf(tab_2), QApplication::translate("MainWindow", "UCI Trip", Q_NULLPTR));
         souvenirFindButton->setText(QApplication::translate("MainWindow", "Find Souvenirs", Q_NULLPTR));
         saddlebackTab->setTabText(saddlebackTab->indexOf(tab_3), QApplication::translate("MainWindow", "Souvenirs", Q_NULLPTR));
+        michiganLabel->setText(QApplication::translate("MainWindow", "How many colleges do you want to visit? (Includes University of Michigan)", Q_NULLPTR));
+        michiganPurchase->setText(QApplication::translate("MainWindow", "Purchase", Q_NULLPTR));
         michiganLocationLabel->setText(QApplication::translate("MainWindow", "YouAreHere", Q_NULLPTR));
         michiganDistanceLabel->setText(QApplication::translate("MainWindow", "Distance", Q_NULLPTR));
-        michiganLabel->setText(QApplication::translate("MainWindow", "How many colleges do you want to visit? (Includes University of Michigan)", Q_NULLPTR));
-        michiganTripButton->setText(QApplication::translate("MainWindow", "Make Trip", Q_NULLPTR));
+        michiganNextCollege->setText(QApplication::translate("MainWindow", "Next College", Q_NULLPTR));
+        michiganTripTotal->setText(QApplication::translate("MainWindow", "Complete", Q_NULLPTR));
         michiganNextPurchase->setText(QApplication::translate("MainWindow", "Purchase", Q_NULLPTR));
         michiganQuantityLabel->setText(QApplication::translate("MainWindow", "Quantity:", Q_NULLPTR));
-        michiganPurchase->setText(QApplication::translate("MainWindow", "Purchase", Q_NULLPTR));
-        michiganNextCollege->setText(QApplication::translate("MainWindow", "Next College", Q_NULLPTR));
+        michiganTripButton->setText(QApplication::translate("MainWindow", "Make Trip", Q_NULLPTR));
         michiganRemoveCart->setText(QApplication::translate("MainWindow", "Remove From Cart", Q_NULLPTR));
-        michiganTripTotal->setText(QApplication::translate("MainWindow", "Trip Total", Q_NULLPTR));
+        michiganCartTotal->setText(QApplication::translate("MainWindow", "Total", Q_NULLPTR));
+        michiganGrandTotal->setText(QApplication::translate("MainWindow", "Total", Q_NULLPTR));
+        michiganCartTotalLabel->setText(QApplication::translate("MainWindow", "College Cart Total:", Q_NULLPTR));
+        michiganGrandTotalLabel->setText(QApplication::translate("MainWindow", "Grand Total:", Q_NULLPTR));
         saddlebackTab->setTabText(saddlebackTab->indexOf(tab_4), QApplication::translate("MainWindow", "Michigan Trip", Q_NULLPTR));
         saddleLabel->setText(QApplication::translate("MainWindow", "Starting at Saddleback, and visiting all the available colleges", Q_NULLPTR));
         saddleStartButton->setText(QApplication::translate("MainWindow", "Start Trip", Q_NULLPTR));
@@ -611,7 +693,7 @@ public:
         saddlebackLocationLabel->setText(QApplication::translate("MainWindow", "YouAreHere", Q_NULLPTR));
         saddleDistanceLabel->setText(QApplication::translate("MainWindow", "Distance", Q_NULLPTR));
         saddleNextCollege->setText(QApplication::translate("MainWindow", "Next College", Q_NULLPTR));
-        saddleTripTotal->setText(QApplication::translate("MainWindow", "Trip Total", Q_NULLPTR));
+        saddleTripTotal->setText(QApplication::translate("MainWindow", "Complete", Q_NULLPTR));
         saddleQuantityLabel->setText(QApplication::translate("MainWindow", "Quantity:", Q_NULLPTR));
         saddlePurchase->setText(QApplication::translate("MainWindow", "Purchase", Q_NULLPTR));
         saddleNextPurchase->setText(QApplication::translate("MainWindow", "Purchase", Q_NULLPTR));

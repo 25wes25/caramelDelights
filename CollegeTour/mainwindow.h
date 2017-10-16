@@ -98,6 +98,8 @@ private slots:
 
     void on_saddleTripTotal_clicked();
 
+    void on_saddleCartTable_clicked(const QModelIndex &index);
+
 private:
     /**
      * @brief ui
@@ -127,8 +129,8 @@ private:
      * \var
      */
     int collegeRow, souvenirIndex, index;
-    int customSouvSelection, michiganSouvSelection, saddleSouvSelection;
-    int michiganCartSelection, customCartSelection, saddleCartSelection;
+    int customCartSelection, michiganCartSelection, saddleCartSelection;
+    int michiganShopSelection, customShopSelection, saddleShopSelection;
     QItemSelectionModel *select;
     int customCartRow = 0;
     int michiganCartRow = 0;
@@ -136,10 +138,10 @@ private:
     QVector<colleges> customTripList, michiganList, uciList, saddleList;
     int maxVectorSize;
     int decision;
-    int cartTotalCount = 0;
-    QVector<QString> saddleCurrentCartName;
-    double cartTotal = 0;
-    double labelTotal = 0;
+    int saddleCartTotalCount = 0, michiganCartTotalCount = 0, customCartTotalCount = 0;
+    QVector<QString> saddleCurrentCartName, michiganCurrentCartName, customCurrentCartName;
+    double saddleGrandTot = 0, michiganGrandTot = 0, customGrandTot = 0;
+    double saddleCartTot = 0, michiganCartTot = 0, customCartTot = 0;
 };
 
 #endif // MAINWINDOW_H

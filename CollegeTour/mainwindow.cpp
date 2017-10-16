@@ -59,6 +59,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->collegeTotalLabel->hide();
     ui->saddleGrandTotal->hide();
     ui->saddleGrandTotalLabel->hide();
+    ui->michiganCartTotalLabel->hide();
+    ui->michiganCartTotal->hide();
+    ui->michiganGrandTotalLabel->hide();
+    ui->michiganGrandTotal->hide();
+    ui->customCartTotalLabel->hide();
+    ui->customCartTotal->hide();
+    ui->customGrandTotalLabel->hide();
+    ui->customGrandTotal->hide();
 
 //    saddleTotals.reserve(20);
 
@@ -201,6 +209,14 @@ void MainWindow::on_startTrip_clicked()
     ui->souvenirQuantity->show();
     ui->purchaseSouvenir->show();
     ui->customQuantityLabel->show();
+    ui->customCartTotalLabel->show();
+    ui->customCartTotal->show();
+    ui->customGrandTotalLabel->show();
+    ui->customGrandTotal->show();
+    ui->customCartTotal->setText("$0");
+    ui->customGrandTotal->setText("$0");
+
+    QVector<QString>  tripNames;
 
     souvenirIndex = 0;
 
@@ -210,7 +226,6 @@ void MainWindow::on_startTrip_clicked()
     database = Database::getInstance();
     database->SetDBPath(QDir::currentPath() + "\\Database\\College.db");
 
-    QVector<QString>  tripNames;
 
     for(int index = 0; index < customTrip.collegeList.size(); index++)
     {
@@ -224,7 +239,6 @@ void MainWindow::on_startTrip_clicked()
     }
 
     customTripList = customTrip.SetCollegeList(tripNames);
-
     customTrip.Recursive(customTripList, 0);
 
     QString totDist = QString::number(customTrip.getTotalDistance());
@@ -249,6 +263,7 @@ void MainWindow::on_startTrip_clicked()
 
 void MainWindow::on_nextCollege_clicked()
 {
+    customCurrentCartName.clear();
     if(souvenirIndex == customTrip.collegeList.size())
     {
         ui->nextCollege->hide();
@@ -256,6 +271,8 @@ void MainWindow::on_nextCollege_clicked()
     }
     else
     {
+        customCartTot = 0;
+        ui->customCartTotal->setText("$0");
         ui->collegeLocation->setText(customTripList[souvenirIndex].collegeName);
 
         QSqlQueryModel * souvenirModel = new QSqlQueryModel();
@@ -289,22 +306,20 @@ void MainWindow::on_purchaseSouvenir_clicked() //purchase souvenir button
 {
     if(ui->selectTable->selectionModel()->isSelected(ui->selectTable->currentIndex()))
     {
+        ui->customRemoveCart->show();
         souv newItem;
         QString itemPrice;
         visitedCollege visitedColl;
+        QString cartString, collegeTotalString;
 
-        ui->customRemoveCart->show();
 
-
-    //    tableIndex = ui->selectTable->selectionModel()->selection().indexes();
-
-    //    qDebug() << tableIndex[0].data().toInt();
-
-        newItem.item = ui->selectTable->model()->data(ui->selectTable->model()->index(customSouvSelection, 0)).toString();
-        itemPrice = ui->selectTable->model()->data(ui->selectTable->model()->index(customSouvSelection, 1)).toString();
+        newItem.item = ui->selectTable->model()->data(ui->selectTable->model()->index(customShopSelection, 0)).toString();
+        itemPrice = ui->selectTable->model()->data(ui->selectTable->model()->index(customShopSelection, 1)).toString();
 
         itemPrice = itemPrice.remove(0,1);
         newItem.price = itemPrice.toFloat();
+
+        customCurrentCartName.push_back(newItem.item);
 
         newItem.quantity = ui->souvenirQuantity->value();
 
@@ -329,17 +344,34 @@ void MainWindow::on_purchaseSouvenir_clicked() //purchase souvenir button
 
         ui->mainTable->setModel(customModel);
 
+        cartString = ui->mainTable->model()->data(ui->mainTable->model()->index(0, 1)).toString();
+
+        cartString = cartString.remove(0,1);
+        customGrandTot  = cartString.toDouble() * newItem.quantity;
+        cartString = QString::number(customGrandTot);
+        cartString = "$" + cartString;
+
+        collegeTotalString = ui->mainTable->model()->data(ui->mainTable->model()->index(0, 1)).toString();
+
+        collegeTotalString = collegeTotalString.remove(0,1);
+        customCartTot  += collegeTotalString.toDouble() * newItem.quantity;
+        collegeTotalString = QString::number(customCartTot);
+        collegeTotalString = "$" + collegeTotalString;
+
         customCartRow++;
         ui->purchaseSouvenir->hide();
         ui->nextPurchase->show();
         ui->souvenirQuantity->setValue(1);
+        ui->selectTable->clearSelection();
+        ui->customCartTotal->setText(collegeTotalString);
+        ui->customGrandTotal->setText(cartString);
+        customCartTotalCount++;
     }
-    ui->selectTable->clearSelection();
 }
 
 void MainWindow::on_selectTable_clicked(const QModelIndex &index)
 {
-    customSouvSelection = index.row();
+    customShopSelection = index.row();
 
 }
 
@@ -350,9 +382,10 @@ void MainWindow::on_nextPurchase_clicked()
         souv newItem;
         QString itemPrice;
         visitedCollege visitedColl;
+        QString cartString, collegeTotalString;
 
-        newItem.item = ui->selectTable->model()->data(ui->selectTable->model()->index(customSouvSelection, 0)).toString();
-        itemPrice = ui->selectTable->model()->data(ui->selectTable->model()->index(customSouvSelection, 1)).toString();
+        newItem.item = ui->selectTable->model()->data(ui->selectTable->model()->index(customShopSelection, 0)).toString();
+        itemPrice = ui->selectTable->model()->data(ui->selectTable->model()->index(customShopSelection, 1)).toString();
 
         itemPrice = itemPrice.remove(0,1);
         newItem.price = itemPrice.toFloat();
@@ -361,6 +394,8 @@ void MainWindow::on_nextPurchase_clicked()
 
         visitedColl.collegeName = customTrip.collegeList[souvenirIndex].collegeName;
         visitedColl.collegeCart.push_back(newItem);
+
+        customCurrentCartName.push_back(newItem.item);
 
         customTrip.cart.push_back(visitedColl);
 
@@ -372,10 +407,27 @@ void MainWindow::on_nextPurchase_clicked()
         customModel->setItem(customCartRow, 1, souvPrice);
         customModel->setItem(customCartRow, 2, souvQuantity);
 
+        cartString = ui->mainTable->model()->data(ui->mainTable->model()->index(customCartTotalCount, 1)).toString();
+
+        cartString = cartString.remove(0,1);
+        customGrandTot  += cartString.toDouble() * newItem.quantity;
+        cartString = QString::number(customGrandTot);
+        cartString = "$" + cartString;
+
+        collegeTotalString = ui->mainTable->model()->data(ui->mainTable->model()->index(customCartTotalCount, 1)).toString();
+
+        collegeTotalString = collegeTotalString.remove(0,1);
+        customCartTot  += collegeTotalString.toDouble() * newItem.quantity;
+        collegeTotalString = QString::number(customCartTot);
+        collegeTotalString = "$" + collegeTotalString;
+
         customCartRow++;
         ui->souvenirQuantity->setValue(1);
+        ui->selectTable->clearSelection();
+        ui->customCartTotal->setText(collegeTotalString);
+        ui->customGrandTotal->setText(cartString);
+        customCartTotalCount++;
     }
-    ui->selectTable->clearSelection();
 }
 
 
@@ -447,6 +499,12 @@ void MainWindow::on_michiganTripButton_clicked()
     ui->michiganSouvQuantity->show();
     ui->michiganQuantityLabel->show();
     ui->michiganPurchase->show();
+    ui->michiganCartTotalLabel->show();
+    ui->michiganCartTotal->show();
+    ui->michiganGrandTotalLabel->show();
+    ui->michiganGrandTotal->show();
+    ui->michiganCartTotal->setText("$0");
+    ui->michiganGrandTotal->setText("$0");
 
     QVector<QString> tripNames;
 
@@ -468,7 +526,6 @@ void MainWindow::on_michiganTripButton_clicked()
 
 
     michiganList = michiganTrip.SetCollegeList(tripNames);
-
     michiganTrip.Recursive(michiganList,0);
 
     ui->michiganLocationLabel->setText(michiganTrip.collegeList[souvenirIndex].collegeName);
@@ -513,6 +570,7 @@ void MainWindow::on_michiganTripButton_clicked()
 
 void MainWindow::on_michiganNextCollege_clicked()
 {
+    michiganCurrentCartName.clear();
     if(souvenirIndex == customTrip.collegeList.size())
     {
         ui->michiganNextCollege->hide();
@@ -520,6 +578,8 @@ void MainWindow::on_michiganNextCollege_clicked()
     }
     else
     {
+        michiganCartTot = 0;
+        ui->michiganCartTotal->setText("$0");
         ui->michiganLocationLabel->setText(michiganList[souvenirIndex].collegeName);
 
         QSqlQueryModel * souvenirModel = new QSqlQueryModel();
@@ -554,13 +614,16 @@ void MainWindow::on_michiganPurchase_clicked()
         souv newItem;
         QString itemPrice;
         visitedCollege visitedColl;
+        QString cartString, collegeTotalString;
 
 
-        newItem.item = ui->SouvenirNames->model()->data(ui->SouvenirNames->model()->index(michiganSouvSelection, 0)).toString();
-        itemPrice = ui->SouvenirNames->model()->data(ui->SouvenirNames->model()->index(michiganSouvSelection, 1)).toString();
+        newItem.item = ui->SouvenirNames->model()->data(ui->SouvenirNames->model()->index(michiganShopSelection, 0)).toString();
+        itemPrice = ui->SouvenirNames->model()->data(ui->SouvenirNames->model()->index(michiganShopSelection, 1)).toString();
 
         itemPrice = itemPrice.remove(0,1);
         newItem.price = itemPrice.toFloat();
+
+        michiganCurrentCartName.push_back(newItem.item);
 
         newItem.quantity = ui->michiganSouvQuantity->value();
 
@@ -569,7 +632,7 @@ void MainWindow::on_michiganPurchase_clicked()
 
         michiganTrip.cart.push_back(visitedColl);
 
-        michiganModel = new QStandardItemModel(100,3,this); //11 Rows and 1 Columns
+        michiganModel = new QStandardItemModel(100,3,this); //11 Rows and 3 Columns
         michiganModel->setHorizontalHeaderItem(0, new QStandardItem(QString("Souvenir")));
         michiganModel->setHorizontalHeaderItem(1, new QStandardItem(QString("Price")));
         michiganModel->setHorizontalHeaderItem(2, new QStandardItem(QString("Quantity")));
@@ -585,17 +648,34 @@ void MainWindow::on_michiganPurchase_clicked()
 
         ui->souvenirCart->setModel(michiganModel);
 
+        cartString = ui->souvenirCart->model()->data(ui->souvenirCart->model()->index(0, 1)).toString();
+
+        cartString = cartString.remove(0,1);
+        michiganGrandTot  = cartString.toDouble() * newItem.quantity;
+        cartString = QString::number(michiganGrandTot);
+        cartString = "$" + cartString;
+
+        collegeTotalString = ui->souvenirCart->model()->data(ui->souvenirCart->model()->index(0, 1)).toString();
+
+        collegeTotalString = collegeTotalString.remove(0,1);
+        michiganCartTot  += collegeTotalString.toDouble() * newItem.quantity;
+        collegeTotalString = QString::number(michiganCartTot);
+        collegeTotalString = "$" + collegeTotalString;
+
         michiganCartRow++;
         ui->michiganPurchase->hide();
         ui->michiganNextPurchase->show();
         ui->michiganSouvQuantity->setValue(1);
         ui->SouvenirNames->clearSelection();
+        ui->michiganCartTotal->setText(collegeTotalString);
+        ui->michiganGrandTotal->setText(cartString);
+        michiganCartTotalCount++;
     }
 }
 
 void MainWindow::on_SouvenirNames_clicked(const QModelIndex &index)
 {
-    michiganSouvSelection = index.row();
+    michiganShopSelection = index.row();
 }
 
 void MainWindow::on_michiganNextPurchase_clicked()
@@ -605,9 +685,10 @@ void MainWindow::on_michiganNextPurchase_clicked()
         souv newItem;
         QString itemPrice;
         visitedCollege visitedColl;
+        QString cartString, collegeTotalString;
 
-        newItem.item = ui->SouvenirNames->model()->data(ui->SouvenirNames->model()->index(michiganSouvSelection, 0)).toString();
-        itemPrice = ui->SouvenirNames->model()->data(ui->SouvenirNames->model()->index(michiganSouvSelection, 1)).toString();
+        newItem.item = ui->SouvenirNames->model()->data(ui->SouvenirNames->model()->index(michiganShopSelection, 0)).toString();
+        itemPrice = ui->SouvenirNames->model()->data(ui->SouvenirNames->model()->index(michiganShopSelection, 1)).toString();
 
         itemPrice = itemPrice.remove(0,1);
         newItem.price = itemPrice.toFloat();
@@ -616,6 +697,8 @@ void MainWindow::on_michiganNextPurchase_clicked()
 
         visitedColl.collegeName = michiganTrip.collegeList[souvenirIndex].collegeName;
         visitedColl.collegeCart.push_back(newItem);
+
+        michiganCurrentCartName.push_back(newItem.item);
 
         michiganTrip.cart.push_back(visitedColl);
 
@@ -627,22 +710,64 @@ void MainWindow::on_michiganNextPurchase_clicked()
         michiganModel->setItem(michiganCartRow, 1, souvPrice);
         michiganModel->setItem(michiganCartRow, 2, souvQuantity);
 
+        cartString = ui->souvenirCart->model()->data(ui->souvenirCart->model()->index(michiganCartTotalCount, 1)).toString();
+
+        cartString = cartString.remove(0,1);
+        michiganGrandTot  += cartString.toDouble() * newItem.quantity;
+        cartString = QString::number(michiganGrandTot);
+        cartString = "$" + cartString;
+
+        collegeTotalString = ui->souvenirCart->model()->data(ui->souvenirCart->model()->index(michiganCartTotalCount, 1)).toString();
+
+        collegeTotalString = collegeTotalString.remove(0,1);
+        michiganCartTot  += collegeTotalString.toDouble() * newItem.quantity;
+        collegeTotalString = QString::number(michiganCartTot);
+        collegeTotalString = "$" + collegeTotalString;
+
         michiganCartRow++;
         ui->michiganSouvQuantity->setValue(1);
         qDebug() << "michiganCartRow: " << michiganCartRow;
         ui->SouvenirNames->clearSelection();
+        ui->michiganCartTotal->setText(collegeTotalString);
+        ui->michiganGrandTotal->setText(cartString);
+        michiganCartTotalCount++;
     }
 }
 
 void MainWindow::on_michiganRemoveCart_clicked()
 {
-    if(ui->souvenirCart->selectionModel()->isSelected(ui->souvenirCart->currentIndex()))
+    if(ui->souvenirCart->selectionModel()->isSelected(ui->souvenirCart->currentIndex()) && !(ui->souvenirCart->model()->data(ui->souvenirCart->model()->index(michiganCartSelection, 1)).toString().isEmpty()))
     {
+        QString removeString = ui->souvenirCart->model()->data(ui->souvenirCart->model()->index(michiganCartSelection, 1)).toString();
+        QVector<QString>::iterator it = std::find(michiganCurrentCartName.begin(),michiganCurrentCartName.end(), ui->souvenirCart->model()->data(ui->souvenirCart->model()->index(michiganCartSelection, 0)).toString());
+
+        removeString = removeString.remove(0,1);
+
+        michiganGrandTot -= removeString.toDouble() * ui->souvenirCart->model()->data(ui->souvenirCart->model()->index(michiganCartSelection, 2)).toDouble();
+        michiganGrandTot = floor(michiganGrandTot * pow(10., 2) + .5) / pow(10., 2);
+
+        if(it != michiganCurrentCartName.end())
+        {
+            michiganCartTot -= removeString.toDouble() * ui->souvenirCart->model()->data(ui->souvenirCart->model()->index(michiganCartSelection, 2)).toDouble();
+            michiganCartTot = floor(michiganCartTot * pow(10., 2) + .5) / pow(10., 2);
+
+            ui->michiganCartTotal->setText("$" + QString::number(michiganCartTot));
+        }
+        ui->michiganGrandTotal->setText("$" + QString::number(michiganGrandTot));
+
         michiganModel->removeRow(michiganCartSelection);
+
         if(michiganCartRow > 0)
         {
             michiganCartRow--;
+        }
+        if(michiganCartSelection > 0)
+        {
             michiganCartSelection--;
+        }
+        if(michiganCartTotalCount > 0)
+        {
+            michiganCartTotalCount--;
         }
     }
     ui->souvenirCart->clearSelection();
@@ -655,18 +780,41 @@ void MainWindow::on_souvenirCart_clicked(const QModelIndex &index)
 
 void MainWindow::on_customRemoveCart_clicked()
 {
-    if(ui->mainTable->selectionModel()->isSelected(ui->mainTable->currentIndex()))
+    if(ui->mainTable->selectionModel()->isSelected(ui->mainTable->currentIndex()) && !(ui->mainTable->model()->data(ui->mainTable->model()->index(customCartSelection, 1)).toString().isEmpty()))
     {
+        QString removeString = ui->mainTable->model()->data(ui->mainTable->model()->index(customCartSelection, 1)).toString();
+        QVector<QString>::iterator it = std::find(customCurrentCartName.begin(),customCurrentCartName.end(), ui->mainTable->model()->data(ui->mainTable->model()->index(customCartSelection, 0)).toString());
+
+        removeString = removeString.remove(0,1);
+
+        customGrandTot -= removeString.toDouble() * ui->mainTable->model()->data(ui->mainTable->model()->index(customCartSelection, 2)).toDouble();
+        customGrandTot = floor(customGrandTot * pow(10., 2) + .5) / pow(10., 2);
+
+        if(it != customCurrentCartName.end())
+        {
+            customCartTot -= removeString.toDouble() * ui->mainTable->model()->data(ui->mainTable->model()->index(customCartSelection, 2)).toDouble();
+            customCartTot = floor(customCartTot * pow(10., 2) + .5) / pow(10., 2);
+
+            ui->customCartTotal->setText("$" + QString::number(customCartTot));
+        }
+        ui->customGrandTotal->setText("$" + QString::number(customGrandTot));
+
         customModel->removeRow(customCartSelection);
+
         if(customCartRow > 0)
         {
             customCartRow--;
+        }
+        if(customCartSelection > 0)
+        {
             customCartSelection--;
+        }
+        if(customCartTotalCount > 0)
+        {
+            customCartTotalCount--;
         }
     }
     ui->mainTable->clearSelection();
-//    qDebug() << "customCartRow: " << customCartRow;
-//    qDebug() << "customCartSelection: " << customCartSelection;
 }
 
 void MainWindow::on_mainTable_clicked(const QModelIndex &index)
@@ -749,40 +897,21 @@ void MainWindow::on_saddleStartButton_clicked()
 
 void MainWindow::on_saddlePurchase_clicked()
 {
-//    qDebug() << "it is: " << ui->saddleShopTable->model()->data(ui->saddleShopTable->model()->index(saddleCartSelection, 0)).toString().isEmpty();
     if(ui->saddleShopTable->selectionModel()->isSelected(ui->saddleShopTable->currentIndex()))
     {
         ui->saddleRemoveCart->show();
         souv newItem;
         QString itemPrice;
         visitedCollege visitedColl;
-//        float cartValue;
         QString cartString, collegeTotalString;
 
-//        if (std::find(saddleTrip.cart[souvenirIndex].collegeCart.begin(), saddleTrip.cart[souvenirIndex].collegeCart.end(), ui->saddleShopTable->model()->data(ui->saddleShopTable->model()->index(saddleCartSelection, 0)).toString()) != saddleTrip.cart[souvenirIndex].collegeCart.end())
-//        {
-//          QVector<souv>::iterator it = std::find(saddleTrip.cart[souvenirIndex].collegeCart.begin(), saddleTrip.cart[souvenirIndex].collegeCart.end(), ui->saddleShopTable->model()->data(ui->saddleShopTable->model()->index(saddleCartSelection, 0)).toString());
-//          qDebug() << "Iterator Name: " << it->item;
-//          qDebug() << "Iterator Quantity Before: " << it->quantity;
-//          it->quantity += ui->saddleSouvQuantity->value();
-//          qDebug() << "Iterator Quantity After: " << it->quantity;
-//        }
-//        else
-//        {
-
-//        }
-
-        newItem.item = ui->saddleShopTable->model()->data(ui->saddleShopTable->model()->index(saddleCartSelection, 0)).toString();
-        itemPrice = ui->saddleShopTable->model()->data(ui->saddleShopTable->model()->index(saddleCartSelection, 1)).toString();
-
-//        cartValue = ui->saddleCartTable->model()->data(ui->saddleCartTable->model()->index(saddleCartSelection, 1)).toFloat();
-
-//        saddleTotals[souvenirIndex]
-
-//        saddleTotals[souvenirIndex] = ui->saddleCartTable->model()->data(ui->saddleCartTable->model()->index(, 1)).toFloat();
+        newItem.item = ui->saddleShopTable->model()->data(ui->saddleShopTable->model()->index(saddleShopSelection, 0)).toString();
+        itemPrice = ui->saddleShopTable->model()->data(ui->saddleShopTable->model()->index(saddleShopSelection, 1)).toString();
 
         itemPrice = itemPrice.remove(0,1);
         newItem.price = itemPrice.toFloat();
+
+        saddleCurrentCartName.push_back(newItem.item);
 
         newItem.quantity = ui->saddleSouvQuantity->value();
 
@@ -791,7 +920,7 @@ void MainWindow::on_saddlePurchase_clicked()
 
         saddleTrip.cart.push_back(visitedColl);
 
-        saddleModel = new QStandardItemModel(100,3,this); //11 Rows and 1 Columns
+        saddleModel = new QStandardItemModel(100,3,this); //11 Rows and 3 Columns
         saddleModel->setHorizontalHeaderItem(0, new QStandardItem(QString("Souvenir")));
         saddleModel->setHorizontalHeaderItem(1, new QStandardItem(QString("Price")));
         saddleModel->setHorizontalHeaderItem(2, new QStandardItem(QString("Quantity")));
@@ -811,20 +940,16 @@ void MainWindow::on_saddlePurchase_clicked()
         cartString = ui->saddleCartTable->model()->data(ui->saddleCartTable->model()->index(0, 1)).toString();
 
         cartString = cartString.remove(0,1);
-        cartTotal  = cartString.toDouble() * newItem.quantity;
-        cartString = QString::number(cartTotal);
+        saddleGrandTot  = cartString.toDouble() * newItem.quantity;
+        cartString = QString::number(saddleGrandTot);
         cartString = "$" + cartString;
 
         collegeTotalString = ui->saddleCartTable->model()->data(ui->saddleCartTable->model()->index(0, 1)).toString();
 
         collegeTotalString = collegeTotalString.remove(0,1);
-        labelTotal  += collegeTotalString.toDouble() * newItem.quantity;
-        collegeTotalString = QString::number(labelTotal);
+        saddleCartTot  += collegeTotalString.toDouble() * newItem.quantity;
+        collegeTotalString = QString::number(saddleCartTot);
         collegeTotalString = "$" + collegeTotalString;
-
-//        saddleModel->setHorizontalHeaderItem(3, new QStandardItem(QString("Total")));
-//        QStandardItem *souvTotal = new QStandardItem(cartString);
-//        saddleModel->setItem(0, 3, souvTotal);
 
         saddleCartRow++;
         ui->saddlePurchase->hide();
@@ -833,59 +958,52 @@ void MainWindow::on_saddlePurchase_clicked()
         ui->saddleShopTable->clearSelection();
         ui->collegeCartTotal->setText(collegeTotalString);
         ui->saddleGrandTotal->setText(cartString);
-        cartTotalCount++;
+        saddleCartTotalCount++;
     }
 }
 
 void MainWindow::on_saddleShopTable_clicked(const QModelIndex &index)
 {
-    saddleCartSelection = index.row();
+    saddleShopSelection = index.row();
 }
 
 void MainWindow::on_saddleRemoveCart_clicked()
 {
-    qDebug() << "Cart Selection: " << ui->saddleCartTable->model()->data(ui->saddleCartTable->model()->index(saddleCartSelection, 1)).toString();
-    if(ui->saddleCartTable->selectionModel()->isSelected(ui->saddleCartTable->currentIndex()))
+    if(ui->saddleCartTable->selectionModel()->isSelected(ui->saddleCartTable->currentIndex()) && !(ui->saddleCartTable->model()->data(ui->saddleCartTable->model()->index(saddleCartSelection, 1)).toString().isEmpty()))
     {
         QString removeString = ui->saddleCartTable->model()->data(ui->saddleCartTable->model()->index(saddleCartSelection, 1)).toString();
+        QVector<QString>::iterator it = std::find(saddleCurrentCartName.begin(),saddleCurrentCartName.end(), ui->saddleCartTable->model()->data(ui->saddleCartTable->model()->index(saddleCartSelection, 0)).toString());
 
         removeString = removeString.remove(0,1);
-        qDebug() << "uiTable: " << ui->saddleCartTable->model()->data(ui->saddleCartTable->model()->index(saddleCartSelection, 2)).toDouble();
 
-        cartTotal -= removeString.toDouble() * ui->saddleCartTable->model()->data(ui->saddleCartTable->model()->index(saddleCartSelection, 2)).toDouble();
-        cartTotal = floor(cartTotal * pow(10., 2) + .5) / pow(10., 2);
+        saddleGrandTot -= removeString.toDouble() * ui->saddleCartTable->model()->data(ui->saddleCartTable->model()->index(saddleCartSelection, 2)).toDouble();
+        saddleGrandTot = floor(saddleGrandTot * pow(10., 2) + .5) / pow(10., 2);
 
-        labelTotal -= removeString.toDouble() * ui->saddleCartTable->model()->data(ui->saddleCartTable->model()->index(saddleCartSelection, 2)).toDouble();
-        labelTotal = floor(cartTotal * pow(10., 2) + .5) / pow(10., 2);
+        if(it != saddleCurrentCartName.end())
+        {
+            saddleCartTot -= removeString.toDouble() * ui->saddleCartTable->model()->data(ui->saddleCartTable->model()->index(saddleCartSelection, 2)).toDouble();
+            saddleCartTot = floor(saddleCartTot * pow(10., 2) + .5) / pow(10., 2);
 
-        qDebug() << "uiTable: " << ui->saddleCartTable->model()->data(ui->saddleCartTable->model()->index(saddleCartSelection, 2)).toDouble();
-        qDebug() << "removeString: " << removeString.toDouble();
-        qDebug() << "cartTotal: " << cartTotal;
-        ui->collegeCartTotal->setText("$" + QString::number(cartTotal));
-        ui->saddleGrandTotal->setText("$" + QString::number(labelTotal));
-
+            ui->collegeCartTotal->setText("$" + QString::number(saddleCartTot));
+        }
+        ui->saddleGrandTotal->setText("$" + QString::number(saddleGrandTot));
 
         saddleModel->removeRow(saddleCartSelection);
 
-        ui->saddleCartTable->clearSelection();
-
-        if(saddleCartRow >= 0)
+        if(saddleCartRow > 0)
         {
             saddleCartRow--;
         }
-        if(saddleCartSelection >= 0)
+        if(saddleCartSelection > 0)
         {
             saddleCartSelection--;
         }
-        if(cartTotalCount >= 0)
+        if(saddleCartTotalCount > 0)
         {
-            cartTotalCount--;
+            saddleCartTotalCount--;
         }
-
-//        saddleModel->setHorizontalHeaderItem(3, new QStandardItem(QString("Total")));
-//        QStandardItem *souvTotal = new QStandardItem("$" + QString::number(cartTotal));
-//        saddleModel->setItem(0, 3, souvTotal);
     }
+    ui->saddleCartTable->clearSelection();
 }
 
 void MainWindow::on_saddleNextPurchase_clicked()
@@ -895,13 +1013,10 @@ void MainWindow::on_saddleNextPurchase_clicked()
         souv newItem;
         QString itemPrice;
         visitedCollege visitedColl;
-        QString cartString;
-        QString collegeTotalString;
+        QString cartString, collegeTotalString;
 
-        newItem.item = ui->saddleShopTable->model()->data(ui->saddleShopTable->model()->index(saddleCartSelection, 0)).toString();
-        itemPrice = ui->saddleShopTable->model()->data(ui->saddleShopTable->model()->index(saddleCartSelection, 1)).toString();
-
-//        saddleTotals[souvenirIndex] += ui->saddleCartTable->model()->data(ui->saddleCartTable->model()->index(saddleCartSelection, 1)).toFloat();
+        newItem.item = ui->saddleShopTable->model()->data(ui->saddleShopTable->model()->index(saddleShopSelection, 0)).toString();
+        itemPrice = ui->saddleShopTable->model()->data(ui->saddleShopTable->model()->index(saddleShopSelection, 1)).toString();
 
         itemPrice = itemPrice.remove(0,1);
         newItem.price = itemPrice.toFloat();
@@ -910,6 +1025,8 @@ void MainWindow::on_saddleNextPurchase_clicked()
 
         visitedColl.collegeName = saddleTrip.collegeList[souvenirIndex].collegeName;
         visitedColl.collegeCart.push_back(newItem);
+
+        saddleCurrentCartName.push_back(newItem.item);
 
         saddleTrip.cart.push_back(visitedColl);
 
@@ -921,23 +1038,20 @@ void MainWindow::on_saddleNextPurchase_clicked()
         saddleModel->setItem(saddleCartRow, 1, souvPrice);
         saddleModel->setItem(saddleCartRow, 2, souvQuantity);
 
-        cartString = ui->saddleCartTable->model()->data(ui->saddleCartTable->model()->index(cartTotalCount, 1)).toString();
+        cartString = ui->saddleCartTable->model()->data(ui->saddleCartTable->model()->index(saddleCartTotalCount, 1)).toString();
 
         cartString = cartString.remove(0,1);
-        cartTotal  += cartString.toDouble() * newItem.quantity;
-        cartString = QString::number(cartTotal);
+        saddleGrandTot  += cartString.toDouble() * newItem.quantity;
+        cartString = QString::number(saddleGrandTot);
         cartString = "$" + cartString;
 
-        collegeTotalString = ui->saddleCartTable->model()->data(ui->saddleCartTable->model()->index(cartTotalCount, 1)).toString();
+        collegeTotalString = ui->saddleCartTable->model()->data(ui->saddleCartTable->model()->index(saddleCartTotalCount, 1)).toString();
 
         collegeTotalString = collegeTotalString.remove(0,1);
-        labelTotal  += collegeTotalString.toDouble() * newItem.quantity;
-        collegeTotalString = QString::number(labelTotal);
+        saddleCartTot  += collegeTotalString.toDouble() * newItem.quantity;
+        collegeTotalString = QString::number(saddleCartTot);
         collegeTotalString = "$" + collegeTotalString;
 
-//        saddleModel->setHorizontalHeaderItem(3, new QStandardItem(QString("Total")));
-//        QStandardItem *souvTotal = new QStandardItem(cartString);
-//        saddleModel->setItem(0, 3, souvTotal);
 
         saddleCartRow++;
         ui->saddleSouvQuantity->setValue(1);
@@ -945,12 +1059,13 @@ void MainWindow::on_saddleNextPurchase_clicked()
         ui->saddleShopTable->clearSelection();
         ui->collegeCartTotal->setText(collegeTotalString);
         ui->saddleGrandTotal->setText(cartString);
-        cartTotalCount++;
+        saddleCartTotalCount++;
     }
 }
 
 void MainWindow::on_saddleNextCollege_clicked()
 {
+    saddleCurrentCartName.clear();
     if(souvenirIndex == customTrip.collegeList.size())
     {
         ui->saddleNextCollege->hide();
@@ -958,7 +1073,7 @@ void MainWindow::on_saddleNextCollege_clicked()
     }
     else
     {
-        labelTotal = 0;
+        saddleCartTot = 0;
         ui->collegeCartTotal->setText("$0");
         ui->saddlebackLocationLabel->setText(saddleList[souvenirIndex].collegeName);
 
@@ -988,27 +1103,10 @@ void MainWindow::on_saddleNextCollege_clicked()
 
 void MainWindow::on_saddleTripTotal_clicked()
 {
-//    for(QVector<float>::iterator it = saddleTotals.begin(); it != saddleTotals.end(); it++)
-//    {
-//        qDebug() << "total: " << *it;
-//    }
-//    int saddleTotalRow;
-//    int saddleQuantityRow;
 
-//    for(saddleTotalRow = 0; )
-    QString itemPrice;
-    float   cartTotal;
+}
 
-//    itemPrice = ui->saddleShopTable->model()->data(ui->saddleShopTable->model()->index(saddleCartSelection, 1)).toString();
-
-//    itemPrice = itemPrice.remove(0,1);
-//    cartTotal = itemPrice.toFloat();
-
-    for(int index = 0; !(ui->saddleCartTable->model()->data(ui->saddleCartTable->model()->index(index, 1)).toString().isEmpty()); index++)
-    {
-        itemPrice = ui->saddleCartTable->model()->data(ui->saddleCartTable->model()->index(index, 1)).toString();
-
-        itemPrice = itemPrice.remove(0,1);
-        cartTotal += itemPrice.toFloat();
-    }
+void MainWindow::on_saddleCartTable_clicked(const QModelIndex &index)
+{
+    saddleCartSelection = index.row();
 }

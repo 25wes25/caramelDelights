@@ -25,20 +25,45 @@
         <string>Custom Trip</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout">
-        <item row="0" column="0">
-         <layout class="QVBoxLayout" name="verticalLayout_4"/>
-        </item>
-        <item row="5" column="0">
-         <widget class="QLabel" name="labelNumber">
+        <item row="6" column="1">
+         <widget class="QPushButton" name="startTrip">
           <property name="text">
-           <string>Select the number of colleges you wish to visit:</string>
+           <string>Start Trip</string>
           </property>
          </widget>
         </item>
-        <item row="7" column="0">
-         <widget class="QLabel" name="labelTotalDistance">
+        <item row="6" column="2">
+         <widget class="QLabel" name="customCartTotal">
+          <property name="font">
+           <font>
+            <pointsize>20</pointsize>
+           </font>
+          </property>
           <property name="text">
-           <string>Total Trip Distance: </string>
+           <string>Total</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QSpinBox" name="spinCollege">
+          <property name="minimum">
+           <number>1</number>
+          </property>
+          <property name="maximum">
+           <number>11</number>
+          </property>
+          <property name="value">
+           <number>11</number>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <layout class="QVBoxLayout" name="verticalLayout_4"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="labelCollege">
+          <property name="text">
+           <string>Select the college you wish to start at:</string>
           </property>
          </widget>
         </item>
@@ -49,10 +74,39 @@
           </property>
          </widget>
         </item>
-        <item row="6" column="1">
-         <widget class="QPushButton" name="startTrip">
+        <item row="2" column="1">
+         <widget class="QPushButton" name="customTrip">
           <property name="text">
-           <string>Start Trip</string>
+           <string>Custom Trip</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QPushButton" name="addCollege">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="text">
+           <string>Add College</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="labelNumber">
+          <property name="text">
+           <string>Select the number of colleges you wish to visit:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="3">
+         <widget class="QLabel" name="customGrandTotalLabel">
+          <property name="font">
+           <font>
+            <pointsize>7</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>Grand Total:</string>
           </property>
          </widget>
         </item>
@@ -73,43 +127,15 @@
           </property>
          </widget>
         </item>
-        <item row="3" column="1">
-         <widget class="QPushButton" name="addCollege">
-          <property name="enabled">
-           <bool>true</bool>
+        <item row="5" column="2">
+         <widget class="QLabel" name="customCartTotalLabel">
+          <property name="font">
+           <font>
+            <pointsize>7</pointsize>
+           </font>
           </property>
           <property name="text">
-           <string>Add College</string>
-          </property>
-         </widget>
-        </item>
-        <item row="9" column="2" colspan="2">
-         <widget class="QTableView" name="mainTable"/>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="labelCollege">
-          <property name="text">
-           <string>Select the college you wish to start at:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="1">
-         <widget class="QSpinBox" name="spinCollege">
-          <property name="minimum">
-           <number>1</number>
-          </property>
-          <property name="maximum">
-           <number>11</number>
-          </property>
-          <property name="value">
-           <number>11</number>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QPushButton" name="customTrip">
-          <property name="text">
-           <string>Custom Trip</string>
+           <string>College Cart Total:</string>
           </property>
          </widget>
         </item>
@@ -125,7 +151,7 @@
           <item>
            <widget class="QPushButton" name="customTripTotal">
             <property name="text">
-             <string>Trip Total</string>
+             <string>Complete</string>
             </property>
            </widget>
           </item>
@@ -184,6 +210,28 @@
           </item>
          </layout>
         </item>
+        <item row="6" column="3">
+         <widget class="QLabel" name="customGrandTotal">
+          <property name="font">
+           <font>
+            <pointsize>20</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>Total</string>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="2" colspan="2">
+         <widget class="QTableView" name="mainTable"/>
+        </item>
+        <item row="7" column="0">
+         <widget class="QLabel" name="labelTotalDistance">
+          <property name="text">
+           <string>Total Trip Distance: </string>
+          </property>
+         </widget>
+        </item>
        </layout>
        <zorder>collegeLocation</zorder>
        <zorder>labelTotalDistance</zorder>
@@ -195,6 +243,10 @@
        <zorder>spinCollege</zorder>
        <zorder>customTrip</zorder>
        <zorder>startTrip</zorder>
+       <zorder>customCartTotalLabel</zorder>
+       <zorder>customGrandTotalLabel</zorder>
+       <zorder>customCartTotal</zorder>
+       <zorder>customGrandTotal</zorder>
       </widget>
       <widget class="QWidget" name="tab_2">
        <attribute name="title">
@@ -290,7 +342,28 @@
         <string>Michigan Trip</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_2">
-        <item row="4" column="0">
+        <item row="0" column="0">
+         <widget class="QLabel" name="michiganLabel">
+          <property name="text">
+           <string>How many colleges do you want to visit? (Includes University of Michigan)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QSpinBox" name="michiganSpinBox">
+          <property name="minimum">
+           <number>1</number>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="1">
+         <widget class="QPushButton" name="michiganPurchase">
+          <property name="text">
+           <string>Purchase</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
          <widget class="QLabel" name="michiganLocationLabel">
           <property name="font">
            <font>
@@ -302,58 +375,41 @@
           </property>
          </widget>
         </item>
-        <item row="5" column="0">
+        <item row="4" column="0">
          <widget class="QLabel" name="michiganDistanceLabel">
           <property name="text">
            <string>Distance</string>
           </property>
          </widget>
         </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="michiganLabel">
+        <item row="4" column="1">
+         <widget class="QPushButton" name="michiganNextCollege">
           <property name="text">
-           <string>How many colleges do you want to visit? (Includes University of Michigan)</string>
+           <string>Next College</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QTableView" name="SouvenirNames"/>
+        </item>
+        <item row="11" column="1">
+         <widget class="QTableView" name="souvenirCart"/>
+        </item>
+        <item row="3" column="1">
+         <widget class="QPushButton" name="michiganTripTotal">
+          <property name="text">
+           <string>Complete</string>
           </property>
          </widget>
         </item>
         <item row="9" column="1">
-         <widget class="QSpinBox" name="michiganSouvQuantity">
-          <property name="minimum">
-           <number>1</number>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QSpinBox" name="michiganSpinBox">
-          <property name="minimum">
-           <number>1</number>
-          </property>
-         </widget>
-        </item>
-        <item row="7" column="1">
-         <widget class="QTableView" name="SouvenirNames"/>
-        </item>
-        <item row="2" column="0">
-         <widget class="QPushButton" name="michiganTripButton">
-          <property name="text">
-           <string>Make Trip</string>
-          </property>
-         </widget>
-        </item>
-        <item row="13" column="1">
-         <widget class="QTableView" name="souvenirCart"/>
-        </item>
-        <item row="7" column="0" rowspan="7">
-         <widget class="QTableView" name="michiganTripTableView"/>
-        </item>
-        <item row="11" column="1">
          <widget class="QPushButton" name="michiganNextPurchase">
           <property name="text">
            <string>Purchase</string>
           </property>
          </widget>
         </item>
-        <item row="8" column="1">
+        <item row="6" column="1">
          <widget class="QLabel" name="michiganQuantityLabel">
           <property name="font">
            <font>
@@ -365,33 +421,85 @@
           </property>
          </widget>
         </item>
+        <item row="2" column="0">
+         <widget class="QPushButton" name="michiganTripButton">
+          <property name="text">
+           <string>Make Trip</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0" rowspan="7">
+         <widget class="QTableView" name="michiganTripTableView"/>
+        </item>
+        <item row="7" column="1">
+         <widget class="QSpinBox" name="michiganSouvQuantity">
+          <property name="minimum">
+           <number>1</number>
+          </property>
+         </widget>
+        </item>
         <item row="10" column="1">
-         <widget class="QPushButton" name="michiganPurchase">
-          <property name="text">
-           <string>Purchase</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="1">
-         <widget class="QPushButton" name="michiganNextCollege">
-          <property name="text">
-           <string>Next College</string>
-          </property>
-         </widget>
-        </item>
-        <item row="12" column="1">
          <widget class="QPushButton" name="michiganRemoveCart">
           <property name="text">
            <string>Remove From Cart</string>
           </property>
          </widget>
         </item>
-        <item row="4" column="1">
-         <widget class="QPushButton" name="michiganTripTotal">
-          <property name="text">
-           <string>Trip Total</string>
-          </property>
-         </widget>
+        <item row="2" column="1">
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <item>
+           <widget class="QLabel" name="michiganCartTotal">
+            <property name="font">
+             <font>
+              <pointsize>20</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Total</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="michiganGrandTotal">
+            <property name="font">
+             <font>
+              <pointsize>20</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Total</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="1" column="1">
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QLabel" name="michiganCartTotalLabel">
+            <property name="font">
+             <font>
+              <pointsize>7</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>College Cart Total:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="michiganGrandTotalLabel">
+            <property name="font">
+             <font>
+              <pointsize>7</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Grand Total:</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </widget>
@@ -499,7 +607,7 @@
         <item row="5" column="1">
          <widget class="QPushButton" name="saddleTripTotal">
           <property name="text">
-           <string>Trip Total</string>
+           <string>Complete</string>
           </property>
          </widget>
         </item>
