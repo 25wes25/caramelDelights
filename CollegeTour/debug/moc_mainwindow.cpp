@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.9.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.8.0)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,7 +12,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'mainwindow.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.9.1. It"
+#error "This file was generated using the moc from 5.8.0. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[33];
-    char stringdata0[791];
+    QByteArrayData data[34];
+    char stringdata0[813];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -63,7 +63,8 @@ QT_MOC_LITERAL(28, 650, 27), // "on_saddleRemoveCart_clicked"
 QT_MOC_LITERAL(29, 678, 29), // "on_saddleNextPurchase_clicked"
 QT_MOC_LITERAL(30, 708, 28), // "on_saddleNextCollege_clicked"
 QT_MOC_LITERAL(31, 737, 26), // "on_saddleTripTotal_clicked"
-QT_MOC_LITERAL(32, 764, 26) // "on_saddleCartTable_clicked"
+QT_MOC_LITERAL(32, 764, 26), // "on_saddleCartTable_clicked"
+QT_MOC_LITERAL(33, 791, 21) // "on_pushButton_clicked"
 
     },
     "MainWindow\0on_comboCollege_activated\0"
@@ -90,7 +91,8 @@ QT_MOC_LITERAL(32, 764, 26) // "on_saddleCartTable_clicked"
     "on_saddleNextPurchase_clicked\0"
     "on_saddleNextCollege_clicked\0"
     "on_saddleTripTotal_clicked\0"
-    "on_saddleCartTable_clicked"
+    "on_saddleCartTable_clicked\0"
+    "on_pushButton_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -100,7 +102,7 @@ static const uint qt_meta_data_MainWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      29,   14, // methods
+      30,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -108,35 +110,36 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    1,  159,    2, 0x08 /* Private */,
-       4,    1,  162,    2, 0x08 /* Private */,
-       6,    0,  165,    2, 0x08 /* Private */,
-       7,    0,  166,    2, 0x08 /* Private */,
-       8,    0,  167,    2, 0x08 /* Private */,
-       9,    0,  168,    2, 0x08 /* Private */,
-      10,    0,  169,    2, 0x08 /* Private */,
-      11,    0,  170,    2, 0x08 /* Private */,
-      12,    1,  171,    2, 0x08 /* Private */,
-      13,    0,  174,    2, 0x08 /* Private */,
-      14,    0,  175,    2, 0x08 /* Private */,
-      15,    0,  176,    2, 0x08 /* Private */,
-      16,    0,  177,    2, 0x08 /* Private */,
-      17,    0,  178,    2, 0x08 /* Private */,
-      18,    0,  179,    2, 0x08 /* Private */,
-      19,    1,  180,    2, 0x08 /* Private */,
-      20,    0,  183,    2, 0x08 /* Private */,
-      21,    0,  184,    2, 0x08 /* Private */,
-      22,    1,  185,    2, 0x08 /* Private */,
-      23,    1,  188,    2, 0x08 /* Private */,
-      24,    0,  191,    2, 0x08 /* Private */,
-      25,    0,  192,    2, 0x08 /* Private */,
-      26,    0,  193,    2, 0x08 /* Private */,
-      27,    1,  194,    2, 0x08 /* Private */,
-      28,    0,  197,    2, 0x08 /* Private */,
-      29,    0,  198,    2, 0x08 /* Private */,
-      30,    0,  199,    2, 0x08 /* Private */,
-      31,    0,  200,    2, 0x08 /* Private */,
-      32,    1,  201,    2, 0x08 /* Private */,
+       1,    1,  164,    2, 0x08 /* Private */,
+       4,    1,  167,    2, 0x08 /* Private */,
+       6,    0,  170,    2, 0x08 /* Private */,
+       7,    0,  171,    2, 0x08 /* Private */,
+       8,    0,  172,    2, 0x08 /* Private */,
+       9,    0,  173,    2, 0x08 /* Private */,
+      10,    0,  174,    2, 0x08 /* Private */,
+      11,    0,  175,    2, 0x08 /* Private */,
+      12,    1,  176,    2, 0x08 /* Private */,
+      13,    0,  179,    2, 0x08 /* Private */,
+      14,    0,  180,    2, 0x08 /* Private */,
+      15,    0,  181,    2, 0x08 /* Private */,
+      16,    0,  182,    2, 0x08 /* Private */,
+      17,    0,  183,    2, 0x08 /* Private */,
+      18,    0,  184,    2, 0x08 /* Private */,
+      19,    1,  185,    2, 0x08 /* Private */,
+      20,    0,  188,    2, 0x08 /* Private */,
+      21,    0,  189,    2, 0x08 /* Private */,
+      22,    1,  190,    2, 0x08 /* Private */,
+      23,    1,  193,    2, 0x08 /* Private */,
+      24,    0,  196,    2, 0x08 /* Private */,
+      25,    0,  197,    2, 0x08 /* Private */,
+      26,    0,  198,    2, 0x08 /* Private */,
+      27,    1,  199,    2, 0x08 /* Private */,
+      28,    0,  202,    2, 0x08 /* Private */,
+      29,    0,  203,    2, 0x08 /* Private */,
+      30,    0,  204,    2, 0x08 /* Private */,
+      31,    0,  205,    2, 0x08 /* Private */,
+      32,    1,  206,    2, 0x08 /* Private */,
+      33,    0,  209,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::Int,    3,
@@ -168,6 +171,7 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, QMetaType::QModelIndex,    3,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -207,6 +211,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 26: _t->on_saddleNextCollege_clicked(); break;
         case 27: _t->on_saddleTripTotal_clicked(); break;
         case 28: _t->on_saddleCartTable_clicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
+        case 29: _t->on_pushButton_clicked(); break;
         default: ;
         }
     }
@@ -214,7 +219,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
 
 const QMetaObject MainWindow::staticMetaObject = {
     { &QMainWindow::staticMetaObject, qt_meta_stringdata_MainWindow.data,
-      qt_meta_data_MainWindow,  qt_static_metacall, nullptr, nullptr}
+      qt_meta_data_MainWindow,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
@@ -225,7 +230,7 @@ const QMetaObject *MainWindow::metaObject() const
 
 void *MainWindow::qt_metacast(const char *_clname)
 {
-    if (!_clname) return nullptr;
+    if (!_clname) return Q_NULLPTR;
     if (!strcmp(_clname, qt_meta_stringdata_MainWindow.stringdata0))
         return static_cast<void*>(const_cast< MainWindow*>(this));
     return QMainWindow::qt_metacast(_clname);
@@ -237,13 +242,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 29)
+        if (_id < 30)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 29;
+        _id -= 30;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 29)
+        if (_id < 30)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 29;
+        _id -= 30;
     }
     return _id;
 }

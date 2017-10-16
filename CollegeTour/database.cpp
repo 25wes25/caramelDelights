@@ -113,6 +113,10 @@ QVector<colleges> Database::GetCollegeInfo(QVector<QString> inColleges)
 
 }
 
+/*!
+ * \brief Database::setCollegeNames sets the college name of all the distinct names
+ * \return Qvector<QString>
+ */
 QVector<QString> Database::setCollegeNames()
 {
     QSqlQuery query(db);

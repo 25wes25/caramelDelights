@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QStandardItemModel>
 #include "database.h"
+#include "saddlebackdistances.h"
 #include <QItemSelectionModel>
 #include <algorithm>
 #include <QtMath>
@@ -100,6 +101,8 @@ private slots:
 
     void on_saddleCartTable_clicked(const QModelIndex &index);
 
+    void on_pushButton_clicked();
+
 private:
     /**
      * @brief ui
@@ -142,6 +145,7 @@ private:
     QVector<QString> saddleCurrentCartName, michiganCurrentCartName, customCurrentCartName;
     double saddleGrandTot = 0, michiganGrandTot = 0, customGrandTot = 0;
     double saddleCartTot = 0, michiganCartTot = 0, customCartTot = 0;
+    SaddlebackDistances s;
 };
 
 #endif // MAINWINDOW_H

@@ -4,6 +4,7 @@
 #include <QFileDialog>
 #include <QDebug>
 #include <QSqlQueryModel>
+#include <QSqlError>
 
 /**
  * @brief MainWindow::MainWindow
@@ -509,6 +510,7 @@ void MainWindow::on_michiganTripButton_clicked()
     QVector<QString> tripNames;
 
     souvenirIndex = 0;
+    double distance = 0;
 
     //Makes sure the trip doesnt get messed up from invalid input!
     ui->michiganSpinBox->setMaximum(maxVectorSize);
@@ -532,20 +534,39 @@ void MainWindow::on_michiganTripButton_clicked()
     ui->michiganLocationLabel->show();
     ui->michiganDistanceLabel->show();
 
-    QString totDist = QString::number(michiganTrip.getTotalDistance());
-    ui->michiganDistanceLabel->setText("Total Trip Distance: " + totDist);
-
     decision = ui->michiganSpinBox->value();
-
-
 
     QStandardItemModel* model = new QStandardItemModel(decision,1,this);
     model->setHorizontalHeaderItem(0, new QStandardItem("Colleges"));
+
+    QSqlQuery *distanceQuery = new QSqlQuery(database->db);
+
+    for(int i = 1; i <= decision; i++)
+    {
+        distanceQuery->prepare("SELECT DistanceBetween FROM Distances WHERE StartingCollege == (:start) AND EndingCollege == (:end)");
+        distanceQuery->bindValue(":start",michiganList[i-1].collegeName);
+        distanceQuery->bindValue(":end",michiganList[i].collegeName);
+        if(distanceQuery->exec())
+        {
+            qDebug() << distanceQuery->isValid();
+            qDebug() << "Starting:" << michiganList[i-1].collegeName;
+            qDebug() << "Ending:" << michiganList[i].collegeName;
+            while(distanceQuery->next())
+            {
+                qDebug() << "Distance: " << distanceQuery->value(0).toDouble();
+                distance += distanceQuery->value(0).toDouble();
+            }
+        }
+
+    }
 
     for(int i = 0; i < decision; i++)
     {
         model->setItem(i, new QStandardItem(michiganList[i].collegeName));
     }
+
+    QString totDist = QString::number(distance);
+    ui->michiganDistanceLabel->setText("Total Trip Distance: " + totDist);
 
     ui->michiganTripTableView->setModel(model);
     ui->michiganTripTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
@@ -571,7 +592,7 @@ void MainWindow::on_michiganTripButton_clicked()
 void MainWindow::on_michiganNextCollege_clicked()
 {
     michiganCurrentCartName.clear();
-    if(souvenirIndex == customTrip.collegeList.size())
+    if(souvenirIndex == decision)
     {
         ui->michiganNextCollege->hide();
         ui->michiganTripTotal->show();
@@ -594,7 +615,7 @@ void MainWindow::on_michiganNextCollege_clicked()
 
         ui->SouvenirNames->setModel(souvenirModel);
 
-        if(souvenirIndex >= michiganList.size()-1)
+        if(souvenirIndex >= decision-1)
         {
             ui->michiganNextCollege->hide();
             ui->michiganTripTotal->show();
@@ -1109,4 +1130,9 @@ void MainWindow::on_saddleTripTotal_clicked()
 void MainWindow::on_saddleCartTable_clicked(const QModelIndex &index)
 {
     saddleCartSelection = index.row();
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    s.show();
 }

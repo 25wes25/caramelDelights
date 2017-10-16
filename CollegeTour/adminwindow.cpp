@@ -273,7 +273,7 @@ void AdminWindow::on_loadColleges_clicked()
     //bool to keep track of the quotes we hit made by excel in making the csv file
     bool quote = false;
     //Open the csv file
-    QFile file("/users/brycecallender/desktop/caramelDelights-Ronen3/CollegeTour/NewCampuses.csv");
+    QFile file(QDir::currentPath() + "\\NewCampuses.csv");
     //Opens file and signals it to be read only
     if(file.open (QIODevice::ReadOnly))
     {

@@ -27,6 +27,11 @@ trip::trip(QVector<QString> inColleges)
     totalDistance = 0;
 }
 
+/*!
+ * \brief trip::trip trip constructor with name and a number
+ * \param startingCollege
+ * \param tripNumber
+ */
 trip::trip(QString startingCollege, int tripNumber)
 {
     //sets the vector to the size of the trip
@@ -146,11 +151,20 @@ float trip::getDistance(QString startColl, QString collName)
     return distanceFrom;
 }
 
+/*!
+ * \brief trip::getTotalDistance
+ * \return float
+ */
 float trip::getTotalDistance()
 {
     return totalDistance;
 }
 
+/*!
+ * \brief trip::Recursive recursive algorithm to find the quickest travel path
+ * \param collegeList
+ * \param elem
+ */
 void trip::Recursive(QVector<colleges> &collegeList, int elem)
 {
     int increment = 0;              // Incrementation used to find the location of the closest college in the list
@@ -225,6 +239,13 @@ void trip::Recursive(QVector<colleges> &collegeList, int elem)
     }
 }
 
+/*!
+ * \brief trip::isInList
+ * \param collName
+ * \param collegeList
+ * \fn checks if the school is in the trip list
+ * \return boolean
+ */
 bool trip::isInList(QString collName, QVector<colleges> &collegeList)
 {
     for (int index = 0; index < collegeList.size();index++)

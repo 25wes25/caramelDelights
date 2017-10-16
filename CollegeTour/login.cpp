@@ -11,7 +11,6 @@ login::login(QWidget *parent) :
 {
     ui->setupUi(this);
     addAccount("caramel", "delights", true);
-    addAccount("", "", true);
     addAccount("Bryce","Bryce",false);
 }
 
@@ -130,9 +129,19 @@ void login::on_LoginButton_clicked()
                 interface.show();
             }
         }
+        else
+        {
+            QMessageBox::critical(this,"Error","Invalid Name and or Password!");
+            ui->UserNameInput->clear();
+            ui->PasswordInput->clear();
+        }
     }
 }
 
+/*!
+ * \brief login::on_CreateCheckBox_toggled makes new account
+ * \param checked
+ */
 void login::on_CreateCheckBox_toggled(bool checked)
 {
     ui->userNameLabel->setText("Desired Username: ");

@@ -18,19 +18,50 @@
 class trip
 {
 public:
+    /*!
+     * \brief trip constructor
+     */
     trip();
-    //constructor that takes in the number
+    /*!
+     * \brief trip constructor with parameter
+     * \param inColleges
+     */
     trip(QVector<QString> inColleges);
-    //custom Trip constructor
+    /*!
+     * \brief trip constructor with 2 parameters
+     * \param startingCollege
+     * \param tripNumber
+     */
     trip(QString startingCollege, int tripNumber);
 
-    //get functions
+    /*!
+     * \brief getDistance
+     * gets distance
+     * \param startColl
+     * \param collName
+     * \return
+     */
     float getDistance(QString startColl, QString collName);
 
+    /*!
+     * \brief isVisited
+     * checks if we visited the school or not
+     * \param collName
+     * \param collegeList
+     * \param elem
+     * \return
+     */
     bool isVisited(QString collName, QVector<colleges> &collegeList, int elem);
 
+    /*!
+     * \brief getSouvTotal gets souvenir total
+     * \return
+     */
     float getSouvTotal();
 
+    /*!
+     * \brief printCollegeList prints all the info when reading database
+     */
     void printCollegeList();
     /**
      * @brief collegeList
@@ -39,8 +70,19 @@ public:
      */
     QVector<colleges> collegeList;
 
+    /*!
+     * \brief SetCollegeList function to take in vector of strings and set info
+     * \param inColleges
+     * \return
+     */
     QVector<colleges> SetCollegeList(QVector<QString> inColleges);
 
+    /*!
+     * \brief isInList checks if school is in trip list
+     * \param collName
+     * \param collegeList
+     * \return
+     */
     bool isInList(QString collName, QVector<colleges> &collegeList);
 
     /**
@@ -53,10 +95,23 @@ public:
      */
     void Recursive(QVector<colleges> &collegeList, int elem);
 
+    /*!
+     * \brief markVisited marks school as visited
+     * \param collName
+     * \return
+     */
     bool markVisited(QString collName);
 
+    /*!
+     * \brief cart
+     * \var cart
+     */
     QVector<visitedCollege> cart;
 
+    /*!
+     * \brief getTotalDistance gets total distance of trip
+     * \return
+     */
     float getTotalDistance();
 
     //mutators
@@ -64,15 +119,7 @@ public:
 
 
 private:
-    //vector holding the colleges and their respective
-    //distances
-
     float totalDistance;
-
-    //vector holding the running total of items from their
-    //colleges
-
-
 };
 
 #endif // TRIP_H

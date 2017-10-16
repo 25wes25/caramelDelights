@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QVector>
+#include <QMessageBox>
 #include "mainwindow.h"
 #include "adminwindow.h"
 
@@ -47,7 +48,8 @@ public:
 private slots:
     void on_LoginButton_clicked(); //!< "Login" push button  */
 
-    void on_CreateCheckBox_toggled(bool checked);
+
+    void on_CreateCheckBox_toggled(bool checked); //!< "Login" new user creation  */
 
 private:
     Ui::login *ui;

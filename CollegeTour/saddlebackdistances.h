@@ -18,11 +18,21 @@ class SaddlebackDistances : public QDialog
     Q_OBJECT
 
 public:
+    /*!
+     * \brief SaddlebackDistances constructor
+     * \param parent
+     */
     explicit SaddlebackDistances(QWidget *parent = 0);
     ~SaddlebackDistances();
 
 private:
+    /*!
+     * \brief ui
+     */
     Ui::SaddlebackDistances *ui;
+    /*!
+     * \brief database database connection for this window
+     */
     Database *database;
 };
 

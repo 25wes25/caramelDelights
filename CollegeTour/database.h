@@ -55,6 +55,10 @@ private:
 
 
 public:
+    /*!
+     * \brief setCollegeNames grabs unique names
+     * \return QVector<QString>
+     */
     QVector<QString> setCollegeNames();
     /*!
      * \brief db
